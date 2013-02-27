@@ -1,17 +1,15 @@
 package testgrails
 
-import org.hibernate.envers.Audited
-
-@Audited
 class RoadMap {
 	
-	Date date
+	String name
 	String description
-	Integer orderId
+	
+	Configuration configuration
 	
 	static hasMany = [
-		userStories: UserStory,
-		releases: Release
+		mileStones: MileStone,
+		userStories: UserStory
 		]
 
     static constraints = {

@@ -1,21 +1,17 @@
 package testgrails
 
-import org.hibernate.envers.Audited
-
-@Audited
 class SystemChange {
 	
-	String name
 	String adaptionType
 	String adaptionAspect
 	
 	FirstEffortEstimate firstEffortEstimate
+	System system
 	
 	static belongsTo = UserStory
 	static hasMany = [
-		moduleChanges: ModuleChange,
 		userStories: UserStory
-		]	
+		]
 
     static constraints = {
     }

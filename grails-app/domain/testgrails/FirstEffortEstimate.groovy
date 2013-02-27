@@ -1,8 +1,5 @@
 package testgrails
 
-import org.hibernate.envers.Audited
-
-@Audited
 class FirstEffortEstimate {
 	
 	String effortType
@@ -12,9 +9,8 @@ class FirstEffortEstimate {
 	Integer risk
 	
 	static hasMany = [
-		systemChanges: SystemChange,
-		effortEstimates: EffortEstimate
-		]	
+		systemChanges: SystemChange
+		]
 
     static constraints = {
     }

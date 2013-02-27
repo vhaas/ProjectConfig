@@ -1,24 +1,25 @@
 package testgrails
 
-import org.hibernate.envers.Audited
-
-@Audited
 class UserStory {
 	
 	String name
+	String description
 	String goal
 	String benefit
 	
-	Role role
 	RoadMap roadMap
+	Epic epic
+	Role role
 	
-	static belongsTo = Epic
 	static hasMany = [
-		epics: Epic,
 		systemChanges: SystemChange,
-		useCases: UseCase
+		requiredUserStories: UserStory		
 		]	
 
     static constraints = {
     }
+	
+	static namedQueries = {
+		
+	}
 }

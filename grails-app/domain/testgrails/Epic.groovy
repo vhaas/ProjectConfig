@@ -1,15 +1,21 @@
 package testgrails
 
-import org.hibernate.envers.Audited
-
-@Audited
 class Epic {
 	
 	String name
 	String description
 	
-	static hasMany = [userStories: UserStory]
+	static hasMany = [
+		userStories: UserStory
+		]
 
     static constraints = {
     }
+	
+	static namedQueries = {
+		findEpicByIdFetchUserStories {
+			eq "id", id()
+			fetchMode("userStories", join)
+		}
+	}
 }
