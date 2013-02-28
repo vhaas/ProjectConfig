@@ -10,5 +10,6 @@ class System {
 		]
 
     static constraints = {
-    }
+		systemChanges nullable: true		
+    }	
 }

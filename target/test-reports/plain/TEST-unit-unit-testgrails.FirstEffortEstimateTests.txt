@@ -1,0 +1,15 @@
+Testsuite: testgrails.FirstEffortEstimateTests
+Tests run: 1, Failures: 1, Errors: 0, Time elapsed: 0,86 sec
+------------- Standard Output ---------------
+--Output from testSomething--
+------------- ---------------- ---------------
+------------- Standard Error -----------------
+--Output from testSomething--
+------------- ---------------- ---------------
+
+Testcase: testSomething took 0,563 sec
+	FAILED
+junit.framework.AssertionFailedError: Implement me
+junit.framework.AssertionFailedError: junit.framework.AssertionFailedError: Implement me
+	at testgrails.FirstEffortEstimateTests.testSomething(FirstEffortEstimateTests.groovy:15)
+

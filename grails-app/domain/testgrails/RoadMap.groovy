@@ -12,6 +12,7 @@ class RoadMap {
 		userStories: UserStory
 		]
 
-    static constraints = {
-    }
+    static constraints = {		
+		configuration nullable: true		
+    }	
 }

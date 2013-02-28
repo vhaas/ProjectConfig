@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites>
+  <testsuite errors="0" failures="0" hostname="EX064" id="0" name="RestFunctionalTests" package="testgrails" tests="1" time="5.346" timestamp="2013-02-28T15:40:27">
+      <properties />
+
+      <testcase classname="testgrails.RestFunctionalTests" name="testGetRoles" time="5.346" />
+
+      <system-out><![CDATA[--Output from testGetRoles--
+Switching to browser client [default]
+Creating to new client [default] of type [class com.grailsrocks.functionaltest.client.BrowserClient]
+
+== Making request GET http://localhost:8080/TestGrails/rolenames parameters: ===
+== Request headers: ============================================================
+Accept-Encoding: gzip, deflate
+Accept: */*
+== Content =====================================================================
+
+================================================================================
+Interceptor createPage: TopLevelWindow[name=""]
+Content of web window [TopLevelWindow[name=""]] changed
+== Response was 200 (OK) headers: ==============================================
+================================================================================
+== Content =====================================================================
+[["Administrator",41],["Standard User",42]]
+================================================================================
+#
+]]></system-out>
+
+      <system-err><![CDATA[--Output from testGetRoles--
+]]></system-err>
+
+  </testsuite>
+  <testsuite errors="0" failures="0" hostname="EX064" id="1" name="TestDataTests" package="testgrails" tests="1" time="2.361" timestamp="2013-02-28T15:40:18">
+      <properties />
+
+      <testcase classname="testgrails.TestDataTests" name="testBuildAllDomains" time="2.361" />
+
+      <system-out><![CDATA[--Output from testBuildAllDomains--
+Test of Configuration.build()
+********** SUCCESSFUL BUILD OF Artefact > Configuration
+********** SUCCESSFUL BUILD OF Artefact > Configuration
+********** SUCCESSFUL BUILD OF Artefact > Configuration
+********** SUCCESSFUL BUILD OF Artefact > Configuration
+********** SUCCESSFUL BUILD OF Artefact > Configuration
+********** SUCCESSFUL BUILD OF Artefact > Configuration
+********** SUCCESSFUL BUILD OF Artefact > Configuration
+********** SUCCESSFUL BUILD OF Artefact > Configuration
+********** SUCCESSFUL BUILD OF Artefact > Configuration
+********** SUCCESSFUL BUILD OF Artefact > Configuration
+Test of Epic.build()
+********** SUCCESSFUL BUILD OF Artefact > Epic
+********** SUCCESSFUL BUILD OF Artefact > Epic
+********** SUCCESSFUL BUILD OF Artefact > Epic
+********** SUCCESSFUL BUILD OF Artefact > Epic
+********** SUCCESSFUL BUILD OF Artefact > Epic
+********** SUCCESSFUL BUILD OF Artefact > Epic
+********** SUCCESSFUL BUILD OF Artefact > Epic
+********** SUCCESSFUL BUILD OF Artefact > Epic
+********** SUCCESSFUL BUILD OF Artefact > Epic
+********** SUCCESSFUL BUILD OF Artefact > Epic
+Test of FirstEffortEstimate.build()
+********** SUCCESSFUL BUILD OF Artefact > FirstEffortEstimate
+********** SUCCESSFUL BUILD OF Artefact > FirstEffortEstimate
+********** SUCCESSFUL BUILD OF Artefact > FirstEffortEstimate
+********** SUCCESSFUL BUILD OF Artefact > FirstEffortEstimate
+********** SUCCESSFUL BUILD OF Artefact > FirstEffortEstimate
+********** SUCCESSFUL BUILD OF Artefact > FirstEffortEstimate
+********** SUCCESSFUL BUILD OF Artefact > FirstEffortEstimate
+********** SUCCESSFUL BUILD OF Artefact > FirstEffortEstimate
+********** SUCCESSFUL BUILD OF Artefact > FirstEffortEstimate
+********** SUCCESSFUL BUILD OF Artefact > FirstEffortEstimate
+Test of MileStone.build()
+********** SUCCESSFUL BUILD OF Artefact > MileStone
+********** SUCCESSFUL BUILD OF Artefact > MileStone
+********** SUCCESSFUL BUILD OF Artefact > MileStone
+********** SUCCESSFUL BUILD OF Artefact > MileStone
+********** SUCCESSFUL BUILD OF Artefact > MileStone
+********** SUCCESSFUL BUILD OF Artefact > MileStone
+********** SUCCESSFUL BUILD OF Artefact > MileStone
+********** SUCCESSFUL BUILD OF Artefact > MileStone
+********** SUCCESSFUL BUILD OF Artefact > MileStone
+********** SUCCESSFUL BUILD OF Artefact > MileStone
+Test of RoadMap.build()
+********** SUCCESSFUL BUILD OF Artefact > RoadMap
+********** SUCCESSFUL BUILD OF Artefact > RoadMap
+********** SUCCESSFUL BUILD OF Artefact > RoadMap
+********** SUCCESSFUL BUILD OF Artefact > RoadMap
+********** SUCCESSFUL BUILD OF Artefact > RoadMap
+********** SUCCESSFUL BUILD OF Artefact > RoadMap
+********** SUCCESSFUL BUILD OF Artefact > RoadMap
+********** SUCCESSFUL BUILD OF Artefact > RoadMap
+********** SUCCESSFUL BUILD OF Artefact > RoadMap
+********** SUCCESSFUL BUILD OF Artefact > RoadMap
+Test of Role.build()
+********** SUCCESSFUL BUILD OF Artefact > Role
+********** SUCCESSFUL BUILD OF Artefact > Role
+********** SUCCESSFUL BUILD OF Artefact > Role
+********** SUCCESSFUL BUILD OF Artefact > Role
+********** SUCCESSFUL BUILD OF Artefact > Role
+********** SUCCESSFUL BUILD OF Artefact > Role
+********** SUCCESSFUL BUILD OF Artefact > Role
+********** SUCCESSFUL BUILD OF Artefact > Role
+********** SUCCESSFUL BUILD OF Artefact > Role
+********** SUCCESSFUL BUILD OF Artefact > Role
+Test of System.build()
+********** SUCCESSFUL BUILD OF Artefact > System
+********** SUCCESSFUL BUILD OF Artefact > System
+********** SUCCESSFUL BUILD OF Artefact > System
+********** SUCCESSFUL BUILD OF Artefact > System
+********** SUCCESSFUL BUILD OF Artefact > System
+********** SUCCESSFUL BUILD OF Artefact > System
+********** SUCCESSFUL BUILD OF Artefact > System
+********** SUCCESSFUL BUILD OF Artefact > System
+********** SUCCESSFUL BUILD OF Artefact > System
+********** SUCCESSFUL BUILD OF Artefact > System
+Test of SystemChange.build()
+********** SUCCESSFUL BUILD OF Artefact > SystemChange
+********** SUCCESSFUL BUILD OF Artefact > SystemChange
+********** SUCCESSFUL BUILD OF Artefact > SystemChange
+********** SUCCESSFUL BUILD OF Artefact > SystemChange
+********** SUCCESSFUL BUILD OF Artefact > SystemChange
+********** SUCCESSFUL BUILD OF Artefact > SystemChange
+********** SUCCESSFUL BUILD OF Artefact > SystemChange
+********** SUCCESSFUL BUILD OF Artefact > SystemChange
+********** SUCCESSFUL BUILD OF Artefact > SystemChange
+********** SUCCESSFUL BUILD OF Artefact > SystemChange
+Test of UserStory.build()
+********** SUCCESSFUL BUILD OF Artefact > UserStory
+********** SUCCESSFUL BUILD OF Artefact > UserStory
+********** SUCCESSFUL BUILD OF Artefact > UserStory
+********** SUCCESSFUL BUILD OF Artefact > UserStory
+********** SUCCESSFUL BUILD OF Artefact > UserStory
+********** SUCCESSFUL BUILD OF Artefact > UserStory
+********** SUCCESSFUL BUILD OF Artefact > UserStory
+********** SUCCESSFUL BUILD OF Artefact > UserStory
+********** SUCCESSFUL BUILD OF Artefact > UserStory
+********** SUCCESSFUL BUILD OF Artefact > UserStory
+]]></system-out>
+
+      <system-err><![CDATA[--Output from testBuildAllDomains--
+]]></system-err>
+
+  </testsuite>
+  <testsuite errors="0" failures="1" hostname="EX064" id="2" name="ConfigurationTests" package="testgrails" tests="1" time="1.829" timestamp="2013-02-28T15:39:38">
+      <properties />
+
+      <testcase classname="testgrails.ConfigurationTests" name="testSomething" time="0.969">
+          <failure message="junit.framework.AssertionFailedError: Implement me" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: junit.framework.AssertionFailedError: Implement me
+	at testgrails.ConfigurationTests.testSomething(ConfigurationTests.groovy:15)
+</failure>
+
+      </testcase>
+
+      <system-out><![CDATA[--Output from testSomething--
+]]></system-out>
+
+      <system-err><![CDATA[--Output from testSomething--
+]]></system-err>
+
+  </testsuite>
+  <testsuite errors="0" failures="1" hostname="EX064" id="3" name="EpicRestControllerTests" package="testgrails" tests="1" time="3.079" timestamp="2013-02-28T15:39:40">
+      <properties />
+
+      <testcase classname="testgrails.EpicRestControllerTests" name="testSomething" time="2.813">
+          <failure message="junit.framework.AssertionFailedError: Implement me" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: junit.framework.AssertionFailedError: Implement me
+	at testgrails.EpicRestControllerTests.testSomething(EpicRestControllerTests.groovy:15)
+</failure>
+
+      </testcase>
+
+      <system-out><![CDATA[--Output from testSomething--
+]]></system-out>
+
+      <system-err><![CDATA[--Output from testSomething--
+]]></system-err>
+
+  </testsuite>
+  <testsuite errors="0" failures="1" hostname="EX064" id="4" name="EpicTests" package="testgrails" tests="1" time="1.955" timestamp="2013-02-28T15:39:43">
+      <properties />
+
+      <testcase classname="testgrails.EpicTests" name="testSomething" time="1.595">
+          <failure message="junit.framework.AssertionFailedError: Implement me" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: junit.framework.AssertionFailedError: Implement me
+	at testgrails.EpicTests.testSomething(EpicTests.groovy:15)
+</failure>
+
+      </testcase>
+
+      <system-out><![CDATA[--Output from testSomething--
+]]></system-out>
+
+      <system-err><![CDATA[--Output from testSomething--
+]]></system-err>
+
+  </testsuite>
+  <testsuite errors="0" failures="1" hostname="EX064" id="5" name="FirstEffortEstimateTests" package="testgrails" tests="1" time="0.86" timestamp="2013-02-28T15:39:45">
+      <properties />
+
+      <testcase classname="testgrails.FirstEffortEstimateTests" name="testSomething" time="0.563">
+          <failure message="junit.framework.AssertionFailedError: Implement me" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: junit.framework.AssertionFailedError: Implement me
+	at testgrails.FirstEffortEstimateTests.testSomething(FirstEffortEstimateTests.groovy:15)
+</failure>
+
+      </testcase>
+
+      <system-out><![CDATA[--Output from testSomething--
+]]></system-out>
+
+      <system-err><![CDATA[--Output from testSomething--
+]]></system-err>
+
+  </testsuite>
+  <testsuite errors="0" failures="1" hostname="EX064" id="6" name="MileStoneTests" package="testgrails" tests="1" time="1.219" timestamp="2013-02-28T15:39:46">
+      <properties />
+
+      <testcase classname="testgrails.MileStoneTests" name="testSomething" time="0.719">
+          <failure message="junit.framework.AssertionFailedError: Implement me" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: junit.framework.AssertionFailedError: Implement me
+	at testgrails.MileStoneTests.testSomething(MileStoneTests.groovy:15)
+</failure>
+
+      </testcase>
+
+      <system-out><![CDATA[--Output from testSomething--
+]]></system-out>
+
+      <system-err><![CDATA[--Output from testSomething--
+]]></system-err>
+
+  </testsuite>
+  <testsuite errors="0" failures="1" hostname="EX064" id="7" name="RoadMapTests" package="testgrails" tests="1" time="1.454" timestamp="2013-02-28T15:39:47">
+      <properties />
+
+      <testcase classname="testgrails.RoadMapTests" name="testSomething" time="1.173">
+          <failure message="junit.framework.AssertionFailedError: Implement me" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: junit.framework.AssertionFailedError: Implement me
+	at testgrails.RoadMapTests.testSomething(RoadMapTests.groovy:15)
+</failure>
+
+      </testcase>
+
+      <system-out><![CDATA[--Output from testSomething--
+]]></system-out>
+
+      <system-err><![CDATA[--Output from testSomething--
+]]></system-err>
+
+  </testsuite>
+  <testsuite errors="0" failures="1" hostname="EX064" id="8" name="RoleRestControllerTests" package="testgrails" tests="1" time="0.735" timestamp="2013-02-28T15:39:49">
+      <properties />
+
+      <testcase classname="testgrails.RoleRestControllerTests" name="testSomething" time="0.5">
+          <failure message="junit.framework.AssertionFailedError: Implement me" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: junit.framework.AssertionFailedError: Implement me
+	at testgrails.RoleRestControllerTests.testSomething(RoleRestControllerTests.groovy:15)
+</failure>
+
+      </testcase>
+
+      <system-out><![CDATA[--Output from testSomething--
+]]></system-out>
+
+      <system-err><![CDATA[--Output from testSomething--
+]]></system-err>
+
+  </testsuite>
+  <testsuite errors="0" failures="1" hostname="EX064" id="9" name="RoleTests" package="testgrails" tests="1" time="0.563" timestamp="2013-02-28T15:39:49">
+      <properties />
+
+      <testcase classname="testgrails.RoleTests" name="testSomething" time="0.313">
+          <failure message="junit.framework.AssertionFailedError: Implement me" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: junit.framework.AssertionFailedError: Implement me
+	at testgrails.RoleTests.testSomething(RoleTests.groovy:15)
+</failure>
+
+      </testcase>
+
+      <system-out><![CDATA[--Output from testSomething--
+]]></system-out>
+
+      <system-err><![CDATA[--Output from testSomething--
+]]></system-err>
+
+  </testsuite>
+  <testsuite errors="0" failures="1" hostname="EX064" id="10" name="SystemChangeTests" package="testgrails" tests="1" time="0.688" timestamp="2013-02-28T15:39:50">
+      <properties />
+
+      <testcase classname="testgrails.SystemChangeTests" name="testSomething" time="0.485">
+          <failure message="junit.framework.AssertionFailedError: Implement me" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: junit.framework.AssertionFailedError: Implement me
+	at testgrails.SystemChangeTests.testSomething(SystemChangeTests.groovy:15)
+</failure>
+
+      </testcase>
+
+      <system-out><![CDATA[--Output from testSomething--
+]]></system-out>
+
+      <system-err><![CDATA[--Output from testSomething--
+]]></system-err>
+
+  </testsuite>
+  <testsuite errors="0" failures="1" hostname="EX064" id="11" name="SystemTests" package="testgrails" tests="1" time="0.516" timestamp="2013-02-28T15:39:51">
+      <properties />
+
+      <testcase classname="testgrails.SystemTests" name="testSomething" time="0.281">
+          <failure message="junit.framework.AssertionFailedError: Implement me" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: junit.framework.AssertionFailedError: Implement me
+	at testgrails.SystemTests.testSomething(SystemTests.groovy:15)
+</failure>
+
+      </testcase>
+
+      <system-out><![CDATA[--Output from testSomething--
+]]></system-out>
+
+      <system-err><![CDATA[--Output from testSomething--
+]]></system-err>
+
+  </testsuite>
+  <testsuite errors="0" failures="1" hostname="EX064" id="12" name="UserStoryRestControllerTests" package="testgrails" tests="1" time="0.579" timestamp="2013-02-28T15:39:51">
+      <properties />
+
+      <testcase classname="testgrails.UserStoryRestControllerTests" name="testSomething" time="0.422">
+          <failure message="junit.framework.AssertionFailedError: Implement me" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: junit.framework.AssertionFailedError: Implement me
+	at testgrails.UserStoryRestControllerTests.testSomething(UserStoryRestControllerTests.groovy:15)
+</failure>
+
+      </testcase>
+
+      <system-out><![CDATA[--Output from testSomething--
+]]></system-out>
+
+      <system-err><![CDATA[--Output from testSomething--
+]]></system-err>
+
+  </testsuite>
+  <testsuite errors="0" failures="1" hostname="EX064" id="13" name="UserStoryTests" package="testgrails" tests="1" time="0.328" timestamp="2013-02-28T15:39:52">
+      <properties />
+
+      <testcase classname="testgrails.UserStoryTests" name="testSomething" time="0.328">
+          <failure message="junit.framework.AssertionFailedError: Implement me" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: junit.framework.AssertionFailedError: Implement me
+	at testgrails.UserStoryTests.testSomething(UserStoryTests.groovy:15)
+</failure>
+
+      </testcase>
+
+      <system-out><![CDATA[--Output from testSomething--
+]]></system-out>
+
+      <system-err><![CDATA[--Output from testSomething--
+]]></system-err>
+
+  </testsuite>
+</testsuites>

@@ -10,8 +10,9 @@ class MileStone {
 	RoadMap roadMap
 
     static constraints = {
-		name nullable: false
-		description nullable: false
-		dueTo nullable: false
+		name nullable: true
+		description nullable: true
+		dueTo nullable: true
+		roadMap nullable: true
     }
 }

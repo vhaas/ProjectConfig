@@ -14,5 +14,7 @@ class SystemChange {
 		]
 
     static constraints = {
-    }
+		firstEffortEstimate nullable: true
+		system nullable: true		
+    }	
 }

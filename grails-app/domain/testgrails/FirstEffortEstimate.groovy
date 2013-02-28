@@ -13,5 +13,6 @@ class FirstEffortEstimate {
 		]
 
     static constraints = {
-    }
+		systemChanges nullable: true		
+    }	
 }

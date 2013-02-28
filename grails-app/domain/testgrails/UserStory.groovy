@@ -16,10 +16,9 @@ class UserStory {
 		requiredUserStories: UserStory		
 		]	
 
-    static constraints = {
-    }
-	
-	static namedQueries = {
-		
-	}
+    static constraints = {		
+		roadMap nullable: true
+		epic nullable: true
+		role nullable: true
+    }	
 }

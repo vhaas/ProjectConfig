@@ -10,12 +10,5 @@ class Epic {
 		]
 
     static constraints = {
-    }
-	
-	static namedQueries = {
-		findEpicByIdFetchUserStories {
-			eq "id", id()
-			fetchMode("userStories", join)
-		}
-	}
+    }	
 }

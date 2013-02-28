@@ -10,5 +10,5 @@ class Role {
 		]
 
     static constraints = {
-    }
+    }	
 }
