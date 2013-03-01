@@ -4,29 +4,22 @@ import grails.converters.JSON
 
 class UserStoryRestController {
 
-	def showAllUserStoryNames() {
-		def userStories = UserStory.executeQuery(
-			'select us.name , us.id ' +
-			'from UserStory us'
-			)
-		render userStories as JSON
-	}
-	
 	def showUserStoryById() {
-		def userStory = UserStory.findByName(params.id, [fetch:[epic:"eager"]])
+		def userStory = UserStory.findById(params.id, [fetch:[epic:"eager", role:"eager"]])
 		if (!userStory) {
 			render renderNotFound
 		}
 		else {
-			render userStory as JSON
+			JSON.use("deep")
+			render userStory as JSON			
 		}
 	}	
 	
 	def showAllUserStories() {
-		def all = UserStory.list()	
+		def all = UserStory.list()
 		if (all.empty) {
 			render renderNotFound
-		} 
+		}
 		else {
 		render all as JSON
 		}

@@ -4,14 +4,6 @@ import grails.converters.JSON
 
 class RoleRestController {
 	
-	def showAllRoleNames() {		
-		def roles = Role.executeQuery(
-			'select r.name , r.id ' +
-			'from Role r'
-			)
-		render roles as JSON
-	}
-	
 	def showRoleById() {
 		def role = Role.get(params.id)
 		if (!role) {

@@ -7,18 +7,17 @@ class UrlMappings {
 			}
 		}
 		
-		"/userstory/$id"(controller: "UserStoryRest", parseRequest: true) {
+		///////////////////////////////////////////////////////////////////////////////////////////
+		//###UserStory
+		"/userStory/$id"(controller: "UserStoryRest", parseRequest: true) {
 			action = [GET: "showUserStoryById", PUT: "update", DELETE: "delete", POST: "save"]
 		}
 		
-		"/userstories"(controller: "UserStoryRest", parseRequest: true) {
+		"/userStories"(controller: "UserStoryRest", parseRequest: true) {
 			action = [GET: "showAllUserStories"]
 		}
-		
-		"/rolenames"(controller: "RoleRest", parseRequest: true) {
-			action = [GET: "showAllRoleNames"]
-		}
-		
+		///////////////////////////////////////////////////////////////////////////////////////////
+		//###Role		
 		"/roles"(controller: "RoleRest", parseRequest: true) {
 			action = [GET: "showAllRoles"]
 		}
@@ -27,19 +26,28 @@ class UrlMappings {
 			action = [GET: "showRoleById", PUT: "update", DELETE: "delete", POST: "save"]
 		}
 		
-		"/epicnames"(controller: "EpicRest", parseRequest: true) {
-			action = [GET: "showAllEpicNames"]
-		}
-		
+		///////////////////////////////////////////////////////////////////////////////////////////
+		//###Epic
 		"/epics"(controller: "EpicRest", parseRequest: true) {
 			action = [GET: "showAllEpics"]
 		}
 		
-		"/createtestdata"(controller: "TestData", parseRequest: true) {
+		"/epicUserStories/$id"(controller: "EpicRest", parseRequest: true) {
+			action = [GET: "showUserStoriesByEpicId"]
+		}
+		
+		"/epic/$id"(controller: "EpicRest", parseRequest: true) {
+			action = [GET: "showEpicById", PUT: "update", DELETE: "delete", POST: "save"]
+		}	
+		
+		
+		///////////////////////////////////////////////////////////////////////////////////////////
+		//###Helper
+		"/createTestData"(controller: "TestData", parseRequest: true) {
 			action = [GET: "testBuildAllDomains"]
 		}
 		
-		"/createmanualtestdata"(controller: "TestData", parseRequest: true) {
+		"/createManualTestData"(controller: "TestData", parseRequest: true) {
 			action = [GET: "buildManualDomains"]
 		}		
 		

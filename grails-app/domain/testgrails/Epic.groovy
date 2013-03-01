@@ -7,8 +7,8 @@ class Epic {
 	
 	static hasMany = [
 		userStories: UserStory
-		]
-
+		]	
+	
     static constraints = {
     }	
 }

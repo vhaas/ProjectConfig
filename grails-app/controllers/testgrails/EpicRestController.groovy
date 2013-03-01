@@ -1,21 +1,28 @@
 package testgrails
 
 import grails.converters.JSON
+import org.hibernate.transform.DistinctRootEntityResultTransformer
 
-class EpicRestController {   
+class EpicRestController {  	
 	
-	def showEpicWithUserStoriesById() {
-		def epicWithUserStories = Epic.findByName(params.id, [fetch:[userStories:"eager"]])
-		render epicWithUserStories as JSON
+	def showUserStoriesByEpicId() {
+		def userStories = Epic.get(params.id)getUserStories()
+		if (!userStories) {
+			render renderNotFound
+		}
+		else {						
+			render userStories as JSON
+		}
 	}
 	
-	def showAllEpicNamesWithUserStoryNames() {
-		def allEpicNamesWithUserStoryNames = Epic.executeQuery(
-			'select e.name, us.name ' +
-			'from Epic e ' +
-			'inner join fetch e.userStories as us'
-			)
-		render allEpicNamesWithUserStoryNames as JSON
+	def showEpicById() {
+		def epic = Epic.get(params.id)
+		if (!epic) {
+			render renderNotFound
+		}
+		else {
+			render epic as JSON
+		}
 	}
 	
 	def showAllEpics() {
