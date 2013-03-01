@@ -1,6 +1,6 @@
 dataSource {
     pooled = true
-    driverClassName = "org.apache.derby.jdbc.EmbeddedDriver"
+    driverClassName = "org.h2.Driver"
     username = "user"
     password = ""
 }
@@ -14,19 +14,19 @@ environments {
     development {
         dataSource {
             dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
-			url = "jdbc:derby:testdb;create=true"
+			url = "jdbc:h2:mem:devDb"
         }
     }
     test {
         dataSource {
             dbCreate = "update"
-            url = "jdbc:derby:testdb;create=true;MVCC=TRUE;LOCK_TIMEOUT=10000"
+            url = "jdbc:h2:mem:testDb"
         }
     }
     production {
         dataSource {
             dbCreate = "update"
-            url = "jdbc:derby:testdb;create=true;MVCC=TRUE;LOCK_TIMEOUT=10000"
+            url = "jdbc:h2:prodDb"
             pooled = true
             properties {
                maxActive = -1

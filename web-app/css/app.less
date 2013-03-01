@@ -1,0 +1,33 @@
+@border-color: #e5e5e5;
+
+.rounded-corners (@radius: 5px) {
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  -ms-border-radius: @radius;
+  -o-border-radius: @radius;
+  border-radius: @radius;
+}
+
+
+section {
+	border: 1px solid @border-color;
+	 .rounded-corners(4px);
+	
+	margin-bottom: 1em;
+}
+
+section h4 {
+	background-color: @border-color;
+	padding: 0.5em;
+	margin: 0px;
+}
+
+section form {
+	padding: 0.5em;
+}
+
+.controls span {
+	display:block;
+	padding-top: 5px;
+	line-height: 20px;
+}
