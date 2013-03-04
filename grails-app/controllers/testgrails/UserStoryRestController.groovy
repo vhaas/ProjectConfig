@@ -10,8 +10,9 @@ class UserStoryRestController {
 			render renderNotFound
 		}
 		else {
-			JSON.use("deep")
-			render userStory as JSON			
+			JSON.use("deep") {
+				render (contentType: "application/json", text: userStory as JSON)			
+			}
 		}
 	}	
 	
@@ -20,8 +21,8 @@ class UserStoryRestController {
 		if (all.empty) {
 			render renderNotFound
 		}
-		else {
-		render all as JSON
+		else {			
+			render (contentType: "application/json", text: all as JSON)
 		}
 	}	
 	

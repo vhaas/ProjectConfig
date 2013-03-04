@@ -7,3 +7,8 @@
 
 # Log Files #
 derby.log
+
+# Folders #
+/target/*
+/.settings/*
+/testdb/*
