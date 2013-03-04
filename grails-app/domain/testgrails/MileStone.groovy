@@ -2,6 +2,8 @@ package testgrails
 
 class MileStone {
 	
+	Project project
+	
 	String name
 	String description
 	Date dueTo

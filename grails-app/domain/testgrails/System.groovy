@@ -2,6 +2,8 @@ package testgrails
 
 class System {
 	
+	Project project
+	
 	String name
 	String description
 	

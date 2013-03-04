@@ -1,5 +1,7 @@
 package testgrails
 
+import java.util.List;
+
 import grails.converters.JSON
 import org.hibernate.transform.DistinctRootEntityResultTransformer
 
@@ -10,8 +12,8 @@ class EpicRestController {
 		if (!userStories) {
 			render renderNotFound
 		}
-		else {						
-			render userStories as JSON
+		else {			
+			renderMaprest(userStories, jsonFormat,'user_stories')
 		}
 	}
 	
@@ -20,8 +22,8 @@ class EpicRestController {
 		if (!epic) {
 			render renderNotFound
 		}
-		else {
-			render epic as JSON
+		else {			
+			renderMaprest(epic, jsonFormat,'epic')
 		}
 	}
 	
@@ -31,9 +33,19 @@ class EpicRestController {
 			render renderNotFound
 		}
 		else {
-		render all as JSON
+			List<Map> returnMap = new ArrayList<Map>()			
+			println("Size: " + all.size)		
+			all.each {
+				def map = it.transformToMap()
+				map = ["epic": map]
+				returnMap.add(map)
+			}			
+			def epics = ["epics": returnMap]
+			render epics as JSON
 		}
 	}
+	
+	
 	
 	def showAllEpicNames() {
 		def epics = Epic.executeQuery(
@@ -119,5 +131,5 @@ class EpicRestController {
 	def render409 = { epicInstance ->
 		response.status = 409 // Conflict
 		render epicInstance.errors.allErrors as JSON
-	}
+	}	
 }

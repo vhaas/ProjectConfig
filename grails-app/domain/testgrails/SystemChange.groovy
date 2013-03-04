@@ -2,6 +2,8 @@ package testgrails
 
 class SystemChange {
 	
+	Project project
+	
 	String adaptionType
 	String adaptionAspect
 	

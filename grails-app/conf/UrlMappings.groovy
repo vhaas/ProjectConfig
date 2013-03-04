@@ -39,6 +39,12 @@ class UrlMappings {
 			action = [GET: "showUserStoriesByEpicId"]
 		}		
 		///////////////////////////////////////////////////////////////////////////////////////////
+		//###Project
+		"/rest/project/$id"(controller: "ProjectRest", parseRequest: true) {
+			action = [GET: "showProjectById"]
+		}
+		
+		///////////////////////////////////////////////////////////////////////////////////////////
 		//###Helper
 		"/createTestData"(controller: "TestData", parseRequest: true) {
 			action = [GET: "testBuildAllDomains"]

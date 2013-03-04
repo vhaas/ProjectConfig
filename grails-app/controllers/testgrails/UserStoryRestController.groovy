@@ -10,9 +10,10 @@ class UserStoryRestController {
 			render renderNotFound
 		}
 		else {
-			JSON.use("deep") {
-				render (contentType: "application/json", text: userStory as JSON)			
-			}
+//			JSON.use("deep") {
+//				render (contentType: "application/json", text: userStory as JSON)
+				renderMaprest(userStory, jsonFormat,'userStory')
+//			}
 		}
 	}	
 	
