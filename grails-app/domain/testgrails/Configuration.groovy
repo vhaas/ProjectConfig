@@ -15,6 +15,6 @@ class Configuration {
 				id: id,
 				name: name,
 				description: description	
-		]
+		]				
 	}
 }

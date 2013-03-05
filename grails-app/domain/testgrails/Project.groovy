@@ -25,7 +25,7 @@ class Project {
 			id: id,
 			name: name,
 			description: description
-		]		
+		]					
 	}	
 }
 

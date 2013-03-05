@@ -11,7 +11,24 @@ class ProjectRestController {
 			render renderNotFound
 		}
 		else {			
-			renderMaprest(project, jsonFormat,'project')			
+			project = project.transformToMap()			
+			render (contentType: "application/json", text: project as JSON)
+		}
+	}
+	
+	def showAllProjects() {
+		def all = Project.list()
+		if (all.empty) {
+			render renderNotFound
+		}
+		else {
+			List<Map> returnMap = new ArrayList<Map>()
+			all.each {
+				def map = it.transformToMap()
+				returnMap.add(map)
+			}
+			def returnedProjects = ["projects": returnMap]
+			render (contentType: "application/json", text: returnedProjects as JSON)
 		}
 	}
 	

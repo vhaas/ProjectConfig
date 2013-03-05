@@ -31,9 +31,9 @@ class UserStory {
 				description: description,
 				goal: goal,
 				benefit: benefit,
-				roadMap: roadMap ? roadMap.transformToMap() : '',
-				epic: epic ? epic.transformToMap() : '',
-				role: role ? role.transformToMap() : ''				
-		]
+				road_map_id: roadMap ? roadMap.id : '',
+				epic_id: epic ? epic.id : '',
+				role_id: role ? role.id : ''				
+		]			
 	}	
 }

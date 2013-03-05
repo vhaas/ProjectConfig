@@ -23,7 +23,7 @@ class RoadMap {
 				id: id,
 				name: name,
 				description: description,
-				configuration: configuration ? configuration.transformToMap() : ''	
-		]
+				configuration_id: configuration ? configuration.id : ''	
+		]			
 	}
 }

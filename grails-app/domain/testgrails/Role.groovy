@@ -19,6 +19,6 @@ class Role {
 				id: id,
 				name: name,
 				description: description	
-		]
+		]				
 	}	
 }

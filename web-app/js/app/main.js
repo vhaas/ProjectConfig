@@ -7,7 +7,7 @@ App.Manager = Ember.StateManager.create({
 		nothingSelected: Ember.State.create({}),
 		projectSelected: Ember.State.create({}),
 		epicSelected: Ember.State.create({
-			projectId: 12,
+			projectId: 2,
 			epicId: 1
 		})
 	}
@@ -21,10 +21,9 @@ App.ApplicationView = Ember.View.extend({
 });
 
 App.Adapter = DS.RESTAdapter.extend({
-	url: 'http://localhost:8080/TestGrails'
     buildURL: function(record, suffix) {
       return 'rest' + this._super(record,suffix)
-    }
+    }    
 });
 
 App.Adapter.configure("plurals", 
@@ -38,7 +37,8 @@ App.store = DS.Store.create({
 
 App.Epic = DS.Model.extend({
 	name: DS.attr("string"),
-	description: DS.attr("string")
+	description: DS.attr("string"),
+	project: DS.belongsTo("App.Project")
 });
 
 App.Project = DS.Model.extend({
@@ -51,12 +51,30 @@ App.UserStory = DS.Model.extend({
 	description: DS.attr("string"),
 	goal: DS.attr("string"),
 	benefit: DS.attr("string"),
-	role: DS.attr("string"),
-	epic: DS.belongsTo("App.Epic")
+	roadMap: DS.belongsTo("App.RoadMap"),
+	epic: DS.belongsTo("App.Epic"),
+	role: DS.belongsTo("App.Role")	
+});
+
+App.Role = DS.Model.extend({
+	name: DS.attr("string"),
+	description: DS.attr("string")
+});
+
+App.RoadMap = DS.Model.extend({
+	name: DS.attr("string"),
+	description: DS.attr("string")
 });
 
 App.IndexController = Ember.Controller.extend({
 	stories: App.UserStory.find({epic:App.Manager.get('currentState.epicId')}),
 	project: App.Project.find(App.Manager.get('currentState.projectId')),
-	epic: App.Epic.find(App.Manager.get('currentState.epicId'))
-})
+	epic: App.Epic.find(App.Manager.get('currentState.epicId'))	
+});
+
+App.UserStoryCreateController = Ember.ObjectController.extend({
+    content: App.UserStory.createRecord({}), 
+    create: function(model) {
+        App.store.commit();
+    }
+});

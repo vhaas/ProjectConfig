@@ -17,4 +17,13 @@ class MileStone {
 		dueTo nullable: true
 		roadMap nullable: true
     }
+	
+	public transformToMap() {
+		return [
+			id: id,
+			name: name,
+			description: description,
+			road_map_id: roadMap ? roadMap.id : ''
+		]				
+	}
 }

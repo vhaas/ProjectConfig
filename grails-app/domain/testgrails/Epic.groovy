@@ -18,7 +18,8 @@ class Epic {
 		return [
 				id: id,
 				name: name,
-				description: description
-		]
+				description: description,
+				project_id: project ? project.id : ''
+		]			
 	}	
 }

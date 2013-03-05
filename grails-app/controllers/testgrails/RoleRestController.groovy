@@ -10,7 +10,9 @@ class RoleRestController {
 			render renderNotFound
 		} 
 		else {
-			render role as JSON
+			role = role.transformToMap()
+			role = ["role": role]
+			render (contentType: "application/json", text: role as JSON)
 		}		
 	}
 	
@@ -20,7 +22,13 @@ class RoleRestController {
 			render renderNotFound
 		}
 		else {
-		render all as JSON
+			List<Map> returnMap = new ArrayList<Map>()
+			all.each {
+				def map = it.transformToMap()
+				returnMap.add(map)
+			}
+			def returnedRoles = ["roles": returnMap]
+			render (contentType: "application/json", text: returnedRoles as JSON)
 		}
 	}
 	

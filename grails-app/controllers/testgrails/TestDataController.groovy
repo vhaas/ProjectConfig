@@ -43,35 +43,4 @@ class TestDataController {
 			render "didnt do what it was told to..."
 		}
     }
-	
-	//###Not functional###
-	def buildManualDomains() {
-		def successful = true
-		for (i in 0..9) {
-			try {
-				def firstEffortEstimate = FirstEffortEstimate.build()
-				def system = System.build()
-				def roadMap = RoadMap.build()				
-				def configuration = Configuration.build(roadMap: roadMap)				
-				for (y in 0..3) {
-					def mileStone = MileStone.build(roadMap: roadMap)
-				}				
-				def epic = Epic.build()
-				for (x in 1..9) {
-					def role = Role.build()					
-					def userStory = UserStory.build(role: role, epic: epic, roadMap: roadMap)
-					def systemChange = SystemChange.build(userStories: [userStory], firstEffortEstimate: firstEffortEstimate)					
-				}				
-			} catch (Exception e) {
-				println "********** FAILED BUILD"
-				successful = false
-			}
-		}
-		if (successful) {
-			render "this worked out"
-		}
-		else {
-			render "didnt what it was told..."
-		}
-	}	
 }
