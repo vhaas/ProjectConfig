@@ -21,6 +21,7 @@ App.ApplicationView = Ember.View.extend({
 });
 
 App.Adapter = DS.RESTAdapter.extend({
+	url: 'http://localhost:8080/TestGrails'
     buildURL: function(record, suffix) {
       return 'rest' + this._super(record,suffix)
     }

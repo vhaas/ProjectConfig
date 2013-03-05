@@ -2,6 +2,8 @@ package testgrails
 
 class RoadMap {
 	
+	Project project
+	
 	String name
 	String description
 	
@@ -15,4 +17,13 @@ class RoadMap {
     static constraints = {		
 		configuration nullable: true		
     }	
+	
+	public transformToMap() {
+		return [
+				id: id,
+				name: name,
+				description: description,
+				configuration: configuration ? configuration.transformToMap() : ''	
+		]
+	}
 }

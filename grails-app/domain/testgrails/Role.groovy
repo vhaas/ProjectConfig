@@ -2,6 +2,8 @@ package testgrails
 
 class Role {
 	
+	Project project
+	
 	String name
 	String description
 	
@@ -11,4 +13,12 @@ class Role {
 
     static constraints = {
     }	
+	
+	public transformToMap() {
+		return [
+				id: id,
+				name: name,
+				description: description	
+		]
+	}	
 }

@@ -17,29 +17,32 @@ class UrlMappings {
 			action = [GET: "showAllUserStories"]
 		}
 		///////////////////////////////////////////////////////////////////////////////////////////
-		//###Role		
-		"/rest/roles"(controller: "RoleRest", parseRequest: true) {
-			action = [GET: "showAllRoles"]
-		}
-		
+		//###Role	
 		"/rest/role/$id"(controller: "RoleRest", parseRequest: true) {
 			action = [GET: "showRoleById", PUT: "update", DELETE: "delete", POST: "save"]
 		}
 		
+		"/rest/roles"(controller: "RoleRest", parseRequest: true) {
+			action = [GET: "showAllRoles"]
+		}		
 		///////////////////////////////////////////////////////////////////////////////////////////
 		//###Epic
+		"/rest/epic/$id"(controller: "EpicRest", parseRequest: true) {
+			action = [GET: "showEpicById", PUT: "update", DELETE: "delete", POST: "save"]
+		}
+		
 		"/rest/epics"(controller: "EpicRest", parseRequest: true) {
 			action = [GET: "showAllEpics"]
 		}
 		
 		"/rest/epicUserStories/$id"(controller: "EpicRest", parseRequest: true) {
 			action = [GET: "showUserStoriesByEpicId"]
+		}		
+		///////////////////////////////////////////////////////////////////////////////////////////
+		//###Project
+		"/rest/project/$id"(controller: "ProjectRest", parseRequest: true) {
+			action = [GET: "showProjectById"]
 		}
-		
-		"/rest/epic/$id"(controller: "EpicRest", parseRequest: true) {
-			action = [GET: "showEpicById", PUT: "update", DELETE: "delete", POST: "save"]
-		}	
-		
 		
 		///////////////////////////////////////////////////////////////////////////////////////////
 		//###Helper

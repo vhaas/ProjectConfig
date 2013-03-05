@@ -1,4 +1,5 @@
 *.class
+*.zip
 
 # Package Files #
 *.jar
@@ -7,3 +8,8 @@
 
 # Log Files #
 derby.log
+
+# Folders #
+/target/*
+/.settings/*
+/testdb/*

@@ -2,6 +2,8 @@ package testgrails
 
 class FirstEffortEstimate {
 	
+	Project project
+	
 	String effortType
 	Integer minEffort
 	Integer medEffort

@@ -2,6 +2,8 @@ package testgrails
 
 class Epic {
 	
+	Project project
+	
 	String name
 	String description
 	
@@ -11,4 +13,12 @@ class Epic {
 	
     static constraints = {
     }	
+	
+	public transformToMap() {
+		return [
+				id: id,
+				name: name,
+				description: description
+		]
+	}	
 }
