@@ -10,20 +10,37 @@ class UserStoryRestController {
 			render renderNotFound
 		}
 		else {
-//			JSON.use("deep") {
-//				render (contentType: "application/json", text: userStory as JSON)
-				renderMaprest(userStory, jsonFormat,'userStory')
-//			}
+			userStory = userStory.transformToMap()
+			render (contentType: "application/json", text: userStory as JSON)
 		}
 	}	
 	
-	def showAllUserStories() {
-		def all = UserStory.list()
+	def showAllUserStories() {		
+		def all
+		if (params.epic) {			
+			all = Epic.findById(params.epic)
+			if (!all) {
+				render renderNotFound
+				return
+			}	
+			else {
+				all = all.getUserStories()
+			}		
+		} 
+		else {
+			all = UserStory.list()
+		}
 		if (all.empty) {
 			render renderNotFound
 		}
 		else {			
-			render (contentType: "application/json", text: all as JSON)
+			List<Map> returnMap = new ArrayList<Map>()
+			all.each {
+				def map = it.transformToMap()
+				returnMap.add(map)
+			}
+			def returnedUserStories = ["user_stories": returnMap]
+			render (contentType: "application/json", text: returnedUserStories as JSON)
 		}
 	}	
 	

@@ -7,13 +7,19 @@ import org.hibernate.transform.DistinctRootEntityResultTransformer
 
 class EpicRestController {  	
 	
-	def showUserStoriesByEpicId() {
-		def userStories = Epic.get(params.id)getUserStories()
+	def showUserStoriesByEpicId() {			
+		def userStories = Epic.get(params.epic).getUserStories()				
 		if (!userStories) {
 			render renderNotFound
 		}
 		else {			
-			renderMaprest(userStories, jsonFormat,'user_stories')
+			List<Map> returnMap = new ArrayList<Map>()
+			userStories.each {
+				def map = it.transformToMap()
+				returnMap.add(map)
+			}
+			def returnedUserStories = ["user_stories": returnMap]
+			render (contentType: "application/json", text: returnedUserStories as JSON)
 		}
 	}
 	
@@ -22,8 +28,9 @@ class EpicRestController {
 		if (!epic) {
 			render renderNotFound
 		}
-		else {			
-			renderMaprest(epic, jsonFormat,'epic')
+		else {
+			epic = epic.transformToMap()
+			render (contentType: "application/json", text: epic as JSON)			
 		}
 	}
 	
@@ -33,27 +40,15 @@ class EpicRestController {
 			render renderNotFound
 		}
 		else {
-			List<Map> returnMap = new ArrayList<Map>()			
-			println("Size: " + all.size)		
+			List<Map> returnMap = new ArrayList<Map>()					
 			all.each {
-				def map = it.transformToMap()
-				map = ["epic": map]
+				def map = it.transformToMap()				
 				returnMap.add(map)
 			}			
 			def epics = ["epics": returnMap]
-			render epics as JSON
+			render (contentType: "application/json", text: epics as JSON)
 		}
-	}
-	
-	
-	
-	def showAllEpicNames() {
-		def epics = Epic.executeQuery(
-			'select r.name , r.id ' +
-			'from Epic r'
-			)
-		render epics as JSON
-	}
+	}	
 	
 	def create = {
 		def epicInstance = new Epic()

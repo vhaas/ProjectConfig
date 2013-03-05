@@ -14,7 +14,11 @@ class UrlMappings {
 		}
 		
 		"/rest/user_stories"(controller: "UserStoryRest", parseRequest: true) {
-			action = [GET: "showAllUserStories"]
+			action = [GET: "showAllUserStories", POST: "save"]
+		}
+		
+		"/rest/user_stories?epic=$id"(controller: "EpicRest", parseRequest: true) {
+			action = [GET: "showUserStoriesByEpicId"]
 		}
 		///////////////////////////////////////////////////////////////////////////////////////////
 		//###Role	
@@ -27,33 +31,27 @@ class UrlMappings {
 		}		
 		///////////////////////////////////////////////////////////////////////////////////////////
 		//###Epic
-		"/rest/epic/$id"(controller: "EpicRest", parseRequest: true) {
+		"/rest/epics/$id"(controller: "EpicRest", parseRequest: true) {
 			action = [GET: "showEpicById", PUT: "update", DELETE: "delete", POST: "save"]
 		}
 		
 		"/rest/epics"(controller: "EpicRest", parseRequest: true) {
 			action = [GET: "showAllEpics"]
-		}
-		
-		"/rest/epicUserStories/$id"(controller: "EpicRest", parseRequest: true) {
-			action = [GET: "showUserStoriesByEpicId"]
 		}		
 		///////////////////////////////////////////////////////////////////////////////////////////
 		//###Project
-		"/rest/project/$id"(controller: "ProjectRest", parseRequest: true) {
+		"/rest/projects/$id"(controller: "ProjectRest", parseRequest: true) {
 			action = [GET: "showProjectById"]
 		}
 		
+		"/rest/projects"(controller: "ProjectRest", parseRequest: true) {
+			action = [GET: "showAllProjects"]
+		}
 		///////////////////////////////////////////////////////////////////////////////////////////
 		//###Helper
 		"/createTestData"(controller: "TestData", parseRequest: true) {
 			action = [GET: "testBuildAllDomains"]
-		}
-		
-		"/createManualTestData"(controller: "TestData", parseRequest: true) {
-			action = [GET: "buildManualDomains"]
 		}		
-		
 
 		"/"(view:"/index")
 		"500"(view:'/error')

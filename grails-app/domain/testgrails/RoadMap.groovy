@@ -18,12 +18,19 @@ class RoadMap {
 		configuration nullable: true		
     }	
 	
-	public transformToMap() {
-		return [
+	public transformToMap(boolean withOutRootElement = false) {
+		def map = [
 				id: id,
 				name: name,
 				description: description,
 				configuration: configuration ? configuration.transformToMap() : ''	
 		]
+		if (withOutRootElement) {
+			return [id: id]
+		}
+		else {
+			map = ["road_map": map]
+			return map
+		}		
 	}
 }

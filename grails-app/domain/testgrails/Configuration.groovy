@@ -10,11 +10,18 @@ class Configuration {
     static constraints = {
     }
 	
-	public transformToMap() {
-		return [
+	public transformToMap(boolean withOutRootElement = false) {
+		def map = [
 				id: id,
 				name: name,
 				description: description	
 		]
+		if (withOutRootElement) {
+			return map
+		}
+		else {
+			map = ["configuration": map]
+			return map
+		}		
 	}
 }

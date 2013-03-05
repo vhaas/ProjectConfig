@@ -14,11 +14,18 @@ class Role {
     static constraints = {
     }	
 	
-	public transformToMap() {
-		return [
+	public transformToMap(boolean withOutRootElement = false) {
+		def map = [
 				id: id,
 				name: name,
 				description: description	
 		]
+		if (withOutRootElement) {
+			return [id: id]
+		}
+		else {
+			map = ["role": map]
+			return map
+		}		
 	}	
 }

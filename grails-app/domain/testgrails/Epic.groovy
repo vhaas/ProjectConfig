@@ -14,11 +14,19 @@ class Epic {
     static constraints = {
     }	
 	
-	public transformToMap() {
-		return [
+	public transformToMap(boolean withOutRootElement = false) {
+		def map = [
 				id: id,
 				name: name,
-				description: description
+				description: description,
+				project: project ? project.transformToMap(true) : ''
 		]
+		if (withOutRootElement) {
+			return [id: id]
+		}
+		else {
+			map = ["epic": map]
+			return map
+		}		
 	}	
 }

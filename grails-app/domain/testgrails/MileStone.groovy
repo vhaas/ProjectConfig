@@ -17,4 +17,19 @@ class MileStone {
 		dueTo nullable: true
 		roadMap nullable: true
     }
+	
+	public transformToMap(boolean withOutRootElement = false) {
+		def map = [
+			id: id,
+			name: name,
+			description: description
+		]
+		if (withOutRootElement) {
+			return map
+		}
+		else {
+			map = ["mile_stone": map]
+			return map
+		}		
+	}
 }
