@@ -50,8 +50,8 @@
 			<div class="row-fluid">
 				<div class="span4">
 				  <ul class="nav nav-tabs nav-stacked" data-spy="affix" data-offset-top="200">
-					{{#each stories}}
-					<li><a href="#">{{name}}</a></li>
+					{{#each user_story in stories}}
+					<li><a href="#">{{user_story.name}}</a></li>
 					{{/each}}
 				  </ul>
 				</div>
@@ -72,7 +72,7 @@
 					</form>
 				  </section>
 				  {{#each stories}}
-					  <section >
+					  <section>
 						<h4>{{name}}</h4>
 						<form class="form-horizontal">
 							<div class="control-group">
@@ -115,7 +115,7 @@
 							<div class="control-group">
 								<label class="control-label" for="action">Aktion</label>
 								<div class="controls controls-row">
-									<select name="role">
+									<select name="action">
 										<option>Keine</option>
 										<option>Löschen</option>
 										<option>Epic B zuweisen</option>
@@ -124,7 +124,7 @@
 								</div>
 							</div>
 							<div class="pull-right">
-								<button class="btn">Speichern</button> 
+								<button class="btn" type="submit">Speichern</button> 
 								<button class="btn btn-primary">Speichern &amp; Neue Story anlegen</button>
 							</div>
 							<div class="clearfix"/>

@@ -23,7 +23,7 @@ App.ApplicationView = Ember.View.extend({
 App.Adapter = DS.RESTAdapter.extend({
     buildURL: function(record, suffix) {
       return 'rest' + this._super(record,suffix)
-    }
+    }    
 });
 
 App.Adapter.configure("plurals", 
@@ -69,5 +69,12 @@ App.RoadMap = DS.Model.extend({
 App.IndexController = Ember.Controller.extend({
 	stories: App.UserStory.find({epic:App.Manager.get('currentState.epicId')}),
 	project: App.Project.find(App.Manager.get('currentState.projectId')),
-	epic: App.Epic.find(App.Manager.get('currentState.epicId'))
-})
+	epic: App.Epic.find(App.Manager.get('currentState.epicId'))	
+});
+
+App.UserStoryCreateController = Ember.ObjectController.extend({
+    content: App.UserStory.createRecord({}), 
+    create: function(model) {
+        App.store.commit();
+    }
+});

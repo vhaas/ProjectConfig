@@ -24,23 +24,16 @@ class UserStory {
 		role nullable: true
     }	
 	
-	public transformToMap(boolean withOutRootElement = false) {
-		def map = [
+	public transformToMap() {
+		return [
 				id: id,
 				name: name,
 				description: description,
 				goal: goal,
 				benefit: benefit,
-				roadMap: roadMap ? roadMap.transformToMap(true) : '',
-				epic: epic ? epic.transformToMap(true) : '',
-				role: role ? role.transformToMap(true) : ''				
-		]
-		if (withOutRootElement) {
-			return map
-		}
-		else {
-			map = ["user_story": map]
-			return map
-		}		
+				road_map_id: roadMap ? roadMap.id : '',
+				epic_id: epic ? epic.id : '',
+				role_id: role ? role.id : ''				
+		]			
 	}	
 }

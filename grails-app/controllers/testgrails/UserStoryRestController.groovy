@@ -11,6 +11,7 @@ class UserStoryRestController {
 		}
 		else {
 			userStory = userStory.transformToMap()
+			userStory = ["user_story": userStory]
 			render (contentType: "application/json", text: userStory as JSON)
 		}
 	}	

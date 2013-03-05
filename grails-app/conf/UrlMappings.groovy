@@ -9,20 +9,16 @@ class UrlMappings {
 		
 		///////////////////////////////////////////////////////////////////////////////////////////
 		//###UserStory
-		"/rest/userStory/$id"(controller: "UserStoryRest", parseRequest: true) {
+		"/rest/user_stories/$id"(controller: "UserStoryRest", parseRequest: true) {
 			action = [GET: "showUserStoryById", PUT: "update", DELETE: "delete", POST: "save"]
 		}
 		
 		"/rest/user_stories"(controller: "UserStoryRest", parseRequest: true) {
 			action = [GET: "showAllUserStories", POST: "save"]
-		}
-		
-		"/rest/user_stories?epic=$id"(controller: "EpicRest", parseRequest: true) {
-			action = [GET: "showUserStoriesByEpicId"]
-		}
+		}		
 		///////////////////////////////////////////////////////////////////////////////////////////
 		//###Role	
-		"/rest/role/$id"(controller: "RoleRest", parseRequest: true) {
+		"/rest/roles/$id"(controller: "RoleRest", parseRequest: true) {
 			action = [GET: "showRoleById", PUT: "update", DELETE: "delete", POST: "save"]
 		}
 		

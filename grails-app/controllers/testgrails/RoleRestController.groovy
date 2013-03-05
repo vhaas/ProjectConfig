@@ -11,6 +11,7 @@ class RoleRestController {
 		} 
 		else {
 			role = role.transformToMap()
+			role = ["role": role]
 			render (contentType: "application/json", text: role as JSON)
 		}		
 	}

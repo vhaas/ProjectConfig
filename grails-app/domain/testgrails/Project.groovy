@@ -20,19 +20,12 @@ class Project {
     static constraints = {
     }
 	
-	public transformToMap(boolean withOutRootElement = false) {
-		def map = [
+	public transformToMap() {
+		return [
 			id: id,
 			name: name,
 			description: description
-		]
-		if (withOutRootElement) {
-			return map
-		}
-		else {
-			map = ["project": map]
-			return map
-		}				
+		]					
 	}	
 }
 

@@ -7,9 +7,19 @@
 *.ear
 
 # Log Files #
-derby.log
+/stacktrace.log
+/test/reports
+/logs
 
 # Folders #
-/target/*
-/.settings/*
-/testdb/*
+/target
+
+# IDE #
+/.classpath
+/.launch
+/.project
+/.settings
+/*.launch
+/*.tmproj
+/ivy*
+/eclipse

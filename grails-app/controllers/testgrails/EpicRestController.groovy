@@ -5,23 +5,7 @@ import java.util.List;
 import grails.converters.JSON
 import org.hibernate.transform.DistinctRootEntityResultTransformer
 
-class EpicRestController {  	
-	
-	def showUserStoriesByEpicId() {			
-		def userStories = Epic.get(params.epic).getUserStories()				
-		if (!userStories) {
-			render renderNotFound
-		}
-		else {			
-			List<Map> returnMap = new ArrayList<Map>()
-			userStories.each {
-				def map = it.transformToMap()
-				returnMap.add(map)
-			}
-			def returnedUserStories = ["user_stories": returnMap]
-			render (contentType: "application/json", text: returnedUserStories as JSON)
-		}
-	}
+class EpicRestController {  		
 	
 	def showEpicById() {
 		def epic = Epic.get(params.id)
@@ -30,6 +14,7 @@ class EpicRestController {
 		}
 		else {
 			epic = epic.transformToMap()
+			epic = ["epic": epic]
 			render (contentType: "application/json", text: epic as JSON)			
 		}
 	}
