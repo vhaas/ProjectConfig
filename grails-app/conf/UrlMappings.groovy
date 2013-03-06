@@ -43,12 +43,7 @@ class UrlMappings {
 		"/rest/projects"(controller: "ProjectRest", parseRequest: true) {
 			action = [GET: "showAllProjects"]
 		}
-		///////////////////////////////////////////////////////////////////////////////////////////
-		//###Helper
-		"/createTestData"(controller: "TestData", parseRequest: true) {
-			action = [GET: "testBuildAllDomains"]
-		}		
-
+		///////////////////////////////////////////////////////////////////////////////////////////		
 		"/"(view:"/index")
 		"500"(view:'/error')
 	}

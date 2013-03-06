@@ -1,16 +1,14 @@
 import grails.converters.JSON
 import org.codehaus.groovy.grails.web.converters.marshaller.json.DomainClassMarshaller 
+import testgrails.TestDataController
 
 class BootStrap {
 
+	def testDataGenerationService
+	
     def init = {servletContext ->		
-		/*
-            JSON.registerObjectMarshaller(
-                new NoClassNameObjectMarshaller(), 1)
-            JSON.registerObjectMarshaller(
-                new DomainClassMarshaller(true), 2)
-        */
-        }
+		testDataGenerationService.buildTestData()
+    }
 	
     def destroy = {
     }
