@@ -37,7 +37,7 @@ class UrlMappings {
 		///////////////////////////////////////////////////////////////////////////////////////////
 		//###Project
 		"/rest/projects/$id"(controller: "ProjectRest", parseRequest: true) {
-			action = [GET: "showProjectById"]
+			action = [GET: "showProjectById", PUT: "update", DELETE: "delete", POST: "save"]
 		}
 		
 		"/rest/projects"(controller: "ProjectRest", parseRequest: true) {

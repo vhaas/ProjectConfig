@@ -42,7 +42,9 @@ class RoleRestController {
 		def roleInstance = new Role(params)
 		if (roleInstance.save(flush: true)) {
 			response.status = 200 // OK
-			render roleInstance as JSON			
+			roleInstance = roleInstance.transformToMap()
+			roleInstance = ["role": roleInstance]
+			render (contentType: "application/json", text: roleInstance as JSON)				
 		}
 		else {
 			response.status = 400 // Bad Request
@@ -66,7 +68,9 @@ class RoleRestController {
 	        roleInstance.properties = p.role
 	        if (!roleInstance.hasErrors() && roleInstance.save(flush: true)) {	               
                 response.status = 200 // OK
-                render roleInstance as JSON				
+				roleInstance = roleInstance.transformToMap()
+				roleInstance = ["role": roleInstance]
+				render (contentType: "application/json", text: roleInstance as JSON)                			
 	        }
 	        else {
 	            render render409.curry(roleInstance)

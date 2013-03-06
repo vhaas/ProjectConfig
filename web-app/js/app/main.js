@@ -1,4 +1,6 @@
-App = Ember.Application.create();
+App = Ember.Application.create({
+	LOG_TRANSITIONS: true
+});
 
 App.Manager = Ember.StateManager.create({
 	enableLoggin: true,
@@ -66,15 +68,38 @@ App.RoadMap = DS.Model.extend({
 	description: DS.attr("string")
 });
 
-App.IndexController = Ember.Controller.extend({
-	stories: App.UserStory.find({epic:App.Manager.get('currentState.epicId')}),
-	project: App.Project.find(App.Manager.get('currentState.projectId')),
-	epic: App.Epic.find(App.Manager.get('currentState.epicId'))	
+
+App.BootstrapControl = Ember.View.extend({
+	classNames: ["control-group"],
+	layoutName: "bootstrap-control"
 });
 
-App.UserStoryCreateController = Ember.ObjectController.extend({
-    content: App.UserStory.createRecord({}), 
-    create: function(model) {
-        App.store.commit();
-    }
+App.Router.map(function(){
+	this.resource('project', {path: 'project/:project_id'});
+	this.resource('epic', {path:'epic/:epic_id'});
 });
+
+
+App.IndexRoute = Ember.Route.extend({
+	redirect: function(){
+		alert("Redirecting from Index!");
+		var epic = App.Epic.find(2);
+		this.transitionTo('epic', epic);
+	}
+});
+
+App.ProjectController = Ember.ObjectController.extend({
+	save: function(){
+		var model = App.store.commit();
+	}	
+});
+
+App.EpicController = Ember.ObjectController.extend({
+	save: function(){
+		alert("Want to store the epic!: "+this.get("content").get("name")+" "+this.get("content").get("isDirty"));
+		var model = App.store.commit();		
+	}
+});
+
+
+App.initialize();

@@ -55,7 +55,9 @@ class UserStoryRestController {
 		def userStoryInstance = new UserStory(params)
 		if (userStoryInstance.save(flush: true)) {
 			response.status = 200 // OK
-			render userStoryInstance as JSON
+			userStoryInstance = userStoryInstance.transformToMap()
+			userStoryInstance = ["user_story": userStoryInstance]
+			render (contentType: "application/json", text: userStoryInstance as JSON)			
 		}
 		else {
 			response.status = 400 // Bad Request
@@ -79,7 +81,9 @@ class UserStoryRestController {
 			userStoryInstance.properties = p.userStory
 			if (!userStoryInstance.hasErrors() && userStoryInstance.save(flush: true)) {
 				response.status = 200 // OK
-				render userStoryInstance as JSON
+				userStoryInstance = userStoryInstance.transformToMap()
+				userStoryInstance = ["user_story": userStoryInstance]
+				render (contentType: "application/json", text: userStoryInstance as JSON)				
 			}
 			else {
 				render render409.curry(userStoryInstance)

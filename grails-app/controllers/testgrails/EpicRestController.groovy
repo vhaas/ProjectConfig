@@ -45,7 +45,9 @@ class EpicRestController {
 		def epicInstance = new Epic(params)
 		if (epicInstance.save(flush: true)) {
 			response.status = 200 // OK
-			render epicInstance as JSON
+			epicInstance = epicInstance.transformToMap()
+			epicInstance = ["epic": epicInstance]
+			render (contentType: "application/json", text: epicInstance as JSON)			
 		}
 		else {
 			response.status = 400 // Bad Request
@@ -69,7 +71,9 @@ class EpicRestController {
 			epicInstance.properties = p.epic
 			if (!epicInstance.hasErrors() && epicInstance.save(flush: true)) {
 				response.status = 200 // OK
-				render epicInstance as JSON
+				epicInstance = epicInstance.transformToMap()
+				epicInstance = ["epic": epicInstance]
+				render (contentType: "application/json", text: epicInstance as JSON)				
 			}
 			else {
 				render render409.curry(epicInstance)

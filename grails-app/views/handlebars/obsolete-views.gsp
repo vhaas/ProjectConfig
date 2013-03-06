@@ -1,42 +1,3 @@
-﻿<!doctype html>
-<html lang="de">
-<head>
-	<meta charset="utf-8">	
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-	<link rel="stylesheet/less" type="text/css" href="css/app.less" />
-    <style>
-      body {
-        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-      }
-    </style>
-    
-	<script type="text/x-handlebars" data-template-name="application">
-		<div class="navbar navbar-inverse navbar-fixed-top">
-		  <div class="navbar-inner">
-			<div class="container">
-			  <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			  </button>
-			  <a class="brand" href="#">Project Configurer</a>
-			  <div class="nav-collapse collapse">
-				<ul class="nav">
-				  <li class="active"><a href="#">Home</a></li>
-				  <li><a href="#about">About</a></li>
-				  <li><a href="#contact">Contact</a></li>
-				</ul>
-			  </div><!--/.nav-collapse -->
-			</div>
-		  </div>
-		</div>
-		
-		<div class="container-fluid">
-			{{outlet}}
-		</div>
-	</script>
-	
 	<script type="text/x-handlebars" data-template-name="index">
 		<div class="container-fluid" data-spy="scroll" data-target=".nav-tabs">
 			<div class="row-fluid">
@@ -124,7 +85,7 @@
 								</div>
 							</div>
 							<div class="pull-right">
-								<button class="btn" type="submit">Speichern</button> 
+								<button class="btn" {{action "saveButton" this}}>Speichern</button> 
 								<button class="btn btn-primary">Speichern &amp; Neue Story anlegen</button>
 							</div>
 							<div class="clearfix"/>
@@ -136,16 +97,3 @@
 		</div>
 		
 	</script>
-</head>
-<body>
-	<script src="js/handlebars.js"></script>
-	<script src="js/jquery-1.9.1.js"></script>
-	<script src="js/bootstrap.js"></script>
-	<script src="js/ember.js"></script>
-	<script src="js/less-1.3.3.min.js"></script>
-	<script src="js/ember-data.js"></script>
-	<script src="js/app/main.js"></script>
-	
-
-</body>
-</html>
