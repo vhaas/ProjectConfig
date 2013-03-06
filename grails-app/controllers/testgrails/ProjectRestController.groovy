@@ -5,7 +5,7 @@ import grails.converters.JSON
 
 class ProjectRestController {
 	
-	def showProjectById() {
+	def showProjectById() {		
 		def project = Project.get(params.id)
 		if (!project) {
 			render renderNotFound
@@ -54,8 +54,7 @@ class ProjectRestController {
 	}
 	
 	def update = {
-		def p = params
-		println(p)
+		def p = params		
 		def projectInstance = Project.get(params.id)
 		if (projectInstance) {
 			if (p.version) {

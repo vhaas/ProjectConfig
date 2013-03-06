@@ -97,9 +97,8 @@ App.ProjectController = Ember.ObjectController.extend({
 App.EpicController = Ember.ObjectController.extend({
 	save: function(){
 		alert("Want to store the epic!: "+this.get("content").get("name")+" "+this.get("content").get("isDirty"));
-		var model = App.store.commit();		
+		var model = App.store.commit();
 	}	
 });
-
 
 App.initialize();

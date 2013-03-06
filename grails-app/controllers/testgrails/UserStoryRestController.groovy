@@ -67,7 +67,6 @@ class UserStoryRestController {
 	
 	def update = {
 		def p = params
-		println(p)
 		def userStoryInstance = UserStory.get(params.id)
 		if (userStoryInstance) {
 			if (p.version) {

@@ -54,7 +54,6 @@ class RoleRestController {
 	
 	def update = {
 		def p = params
-		println(p)
 		def roleInstance = Role.get(params.id)
 	    if (roleInstance) {
 	        if (p.version) {

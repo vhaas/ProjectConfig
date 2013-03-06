@@ -57,7 +57,6 @@ class EpicRestController {
 	
 	def update = {
 		def p = params
-		println(p)
 		def epicInstance = Epic.get(params.id)
 		if (epicInstance) {
 			if (p.version) {
