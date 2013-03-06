@@ -71,7 +71,11 @@ App.RoadMap = DS.Model.extend({
 
 App.BootstrapControl = Ember.View.extend({
 	classNames: ["control-group"],
-	layoutName: "bootstrap-control"
+	layoutName: "bootstrap-control",
+	isNotDirty: function(){
+		alert("got dirty");
+	    return !this.get('controller.content.isDirty') 
+	}.property('controller.content.isDirty').cacheable()	
 });
 
 App.Router.map(function(){
@@ -98,7 +102,7 @@ App.EpicController = Ember.ObjectController.extend({
 	save: function(){
 		alert("Want to store the epic!: "+this.get("content").get("name")+" "+this.get("content").get("isDirty"));
 		var model = App.store.commit();		
-	}
+	}	
 });
 
 
