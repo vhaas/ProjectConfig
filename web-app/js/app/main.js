@@ -71,11 +71,7 @@ App.RoadMap = DS.Model.extend({
 
 App.BootstrapControl = Ember.View.extend({
 	classNames: ["control-group"],
-	layoutName: "bootstrap-control",
-	isNotDirty: function(){
-		alert("got dirty");
-	    return !this.get('controller.content.isDirty') 
-	}.property('controller.content.isDirty').cacheable()	
+	layoutName: "bootstrap-control"	
 });
 
 App.Router.map(function(){

@@ -19,10 +19,11 @@
 				<div class="span8">
 				  <section>
 					<h4>
-					{{#if isNotDirty}}						
-						<i class="icon-exclamation-sign"></i>
-					{{/if}}					
-					{{name}}</h4>
+						{{name}}
+						{{#if isDirty}}
+							<i class="icon-exclamation-sign"></i>
+						{{/if}}
+					</h4>
 					<form class="form-horizontal" {{action save on="submit"}}>
 						{{#view App.BootstrapControl inputId="name" label="Name"}}
 								{{view Ember.TextField valueBinding="name"}}
