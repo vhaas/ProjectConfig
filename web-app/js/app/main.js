@@ -72,7 +72,7 @@ App.RoadMap = DS.Model.extend({
 
 App.BootstrapControl = Ember.View.extend({
 	classNames: ["control-group"],
-	layoutName: "bootstrap-control"
+	layoutName: "bootstrap-control"	
 });
 
 App.Router.map(function(){
@@ -97,7 +97,7 @@ App.ProjectController = Ember.ObjectController.extend({
 App.EpicController = Ember.ObjectController.extend({
 	save: function(){
 		var model = App.store.commit();		
-	}
+	}	
 });
 
 
