@@ -40,8 +40,7 @@ App.store = DS.Store.create({
 App.Epic = DS.Model.extend({
 	name: DS.attr("string"),
 	description: DS.attr("string"),
-	project: DS.belongsTo("App.Project"),
-	userStories: DS.hasMany("App.UserStory")
+	project: DS.belongsTo("App.Project")
 });
 
 App.Project = DS.Model.extend({
@@ -83,6 +82,7 @@ App.Router.map(function(){
 
 App.IndexRoute = Ember.Route.extend({
 	redirect: function(){
+		alert("Redirecting from Index!");
 		var epic = App.Epic.find(2);
 		this.transitionTo('epic', epic);
 	}
@@ -96,6 +96,7 @@ App.ProjectController = Ember.ObjectController.extend({
 
 App.EpicController = Ember.ObjectController.extend({
 	save: function(){
+		alert("Want to store the epic!: "+this.get("content").get("name")+" "+this.get("content").get("isDirty"));
 		var model = App.store.commit();		
 	}	
 });

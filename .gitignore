@@ -1,5 +1,7 @@
 *.class
 *.zip
+*.classpath
+*.project
 
 # Package Files #
 *.jar
@@ -13,6 +15,7 @@
 
 # Folders #
 /target
+/target-eclipse
 
 # IDE #
 /.classpath
