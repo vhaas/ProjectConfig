@@ -19,7 +19,8 @@ class Epic {
 				id: id,
 				name: name,
 				description: description,
-				project_id: project ? project.id : ''
+				project_id: project ? project.id : '',
+				user_story_ids: userStories.collect{it.id}
 		]			
 	}	
 }

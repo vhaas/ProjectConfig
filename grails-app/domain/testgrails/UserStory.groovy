@@ -2,8 +2,6 @@ package testgrails
 
 class UserStory {
 	
-	Project project
-	
 	String name
 	String description
 	String goal

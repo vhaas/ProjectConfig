@@ -18,7 +18,12 @@ class UserStoryRestController {
 	
 	def showAllUserStories() {		
 		def all
-		if (params.epic) {			
+		def ids = params["ids[]"] 
+		if(ids){
+			println "Received: $ids"
+			all = ids.collect{id -> UserStory.get id}
+		}
+		else if (params.epic) {			
 			all = Epic.findById(params.epic)
 			if (!all) {
 				render renderNotFound
