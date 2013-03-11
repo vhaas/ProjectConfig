@@ -83,7 +83,8 @@ class UserStoryRestController {
 					return
 				}
 			}
-			userStoryInstance.properties = p.userStory
+			def props = p.user_story
+			userStoryInstance.properties = p.user_story
 			if (!userStoryInstance.hasErrors() && userStoryInstance.save(flush: true)) {
 				response.status = 200 // OK
 				userStoryInstance = userStoryInstance.transformToMap()
