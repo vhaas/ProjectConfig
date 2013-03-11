@@ -40,7 +40,8 @@ App.store = DS.Store.create({
 App.Epic = DS.Model.extend({
 	name: DS.attr("string"),
 	description: DS.attr("string"),
-	project: DS.belongsTo("App.Project")
+	project: DS.belongsTo("App.Project"),
+	userStories: DS.hasMany("App.UserStory")
 });
 
 App.Project = DS.Model.extend({
