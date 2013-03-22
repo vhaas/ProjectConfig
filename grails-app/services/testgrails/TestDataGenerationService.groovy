@@ -40,36 +40,49 @@ class TestDataGenerationService {
 		Project projectA = new Project(name: "Project A", description: "Description for Project A")
 		Project projectB = new Project(name: "Project B", description: "Description for Project B")
 		
-		Epic epicAA = new Epic(name: "Epic A", description: "Description of Epic A", project: projectA)
-		Epic epicAB = new Epic(name: "Epic B", description: "Description of Epic B", project: projectB)
+		Epic epicAA = new Epic(name: "Epic AA", description: "Description of Epic AA", project: projectA)
+		Epic epicAB = new Epic(name: "Epic AB", description: "Description of Epic AB", project: projectB)
 		projectA.addToEpics(epicAA)
 		projectA.addToEpics(epicAB)
 		
 		
-		Epic epicBA = new Epic(name: "Epic A", description: "Description of Epic A", project: projectA)
-		Epic epicBB = new Epic(name: "Epic B", description: "Description of Epic B", project: projectB)
+		Epic epicBA = new Epic(name: "Epic BA", description: "Description of Epic BA", project: projectA)
+		Epic epicBB = new Epic(name: "Epic BB", description: "Description of Epic BB", project: projectB)
 		projectB.addToEpics(epicBA)
 		projectB.addToEpics(epicBB)
 		
-		UserStory storyAAA = new UserStory(name: "Story A", benefit: "Benefit ot Story A", goal: "Goal of Story A", description: "Description of Story A")
-		UserStory storyAAB = new UserStory(name: "Story B", benefit: "Benefit ot Story B", goal: "Goal of Story B", description: "Description of Story B")
+		Role roleA = new Role(name: "Role A", description: "Description of Role A", project: projectA)
+		Role roleB = new Role(name: "Role B", description: "Description of Role B", project: projectA)
+		Role roleC = new Role(name: "Role C", description: "Description of Role C", project: projectA)
+		Role roleD = new Role(name: "Role D", description: "Description of Role D", project: projectA)
+		
+		UserStory storyAAA = new UserStory(name: "Story AAA", benefit: "Benefit ot Story AAA", goal: "Goal of Story AAA", description: "Description of Story AAA")
+		UserStory storyAAB = new UserStory(name: "Story AAB", benefit: "Benefit ot Story AAB", goal: "Goal of Story AAB", description: "Description of Story AAB")
 		epicAA.addToUserStories(storyAAA)
 		epicAA.addToUserStories(storyAAB)
+		roleA.addToUserStories(storyAAA)
+		roleA.addToUserStories(storyAAB)
 		
-		UserStory storyABA = new UserStory(name: "Story A", benefit: "Benefit ot Story A", goal: "Goal of Story A", description: "Description of Story A")
-		UserStory storyABB = new UserStory(name: "Story B", benefit: "Benefit ot Story B", goal: "Goal of Story B", description: "Description of Story B")
+		UserStory storyABA = new UserStory(name: "Story ABA", benefit: "Benefit ot Story ABA", goal: "Goal of Story ABA", description: "Description of Story ABA")
+		UserStory storyABB = new UserStory(name: "Story ABB", benefit: "Benefit ot Story ABB", goal: "Goal of Story ABB", description: "Description of Story ABB")
 		epicAB.addToUserStories(storyABA)
 		epicAB.addToUserStories(storyABB)
+		roleB.addToUserStories(storyABA)
+		roleB.addToUserStories(storyABB)
 
-		UserStory storyBAA = new UserStory(name: "Story A", benefit: "Benefit ot Story A", goal: "Goal of Story A", description: "Description of Story A")
-		UserStory storyBAB = new UserStory(name: "Story B", benefit: "Benefit ot Story B", goal: "Goal of Story B", description: "Description of Story B")
+		UserStory storyBAA = new UserStory(name: "Story BAA", benefit: "Benefit ot Story BAA", goal: "Goal of Story BAA", description: "Description of Story BAA")
+		UserStory storyBAB = new UserStory(name: "Story BAB", benefit: "Benefit ot Story BAB", goal: "Goal of Story BAB", description: "Description of Story BAB")
 		epicBA.addToUserStories(storyBAA)
 		epicBA.addToUserStories(storyBAB)
+		roleC.addToUserStories(storyBAA)
+		roleC.addToUserStories(storyBAB)
 
-		UserStory storyBBA = new UserStory(name: "Story A", benefit: "Benefit ot Story A", goal: "Goal of Story A", description: "Description of Story A")
-		UserStory storyBBB = new UserStory(name: "Story B", benefit: "Benefit ot Story B", goal: "Goal of Story B", description: "Description of Story B")
+		UserStory storyBBA = new UserStory(name: "Story BBA", benefit: "Benefit ot Story BBA", goal: "Goal of Story BBA", description: "Description of Story BBA")
+		UserStory storyBBB = new UserStory(name: "Story BBB", benefit: "Benefit ot Story BBB", goal: "Goal of Story BBB", description: "Description of Story BBB")
 		epicBB.addToUserStories(storyBBA)
 		epicBB.addToUserStories(storyBBB)
+		roleD.addToUserStories(storyBBA)
+		roleD.addToUserStories(storyBBB)
 
 		storyAAA.save(failOnError: true)
 		storyAAB.save(failOnError: true)
@@ -87,6 +100,11 @@ class TestDataGenerationService {
 		epicAB.save(failOnError: true)
 		epicBA.save(failOnError: true)
 		epicBB.save(failOnError: true)
+		
+		roleA.save(failOnError: true)
+		roleB.save(failOnError: true)
+		roleC.save(failOnError: true)
+		roleD.save(failOnError: true)
 
 				println "Created the Epic: $epicAA"
 	}

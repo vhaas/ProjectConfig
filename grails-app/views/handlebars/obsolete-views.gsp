@@ -95,5 +95,21 @@
 				</div>
 			</div>
 		</div>
+
+{{view Ember.Select 
+	contentBinding = "App.RolesController"
+	selectionBinding="role"
+	optionLabelPath="content.name"
+    optionValuePath="content.id"
+}}
+
+
+<div class="span4">
+				  <ul class="nav nav-tabs nav-stacked" data-spy="affix" data-offset-top="200">
+					{{#each user_story in stories}}
+					<li><a href="#">{{user_story.name}}</a></li>
+					{{/each}}
+				  </ul>
+				</div>
 		
 	</script>

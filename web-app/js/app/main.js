@@ -41,7 +41,10 @@ App.Epic = DS.Model.extend({
 	name: DS.attr("string"),
 	description: DS.attr("string"),
 	project: DS.belongsTo("App.Project"),
-	userStories: DS.hasMany("App.UserStory")
+	userStories: DS.hasMany("App.UserStory"),
+	href: (function() {
+	    return "#" + this.get('id');
+	  }).property('id').cacheable()
 });
 
 App.Project = DS.Model.extend({
@@ -56,7 +59,7 @@ App.UserStory = DS.Model.extend({
 	benefit: DS.attr("string"),
 	roadMap: DS.belongsTo("App.RoadMap"),
 	epic: DS.belongsTo("App.Epic"),
-	role: DS.belongsTo("App.Role")	
+	role: DS.belongsTo("App.Role")
 });
 
 App.Role = DS.Model.extend({
@@ -84,7 +87,7 @@ App.Router.map(function(){
 App.IndexRoute = Ember.Route.extend({
 	redirect: function(){
 		alert("Redirecting from Index!");
-		var epic = App.Epic.find(2);
+		var epic = null;
 		this.transitionTo('epic', epic);
 	}
 });
@@ -99,8 +102,21 @@ App.EpicController = Ember.ObjectController.extend({
 	save: function(){
 		alert("Want to store the epic!: "+this.get("content").get("name")+" "+this.get("content").get("isDirty"));
 		var model = App.store.commit();		
-	}	
+	},
+	epics: App.Epic.find(),
+	roles: App.Role.find()
 });
 
+App.AccItemView = Ember.View.extend({
+	templateName: 'acc_item',
+	classNames: ['accordion-group'],
+	didInsertElement: function() {
+		return Ember.run.next(this, function() {
+			return this.$('.collapse').collapse({
+				parent: "#accordion2"
+			});
+		});
+	}
+});
 
 App.initialize();

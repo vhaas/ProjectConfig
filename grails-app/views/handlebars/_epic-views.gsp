@@ -10,12 +10,12 @@
 			</div>
 			<div class="row-fluid">
 				<div class="span4">
-				  <ul class="nav nav-tabs nav-stacked" data-spy="affix" data-offset-top="200">
-					{{#each user_story in stories}}
-					<li><a href="#">{{user_story.name}}</a></li>
-					{{/each}}
-				  </ul>
-				</div>
+					<div class="accordion" id="accordion2">
+      					{{#each item in epics}}
+       						{{view App.AccItemView contextBinding='item'}}
+      					{{/each}}
+    				</div>
+				</div>				
 				<div class="span8">
 				<!-- Epic -->
 				  <section>
@@ -39,7 +39,12 @@
 			<!-- User Stories -->
 				{{#each userStories}}
 				<section>
-					<h4>{{name}}</h4>
+					<h4>
+						{{name}}
+						{{#if isDirty}}
+							<i class="icon-exclamation-sign"></i>
+						{{/if}}
+					</h4>
 					<form class="form-horizontal" {{action save on="submit"}}>
 						{{#view App.BootstrapControl inputId="name" label="Name"}}
 								{{view Ember.TextField valueBinding="name"}}
@@ -53,6 +58,9 @@
 						{{#view App.BootstrapControl inputId="description" label="Beschreibung"}}
 								{{view Ember.TextArea valueBinding="description"}}
 						{{/view}}
+						{{#view App.BootstrapControl inputId="role" label="Rolle"}}
+								{{view Ember.TextField valueBinding="role.name"}}								
+						{{/view}}						
 						<button type="submit" class="btn btn-primary pull-right">Speichern</button>
 						<div class="clearfix"/>
 					</form>
@@ -60,4 +68,19 @@
 				{{/each}}
 			</div>
 		</div>
+</script>
+
+<script type="text/x-handlebars" data-template-name="acc_item">
+          <div class="accordion-heading">
+            <a class="accordion-toggle" data-toggle="collapse"  {{bindAttr href="item.href" }}>
+              {{item.name}}
+            </a>
+          </div>
+          <div {{bindAttr id='item.id' }} class="accordion-body collapse in">
+            <div class="accordion-inner">
+				{{#each item.userStories}}				
+        			<ul>{{name}}</ul>
+				{{/each}}      			             
+            </div>
+          </div>
 </script>
