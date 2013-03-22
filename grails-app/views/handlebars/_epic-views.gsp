@@ -1,3 +1,4 @@
+<g:render template="/handlebars/popup-view"></g:render>
 <script type="text/x-handlebars" data-template-name="epic">
 		<div class="container-fluid" data-spy="scroll" data-target=".nav-tabs">
 			<div class="row-fluid">
@@ -10,14 +11,16 @@
 			</div>
 			<div class="row-fluid">
 				<div class="span4">
-					<div class="accordion" id="accordion2">
-      					{{#each item in epics}}
-       						{{view App.AccItemView contextBinding='item'}}
-      					{{/each}}
-    				</div>
+					<section>
+						<div class="accordion" id="accordion2">
+	      					{{#each item in epics}}
+       							{{view App.AccItemView contextBinding='item'}}
+      						{{/each}}
+    					</div>
+					</section>
 				</div>				
-				<div class="span8">
-				<!-- Epic -->
+				<div class="span8">										
+			<!-- Epic -->
 				  <section>
 					<h4>
 						{{name}}
@@ -33,7 +36,7 @@
 								{{view Ember.TextArea valueBinding="description"}}
 						{{/view}}
 						<button type="submit" class="btn btn-primary pull-right">Speichern</button>
-						<div class="clearfix"/>
+						<div class="clearfix"/>						
 					</form>
 				  </section>
 			<!-- User Stories -->
@@ -57,10 +60,11 @@
 						{{/view}}
 						{{#view App.BootstrapControl inputId="description" label="Beschreibung"}}
 								{{view Ember.TextArea valueBinding="description"}}
-						{{/view}}
-						{{#view App.BootstrapControl inputId="role" label="Rolle"}}
-								{{view Ember.TextField valueBinding="role.name"}}								
 						{{/view}}						
+						{{#view App.BootstrapControl inputId="role" label="Rolle"}}
+								{{view Ember.TextField valueBinding="role.name"}}
+								<button {{action "test"}}>Edit!</button>
+						{{/view}}
 						<button type="submit" class="btn btn-primary pull-right">Speichern</button>
 						<div class="clearfix"/>
 					</form>
@@ -77,10 +81,10 @@
             </a>
           </div>
           <div {{bindAttr id='item.id' }} class="accordion-body collapse in">
-            <div class="accordion-inner">
+            <div class="accordion-inner">				
 				{{#each item.userStories}}				
         			<ul>{{name}}</ul>
-				{{/each}}      			             
+				{{/each}}				      			             
             </div>
           </div>
 </script>

@@ -42,6 +42,14 @@
 		</div>
 	</script>
 	
+<!-- Problems with version of ember / handlebars
+	<script type="text/x-handlebars">
+      {{view RoleSelect
+         contentBinding="App.RolesController.content"            
+         selectionBinding="App.RolesController.selectedRoleIds"}} 
+	</script>
+-->
+	
 	
 
 </head>

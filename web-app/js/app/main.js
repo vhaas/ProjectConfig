@@ -87,7 +87,7 @@ App.Router.map(function(){
 App.IndexRoute = Ember.Route.extend({
 	redirect: function(){
 		alert("Redirecting from Index!");
-		var epic = null;
+		var epic = App.Epic.find(2);
 		this.transitionTo('epic', epic);
 	}
 });
@@ -104,7 +104,9 @@ App.EpicController = Ember.ObjectController.extend({
 		var model = App.store.commit();		
 	},
 	epics: App.Epic.find(),
-	roles: App.Role.find()
+	test: function(){
+		alert("this is dog");
+	}
 });
 
 App.AccItemView = Ember.View.extend({
@@ -117,6 +119,32 @@ App.AccItemView = Ember.View.extend({
 			});
 		});
 	}
+});
+
+App.RolesController = Ember.ArrayController.extend({
+	content: App.Role.find(),
+	selectedRoleIds: null,
+	testProperty: function(){
+		console.info("Test prop fired!");
+		if(null != this.get('selectedRoleIds'))
+		{
+			return this.get('selectedRoleIds')[0].id
+		}
+		else
+		{
+			return null;
+		}
+	}.property('selectedRoleIds')
+});
+
+RoleSelect = Ember.Select.extend({
+    multiple: false,
+    optionLabelPath: "content.name",
+    optionValuePath: "content.id"
+});
+
+App.PopupView = Ember.View.extend({
+	  layoutName: 'popup'
 });
 
 App.initialize();
