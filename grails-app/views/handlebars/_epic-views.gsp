@@ -60,20 +60,20 @@
 						{{/view}}
 						{{#view App.BootstrapControl inputId="description" label="Beschreibung"}}
 								{{view Ember.TextArea valueBinding="description"}}
-						{{/view}}					
+						{{/view}}
 						{{#view App.BootstrapControl inputId="role" label="Rolle"}}
-								{{view Ember.TextField valueBinding="role.name"}}
-								<button {{action "test"}}>Edit!</button>
-						{{/view}}						
+							{{view App.RoleSelect
+								contentBinding="App.SelectController"
+        						selectionBinding="role"
+								valueBinding="role_id"
+								prompt="Please select a role"}}
+						{{/view}}
 						<button type="submit" class="btn btn-primary pull-right">Speichern</button>
 						<div class="clearfix"/>
 					</form>
 				</section>
 				{{/each}}
-				{{view App.RoleSelect
-					contentBinding="App.SelectController"
-        			selectionBinding="App.SelectController.selection"							
-					prompt="Please select a role"}}
+				
 			</div>
 		</div>
 </script>

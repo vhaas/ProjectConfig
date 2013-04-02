@@ -123,13 +123,7 @@ App.AccItemView = Ember.View.extend({
 
 App.RolesController = Ember.ArrayController.extend({	
 	selection: null,
-	active: true,
-	update: function(id) {
-	  this.set("selection", id);
-	},
-	getSelectedId: function() {
-	  return this.get("selection");
-	}		
+	active: true
 });
 
 App.RoleSelect = Ember.Select.extend({
@@ -140,7 +134,6 @@ App.RoleSelect = Ember.Select.extend({
 
 App.SelectController = App.RolesController.create();
 App.SelectController.set("content", App.Role.find());
-App.SelectController.set("selection", "views");
 
 App.PopupView = Ember.View.extend({
 	  layoutName: 'popup'

@@ -84,7 +84,14 @@ class UserStoryRestController {
 				}
 			}
 			def props = p.user_story
-			userStoryInstance.properties = p.user_story
+			def userStoryRole = Role.get(props.role_id)
+			if (userStoryRole) {
+				userStoryInstance.role = userStoryRole
+			}
+			else {
+				userStoryInstance.role = null
+			}
+			userStoryInstance.properties = p.user_story			
 			if (!userStoryInstance.hasErrors() && userStoryInstance.save(flush: true)) {
 				response.status = 200 // OK
 				userStoryInstance = userStoryInstance.transformToMap()
