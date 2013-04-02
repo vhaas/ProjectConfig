@@ -87,7 +87,7 @@ App.Router.map(function(){
 App.IndexRoute = Ember.Route.extend({
 	redirect: function(){
 		alert("Redirecting from Index!");
-		var epic = App.Epic.find(2);
+		var epic = App.Epic.find(1);
 		this.transitionTo('epic', epic);
 	}
 });
@@ -121,30 +121,27 @@ App.AccItemView = Ember.View.extend({
 	}
 });
 
-App.RolesController = Ember.ArrayController.extend({
-	content: App.Role.find(),
-	selectedRoleIds: null,
-	testProperty: function(){
-		console.info("Test prop fired!");
-		if(null != this.get('selectedRoleIds'))
-		{
-			return this.get('selectedRoleIds')[0].id
-		}
-		else
-		{
-			return null;
-		}
-	}.property('selectedRoleIds')
+App.RolesController = Ember.ArrayController.extend({	
+	selection: null,
+	active: true,
+	update: function(id) {
+	  this.set("selection", id);
+	},
+	getSelectedId: function() {
+	  return this.get("selection");
+	}		
 });
 
-RoleSelect = Ember.Select.extend({
+App.RoleSelect = Ember.Select.extend({
     multiple: false,
     optionLabelPath: "content.name",
     optionValuePath: "content.id"
 });
 
+App.SelectController = App.RolesController.create();
+App.SelectController.set("content", App.Role.find());
+App.SelectController.set("selection", "views");
+
 App.PopupView = Ember.View.extend({
 	  layoutName: 'popup'
 });
-
-App.initialize();

@@ -103,6 +103,23 @@
     optionValuePath="content.id"
 }}
 
+{{#view App.BootstrapControl inputId="role" label="Rolle"}}
+								{{view Ember.TextField valueBinding="role.name"}}
+								<button {{action "test"}}>Edit!</button>
+						{{/view}}
+
+
+testProperty: function(){
+		console.info("Test prop fired!");
+		if(null != this.get('selectedRoleIds'))
+		{
+			return this.get('selectedRoleIds')[0].id
+		}
+		else
+		{
+			return null;
+		}
+	}.property('selectedRoleIds')
 
 <div class="span4">
 				  <ul class="nav nav-tabs nav-stacked" data-spy="affix" data-offset-top="200">

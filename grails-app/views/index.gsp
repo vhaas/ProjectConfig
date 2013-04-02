@@ -42,22 +42,12 @@
 		</div>
 	</script>
 	
-<!-- Problems with version of ember / handlebars
-	<script type="text/x-handlebars">
-      {{view RoleSelect
-         contentBinding="App.RolesController.content"            
-         selectionBinding="App.RolesController.selectedRoleIds"}} 
-	</script>
--->
-	
-	
-
 </head>
 <body>
 	<script src="js/handlebars.js"></script>
 	<script src="js/jquery-1.9.1.js"></script>
 	<script src="js/bootstrap.js"></script>
-	<script src="js/ember.js"></script>
+	<script src="js/ember-1.0.0-rc.2.js"></script>
 	<script src="js/less-1.3.3.min.js"></script>
 	<script src="js/ember-data.js"></script>
 	<script src="js/app/main.js"></script>
