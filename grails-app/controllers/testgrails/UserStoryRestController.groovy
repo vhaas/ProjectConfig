@@ -52,12 +52,39 @@ class UserStoryRestController {
 	
 	def create = {
 		def userStoryInstance = new UserStory()
-		userStoryInstance.properties = params
+		println(params)
+		def props = params.user_story
+		userStoryInstance.properties = params.user_story
+		def userStoryRole = Role.get(props.role_id)
+		if (userStoryRole) {
+			userStoryInstance.role = userStoryRole
+		}
+		else {
+			userStoryInstance.role = null
+		}
+		def userStoryEpic = Epic.get(props.epic_id)
+		if (userStoryEpic) {
+			userStoryInstance.epic = userStoryEpic
+		}		
 		return [userStoryInstance: userStoryInstance]
 	}
 	
 	def save = {
-		def userStoryInstance = new UserStory(params)
+		def userStoryInstance = new UserStory()
+		println(params)
+		def props = params.user_story
+		userStoryInstance.properties = params.user_story
+		def userStoryRole = Role.get(props.role_id)
+		if (userStoryRole) {
+			userStoryInstance.role = userStoryRole
+		}
+		else {
+			userStoryInstance.role = null
+		}
+		def userStoryEpic = Epic.get(props.epic_id)
+		if (userStoryEpic) {
+			userStoryInstance.epic = userStoryEpic
+		}
 		if (userStoryInstance.save(flush: true)) {
 			response.status = 200 // OK
 			userStoryInstance = userStoryInstance.transformToMap()

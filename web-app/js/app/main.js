@@ -106,6 +106,12 @@ App.EpicController = Ember.ObjectController.extend({
 	epics: App.Epic.find(),
 	test: function(){
 		alert("this is dog");
+		console.log(this.content);
+	},
+	create: function() {
+		var userStory = App.UserStory.createRecord();
+		userStory.set('epic',this.content);
+		return userStory;
 	}
 });
 
@@ -121,7 +127,7 @@ App.AccItemView = Ember.View.extend({
 	}
 });
 
-App.RolesController = Ember.ArrayController.extend({	
+App.RolesController = Ember.ArrayController.extend({
 	selection: null,
 	active: true
 });

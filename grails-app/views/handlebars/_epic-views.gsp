@@ -56,10 +56,7 @@
 								{{view Ember.TextField valueBinding="goal"}}
 						{{/view}}
 						{{#view App.BootstrapControl inputId="benefit" label="Nutzen"}}
-								{{view Ember.TextField valueBinding="benefit"}}
-						{{/view}}
-						{{#view App.BootstrapControl inputId="description" label="Beschreibung"}}
-								{{view Ember.TextArea valueBinding="description"}}
+								{{view Ember.TextField valueBinding="benefit"}}								
 						{{/view}}
 						{{#view App.BootstrapControl inputId="role" label="Rolle"}}
 							{{view App.RoleSelect
@@ -67,13 +64,17 @@
         						selectionBinding="role"
 								valueBinding="role_id"
 								prompt="Please select a role"}}
+							<button class="btn btn-secondary" {{action "test"}}>Neue Rolle hinzufügen</button>
 						{{/view}}
+						{{#view App.BootstrapControl inputId="description" label="Beschreibung"}}
+								{{view Ember.TextArea valueBinding="description"}}
+						{{/view}}						
 						<button type="submit" class="btn btn-primary pull-right">Speichern</button>
 						<div class="clearfix"/>
 					</form>
 				</section>
 				{{/each}}
-				
+				<button class="btn btn-secondary pull-right" {{action "create"}}>Neue User Story anlegen</button>
 			</div>
 		</div>
 </script>
