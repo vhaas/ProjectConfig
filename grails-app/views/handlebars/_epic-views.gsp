@@ -69,21 +69,21 @@
 						{{#view App.BootstrapControl inputId="description" label="Beschreibung"}}
 								{{view Ember.TextArea valueBinding="description"}}
 						{{/view}}						
-						<button type="submit" class="btn btn-primary pull-right">Speichern</button>
+						<button type="submit" class="btn btn-primary pull-right">Speichern</button>						
 						<div class="clearfix"/>
 					</form>
 				</section>
 				{{/each}}
-				<button class="btn btn-secondary pull-right" {{action "create"}}>Neue User Story anlegen</button>
+				<button class="btn btn-secondary pull-right" {{action "create"}}>Neue User Story anlegen</button>				
 			</div>
 		</div>
 </script>
 
 <script type="text/x-handlebars" data-template-name="acc_item">
-          <div class="accordion-heading">
-            <a class="accordion-toggle" data-toggle="collapse"  {{bindAttr href="item.href" }}>
-              {{item.name}}
-            </a>
+          <div class="accordion-heading">			
+            <a class="accordion-toggle" data-toggle="collapse"  {{bindAttr href="item.href" }}>              
+			 	{{#linkTo 'epic' item}}{{item.name}}{{/linkTo}}
+            </a>			
           </div>
           <div {{bindAttr id='item.id' }} class="accordion-body collapse in">
             <div class="accordion-inner">				

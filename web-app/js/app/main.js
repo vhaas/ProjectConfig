@@ -42,7 +42,7 @@ App.Epic = DS.Model.extend({
 	description: DS.attr("string"),
 	project: DS.belongsTo("App.Project"),
 	userStories: DS.hasMany("App.UserStory"),
-	href: (function() {
+	href: (function() {		
 	    return "#" + this.get('id');
 	  }).property('id').cacheable()
 });
@@ -105,14 +105,13 @@ App.EpicController = Ember.ObjectController.extend({
 	},
 	epics: App.Epic.find(),
 	test: function(){
-		alert("this is dog");
-		console.log(this.content);
+		alert("this is dog");		
 	},
 	create: function() {
 		var userStory = App.UserStory.createRecord();
 		userStory.set('epic',this.content);
 		return userStory;
-	}
+	}	
 });
 
 App.AccItemView = Ember.View.extend({
