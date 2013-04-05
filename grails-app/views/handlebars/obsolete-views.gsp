@@ -108,6 +108,15 @@
 								<button {{action "test"}}>Edit!</button>
 						{{/view}}
 
+<div class="row-fluid">
+							Verschieben nach Epic								
+							{{view App.Select
+								contentBinding="controller.epics"
+        						selectionBinding="epic"
+								valueBinding="epic_id"}}								
+							<button type="submit" class="btn btn-primary pull-right">Speichern</button>
+						</div>
+
 
 testProperty: function(){
 		console.info("Test prop fired!");

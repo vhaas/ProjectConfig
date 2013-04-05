@@ -2,7 +2,7 @@
   <div class="popup">
     <button class="popup-dismiss">x</button>
     <div class="popup-content">
-    {{yield}}
+    	{{yield}}
     </div>
   </div>
 </script>

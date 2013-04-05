@@ -1,4 +1,5 @@
 <g:render template="/handlebars/popup-view"></g:render>
+<g:render template="/handlebars/accordion-views"></g:render>
 <script type="text/x-handlebars" data-template-name="epic">
 		<div class="container-fluid" data-spy="scroll" data-target=".nav-tabs">
 			<div class="row-fluid">
@@ -15,11 +16,11 @@
 						<div class="accordion" id="accordion2">
 	      					{{#each item in epics}}
        							{{view App.AccItemView contextBinding='item'}}
-      						{{/each}}
+      						{{/each}}							
     					</div>
 					</section>
-				</div>				
-				<div class="span8">										
+				</div>
+				<div class="span8">
 			<!-- Epic -->
 				  <section>
 					<h4>
@@ -45,7 +46,7 @@
 					<h4>
 						{{name}}
 						{{#if isDirty}}
-							<i class="icon-exclamation-sign"></i>
+							<i class="icon-exclamation-sign"></i>								
 						{{/if}}
 					</h4>
 					<form class="form-horizontal" {{action save on="submit"}}>
@@ -59,37 +60,37 @@
 								{{view Ember.TextField valueBinding="benefit"}}								
 						{{/view}}
 						{{#view App.BootstrapControl inputId="role" label="Rolle"}}
-							{{view App.RoleSelect
-								contentBinding="App.SelectController"
+							{{view App.Select
+								contentBinding="App.SelectRolesController"
         						selectionBinding="role"
 								valueBinding="role_id"
 								prompt="Please select a role"}}
-							<button class="btn btn-secondary" {{action "test"}}>Neue Rolle hinzufügen</button>
+							<button class="btn btn-secondary" {{action "openModal"}}>Neue Rolle hinzufügen</button>
 						{{/view}}
 						{{#view App.BootstrapControl inputId="description" label="Beschreibung"}}
 								{{view Ember.TextArea valueBinding="description"}}
-						{{/view}}						
-						<button type="submit" class="btn btn-primary pull-right">Speichern</button>						
+						{{/view}}
+						<button type="submit" class="btn btn-primary pull-right">Speichern</button>
 						<div class="clearfix"/>
 					</form>
-				</section>
+				</section>				
 				{{/each}}
-				<button class="btn btn-secondary pull-right" {{action "create"}}>Neue User Story anlegen</button>				
+				<button class="btn btn-secondary pull-right" {{action "create"}}>Neue User Story anlegen</button>
+				<button class="btn btn-secondary pull-right" {{action "createEpic"}}>Neue Epic anlegen</button>				
 			</div>
 		</div>
 </script>
 
-<script type="text/x-handlebars" data-template-name="acc_item">
-          <div class="accordion-heading">			
-            <a class="accordion-toggle" data-toggle="collapse"  {{bindAttr href="item.href" }}>              
-			 	{{#linkTo 'epic' item}}{{item.name}}{{/linkTo}}
-            </a>			
-          </div>
-          <div {{bindAttr id='item.id' }} class="accordion-body collapse in">
-            <div class="accordion-inner">				
-				{{#each item.userStories}}				
-        			<ul>{{name}}</ul>
-				{{/each}}				      			             
-            </div>
-          </div>
-</script>
+<script type="text/x-handlebars" data-template-name="modal">
+    <div class="modal-overlay"></div>
+
+    <div class="modal soft">
+      <h1>Modal Dialog.</h1>
+
+      <p>The model dialog is opened by firing an event i.e. `openModal` handled by the router.</p>
+
+      <p>But to close it, we will be sending an event to be handled by the view itself instead of the router, since there is no state change in opening this modal dialog.</p>
+
+      <button class="btn space-big soft" {{action "closeModal" target="view"}}>Close Dialog</button>
+    </div>
+  </script>

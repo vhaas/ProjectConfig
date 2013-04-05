@@ -59,7 +59,7 @@ App.UserStory = DS.Model.extend({
 	benefit: DS.attr("string"),
 	roadMap: DS.belongsTo("App.RoadMap"),
 	epic: DS.belongsTo("App.Epic"),
-	role: DS.belongsTo("App.Role")
+	role: DS.belongsTo("App.Role")	
 });
 
 App.Role = DS.Model.extend({
@@ -89,6 +89,15 @@ App.IndexRoute = Ember.Route.extend({
 		alert("Redirecting from Index!");
 		var epic = App.Epic.find(1);
 		this.transitionTo('epic', epic);
+	}	
+});
+
+App.EpicRoute = Ember.Route.extend({
+	events: {
+		openModal: function() {
+			var modalView = App.ModalView.create();
+			modalView.append();
+		}
 	}
 });
 
@@ -101,16 +110,31 @@ App.ProjectController = Ember.ObjectController.extend({
 App.EpicController = Ember.ObjectController.extend({
 	save: function(){
 		alert("Want to store the epic!: "+this.get("content").get("name")+" "+this.get("content").get("isDirty"));
-		var model = App.store.commit();		
+		var model = App.store.commit();
 	},
 	epics: App.Epic.find(),
 	test: function(){
-		alert("this is dog");		
+		alert("this is dog");
 	},
 	create: function() {
 		var userStory = App.UserStory.createRecord();
-		userStory.set('epic',this.content);
+		userStory.set('epic', this.content);
 		return userStory;
+	},
+	createEpic: function() {
+		var epic = App.Epic.createRecord();
+		epic.set('project', 1);
+		return epic;
+	}
+});
+
+App.RoleController = Ember.ObjectController.extend({
+	save: function(){		
+		var model = App.store.commit();		
+	},
+	create: function() {
+		var role = App.Role.createRecord();
+		return role;
 	}	
 });
 
@@ -126,20 +150,28 @@ App.AccItemView = Ember.View.extend({
 	}
 });
 
-App.RolesController = Ember.ArrayController.extend({
+App.SelectController = Ember.ArrayController.extend({
 	selection: null,
 	active: true
 });
 
-App.RoleSelect = Ember.Select.extend({
+App.Select = Ember.Select.extend({
     multiple: false,
     optionLabelPath: "content.name",
     optionValuePath: "content.id"
 });
 
-App.SelectController = App.RolesController.create();
-App.SelectController.set("content", App.Role.find());
+App.SelectRolesController = App.SelectController.create();
+App.SelectRolesController.set("content", App.Role.find());
 
 App.PopupView = Ember.View.extend({
-	  layoutName: 'popup'
+	layoutName: 'popup'
+});
+
+App.ModalView = Ember.View.extend({
+	  templateName: 'modal',
+
+	  closeModal: function() {
+	    this.remove();
+	  }
 });
