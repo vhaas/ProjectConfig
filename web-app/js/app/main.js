@@ -129,8 +129,9 @@ App.EpicController = Ember.ObjectController.extend({
 });
 
 App.RoleController = Ember.ObjectController.extend({
-	addRole: function(role){		
-		this.get('store').commit();
+	addRole: function(role){
+//		this.get('store').commit();
+		var model = App.store.commit();
 	}
 });
 

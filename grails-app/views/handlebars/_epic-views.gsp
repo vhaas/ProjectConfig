@@ -86,11 +86,9 @@
     <div class="modal-overlay"></div>
 	
     <div class="modal soft">
-      <h1>Modal Dialog.</h1>
-      <p>The model dialog is opened by firing an event i.e. `openModal` handled by the router.</p>
+		
+		{{yield}}
 
-      <p>But to close it, we will be sending an event to be handled by the view itself instead of the router, since there is no state change in opening this modal dialog.</p>
-	  {{yield}}
-      <button class="btn space-big soft" {{action "closeModal" target="view"}}>Close Dialog</button>
+		<button class="btn space-big soft" {{action "closeModal" target="view"}}>Close Dialog</button>
     </div>
   </script>
