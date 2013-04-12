@@ -1,5 +1,6 @@
 <g:render template="/handlebars/popup-view"></g:render>
 <g:render template="/handlebars/accordion-views"></g:render>
+<g:render template="/handlebars/role-editor-popup"></g:render>
 <script type="text/x-handlebars" data-template-name="epic">
 		<div class="container-fluid" data-spy="scroll" data-target=".nav-tabs">
 			<div class="row-fluid">
@@ -83,14 +84,13 @@
 
 <script type="text/x-handlebars" data-template-name="modal">
     <div class="modal-overlay"></div>
-
+	
     <div class="modal soft">
       <h1>Modal Dialog.</h1>
-
       <p>The model dialog is opened by firing an event i.e. `openModal` handled by the router.</p>
 
       <p>But to close it, we will be sending an event to be handled by the view itself instead of the router, since there is no state change in opening this modal dialog.</p>
-
+	  {{yield}}
       <button class="btn space-big soft" {{action "closeModal" target="view"}}>Close Dialog</button>
     </div>
   </script>

@@ -129,13 +129,9 @@ App.EpicController = Ember.ObjectController.extend({
 });
 
 App.RoleController = Ember.ObjectController.extend({
-	save: function(){		
-		var model = App.store.commit();		
-	},
-	create: function() {
-		var role = App.Role.createRecord();
-		return role;
-	}	
+	addRole: function(role){		
+		this.get('store').commit();
+	}
 });
 
 App.AccItemView = Ember.View.extend({
@@ -169,9 +165,28 @@ App.PopupView = Ember.View.extend({
 });
 
 App.ModalView = Ember.View.extend({
-	  templateName: 'modal',
-
-	  closeModal: function() {
+	  templateName: 'roleEditor',
+	  layoutName: 'modal',
+	  closeModal: function(event) {
 	    this.remove();
-	  }
+	  },
+	  controller: App.RoleController,
+      contentBinding: 'controller.content',
+      addRole: function(event) {
+    	  var role = this.buildRoleFromInputs(event);
+    	  this.get('controller').addRole(role);
+    	  this.resetForm();
+      },
+      buildRoleFromInputs: function(session) {
+    	  var name = this.get('name');
+    	  var description = this.get('description');
+    	  return App.Role.createRecord(
+    	        { name: name,
+    	          description: description
+    	        });
+      },
+      resetForm: function() {
+    	  this.set('name', '');
+    	  this.set('description', '');
+      }
 });
