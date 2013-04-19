@@ -94,9 +94,11 @@ App.IndexRoute = Ember.Route.extend({
 
 App.EpicRoute = Ember.Route.extend({
 	events: {
-		openModal: function() {
+		openModal: function(role) {
+			var roleController = this.controllerFor('role');
+			roleController.set('content', role);
 			var modalView = App.ModalView.create({				
-				controller: this.controllerFor('role')
+				controller: roleController
 			});
 			modalView.append();
 		}
@@ -134,7 +136,9 @@ App.RoleController = Ember.ObjectController.extend({
 	addRole: function(role){
 		var model = App.store.commit();
 	},
-	content: App.Role.find(1)
+	save: function() {
+		var model = App.store.commit();
+	}	
 });
 
 App.AccItemView = Ember.View.extend({
@@ -172,6 +176,10 @@ App.ModalView = Ember.View.extend({
 	  layoutName: 'modal',
 	  closeModal: function(event) {
 	    this.remove();
+	  },
+	  saveRole: function() {
+		  this.get('controller').save();
+		  this.remove();
 	  },
       addRole: function(event) {
     	  var role = this.buildRoleFromInputs(event);

@@ -6,7 +6,7 @@
 					<i class="icon-exclamation-sign"></i>
 				{{/if}}
 		</h4>
-		<form class="form-horizontal" {{action addRole on="submit" target="view"}}>
+		<form class="form-horizontal" {{action saveRole on="submit" target="view"}}>
 			{{#view App.BootstrapControl inputId="name" label="Name"}}
 				{{view Ember.TextField valueBinding="name"}}
 			{{/view}}
@@ -15,6 +15,7 @@
 			{{/view}}
 			<div class="row-fluid">
 				<button type="submit" class="btn btn-primary pull-right">Speichern</button>
+				<button class="btn btn-secondary" {{action "test"}}>Test</button>
 			</div>
 			<div class="clearfix"/>
 		</form>

@@ -66,7 +66,7 @@
         						selectionBinding="role"
 								valueBinding="role_id"
 								prompt="Please select a role"}}
-							<button class="btn btn-secondary" {{action "openModal"}}>Neue Rolle hinzufügen</button>
+							<button class="btn btn-secondary" {{action "openModal" role}}>Rolle editieren</button>
 						{{/view}}
 						{{#view App.BootstrapControl inputId="description" label="Beschreibung"}}
 								{{view Ember.TextArea valueBinding="description"}}
