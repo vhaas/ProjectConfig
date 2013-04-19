@@ -80,15 +80,14 @@
 						{{#unless willGetDeleted}}
 							{{#if isDirty}}
 								<button type="submit" class="btn btn-primary pull-right">Speichern</button>
-								<button class="btn btn-secondary pull-right" {{action "saveAndCreate" target="view"}}>Speichern und neue User Story anlegen</button>
-							{{/if}}
-							{{#unless isDirty}}
+								<button class="btn btn-secondary pull-right" {{action "saveAndCreate" target="view"}}>Speichern und neue User Story anlegen</button>							
+							{{else}}
 								<button class="btn btn-secondary pull-right" {{action "createUserStory"}}>Neue User Story anlegen</button>
-							{{/unless}}
+							{{/if}}
 						{{/unless}}
 						<div class="clearfix"/>
-					</form>					
-				</section>				
+					</form>
+				</section>
 				{{/each}}
 				<button class="btn btn-secondary pull-right" {{action "createUserStory"}}>Neue User Story anlegen</button>
 				<button class="btn btn-secondary pull-right" {{action "createNewEpic" target="view"}}>Neue Epic anlegen</button>				

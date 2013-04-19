@@ -50,7 +50,13 @@
 	<script src="js/ember-1.0.0-rc.2.js"></script>
 	<script src="js/less-1.3.3.min.js"></script>
 	<script src="js/ember-data.js"></script>
+	
 	<script src="js/app/main.js"></script>
+	<script src="js/app/models.js"></script>
+	<script src="js/app/role.js"></script>
+	<script src="js/app/epic.js"></script>
+	<script src="js/app/popup.js"></script>
+	
 	
 
 </body>
