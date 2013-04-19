@@ -17,10 +17,7 @@ App.EpicController = Ember.ObjectController.extend({
 	save: function(){		
 		var model = App.store.commit();
 	},
-	epics: App.Epic.find(),
-	test: function(){
-		alert("this is dog");
-	},
+	epics: App.Epic.find(),	
 	createUserStory: function() {
 		var userStory = App.UserStory.createRecord();
 		userStory.set('epic', this.content);
@@ -35,9 +32,10 @@ App.EpicController = Ember.ObjectController.extend({
 		var model = App.UserStory.find(id);
 		model.deleteRecord();
 	    App.store.commit();
-	}
+	},
+	disabledEpic: true,
+	disabledUserStory: true
 });
-
 
 //View
 App.EpicView = Ember.View.extend({
@@ -50,5 +48,13 @@ App.EpicView = Ember.View.extend({
 	saveAndCreate: function() {
 		this.get('controller').save();
 		this.get('controller').createUserStory();
+	},
+	enableEpic: function() {
+		this.get('controller').toggleProperty('disabledEpic');
+		this.get('controller').set('disabledUserStory', true);
+	},
+	enableUserStory: function() {
+		this.get('controller').toggleProperty('disabledUserStory');
+		this.get('controller').set('disabledEpic', true);
 	}
 });
