@@ -32,14 +32,16 @@ class RoleRestController {
 		}
 	}
 	
-	def create = {
-		def roleInstance = new Role()
-		roleInstance.properties = params
-		return [roleInstance: roleInstance]
-	}
-	
 	def save = {
-		def roleInstance = new Role(params)
+		def roleInstance = new Role()
+		roleInstance.properties = params.role
+		def roleProject = Project.get(params.role.project_id)
+		if (roleProject) {
+			roleInstance.project = roleProject
+		}
+		else {
+			roleInstance.project = null
+		}
 		if (roleInstance.save(flush: true)) {
 			response.status = 200 // OK
 			roleInstance = roleInstance.transformToMap()

@@ -64,7 +64,8 @@ App.UserStory = DS.Model.extend({
 
 App.Role = DS.Model.extend({
 	name: DS.attr("string"),
-	description: DS.attr("string")
+	description: DS.attr("string"),
+	project: DS.belongsTo("App.Project")
 });
 
 App.RoadMap = DS.Model.extend({
@@ -133,12 +134,14 @@ App.EpicController = Ember.ObjectController.extend({
 });
 
 App.RoleController = Ember.ObjectController.extend({
-	addRole: function(role){
+	save: function() {		
 		var model = App.store.commit();
 	},
-	save: function() {
-		var model = App.store.commit();
-	}	
+	create: function() {
+		var role = App.Role.createRecord();
+		role.set('project', App.Project.find(1));
+		return role;
+	}
 });
 
 App.AccItemView = Ember.View.extend({
@@ -178,24 +181,18 @@ App.ModalView = Ember.View.extend({
 	    this.remove();
 	  },
 	  saveRole: function() {
+		  alert("Saved Role: " + this.get('controller').get('content'));
 		  this.get('controller').save();
 		  this.remove();
-	  },
-      addRole: function(event) {
-    	  var role = this.buildRoleFromInputs(event);
-    	  this.get('controller').addRole(role);
-    	  this.resetForm();
-      },
-      buildRoleFromInputs: function(session) {
-    	  var name = this.get('name');
-    	  var description = this.get('description');
-    	  return App.Role.createRecord(
-    	        { name: name,
-    	          description: description
-    	        });
-      },
+	  },     
+      createNewRole: function() {
+    	  this.get('controller').set('content', this.get('controller').create());
+      },      
       resetForm: function() {
     	  this.set('name', '');
     	  this.set('description', '');
-      }
+      },
+      isNotDirty: function(){ 
+    	  return !this.get('controller.content.isDirty') 
+      }.property('controller.content.isDirty').cacheable()
 });

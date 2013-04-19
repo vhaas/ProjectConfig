@@ -23,7 +23,7 @@ class UrlMappings {
 		}
 		
 		"/rest/roles"(controller: "RoleRest", parseRequest: true) {
-			action = [GET: "showAllRoles"]
+			action = [GET: "showAllRoles", POST: "save"]
 		}		
 		///////////////////////////////////////////////////////////////////////////////////////////
 		//###Epic
