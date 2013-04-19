@@ -73,9 +73,9 @@
 						{{/view}}						
 							{{#view App.BootstrapControl inputId="willGetDeleted" label="User Story löschen"}}
 								{{view Ember.Checkbox checkedBinding="willGetDeleted"}}
-							{{/view}}							
+							{{/view}}
 							{{#if willGetDeleted}}
-								<button class="btn btn-primary pull-right" {{action "deleteUserStory"}}>User Story löschen</button>
+								<button class="btn btn-primary pull-right" {{action "deleteUserStory" id}}>User Story löschen</button>
 							{{/if}}
 						{{#unless willGetDeleted}}
 							{{#if isDirty}}

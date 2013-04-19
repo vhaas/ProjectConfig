@@ -132,8 +132,10 @@ App.EpicController = Ember.ObjectController.extend({
 		epic.set('project', 1);
 		return epic;
 	},
-	deleteUserStory: function() {
-		
+	deleteUserStory: function(id) {
+		var model = App.UserStory.find(id);
+		model.deleteRecord();
+	    App.store.commit();
 	}
 });
 
