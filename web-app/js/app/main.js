@@ -59,7 +59,8 @@ App.UserStory = DS.Model.extend({
 	benefit: DS.attr("string"),
 	roadMap: DS.belongsTo("App.RoadMap"),
 	epic: DS.belongsTo("App.Epic"),
-	role: DS.belongsTo("App.Role")	
+	role: DS.belongsTo("App.Role"),
+	willGetDeleted: DS.attr("boolean", {defaultValue: false})
 });
 
 App.Role = DS.Model.extend({
@@ -121,7 +122,7 @@ App.EpicController = Ember.ObjectController.extend({
 	test: function(){
 		alert("this is dog");
 	},
-	create: function() {
+	createUserStory: function() {
 		var userStory = App.UserStory.createRecord();
 		userStory.set('epic', this.content);
 		return userStory;
@@ -130,6 +131,9 @@ App.EpicController = Ember.ObjectController.extend({
 		var epic = App.Epic.createRecord();
 		epic.set('project', 1);
 		return epic;
+	},
+	deleteUserStory: function() {
+		
 	}
 });
 
@@ -174,25 +178,38 @@ App.PopupView = Ember.View.extend({
 	layoutName: 'popup'
 });
 
+App.EpicView = Ember.View.extend({
+	createNewEpic: function() {
+		this.get('controller').set('content', this.get('controller').createEpic());
+	},
+	isNotDirty: function() { 
+		return !this.get('controller.content.isDirty') 
+	}.property('controller.content.isDirty').cacheable(),
+	saveAndCreate: function() {
+		this.get('controller').save();
+		this.get('controller').createUserStory();
+	}
+});
+
 App.ModalView = Ember.View.extend({
-	  templateName: 'roleEditor',
-	  layoutName: 'modal',
-	  closeModal: function(event) {
-	    this.remove();
-	  },
-	  saveRole: function() {
-		  alert("Saved Role: " + this.get('controller').get('content'));
-		  this.get('controller').save();
-		  this.remove();
-	  },     
-      createNewRole: function() {
-    	  this.get('controller').set('content', this.get('controller').create());
-      },      
-      resetForm: function() {
-    	  this.set('name', '');
-    	  this.set('description', '');
-      },
-      isNotDirty: function(){ 
-    	  return !this.get('controller.content.isDirty') 
-      }.property('controller.content.isDirty').cacheable()
+	templateName: 'roleEditor',
+	layoutName: 'modal',
+	closeModal: function(event) {
+		this.remove();
+	},
+	saveRole: function() {
+		alert("Saved Role: " + this.get('controller').get('content'));
+		this.get('controller').save();
+		this.remove();
+	},     
+	createNewRole: function() {
+		this.get('controller').set('content', this.get('controller').create());
+	},      
+	resetForm: function() {
+		this.set('name', '');
+		this.set('description', '');
+	},
+	isNotDirty: function(){ 
+		return !this.get('controller.content.isDirty') 
+	}.property('controller.content.isDirty').cacheable()
 });

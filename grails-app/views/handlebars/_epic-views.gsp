@@ -58,7 +58,7 @@
 								{{view Ember.TextField valueBinding="goal"}}
 						{{/view}}
 						{{#view App.BootstrapControl inputId="benefit" label="Nutzen"}}
-								{{view Ember.TextField valueBinding="benefit"}}								
+								{{view Ember.TextField valueBinding="benefit"}}
 						{{/view}}
 						{{#view App.BootstrapControl inputId="role" label="Rolle"}}
 							{{view App.Select
@@ -70,14 +70,28 @@
 						{{/view}}
 						{{#view App.BootstrapControl inputId="description" label="Beschreibung"}}
 								{{view Ember.TextArea valueBinding="description"}}
-						{{/view}}
-						<button type="submit" class="btn btn-primary pull-right">Speichern</button>
+						{{/view}}						
+							{{#view App.BootstrapControl inputId="willGetDeleted" label="User Story löschen"}}
+								{{view Ember.Checkbox checkedBinding="willGetDeleted"}}
+							{{/view}}							
+							{{#if willGetDeleted}}
+								<button class="btn btn-primary pull-right" {{action "deleteUserStory"}}>User Story löschen</button>
+							{{/if}}
+						{{#unless willGetDeleted}}
+							{{#if isDirty}}
+								<button type="submit" class="btn btn-primary pull-right">Speichern</button>
+								<button class="btn btn-secondary pull-right" {{action "saveAndCreate" target="view"}}>Speichern und neue User Story anlegen</button>
+							{{/if}}
+							{{#unless isDirty}}
+								<button class="btn btn-secondary pull-right" {{action "createUserStory"}}>Neue User Story anlegen</button>
+							{{/unless}}
+						{{/unless}}
 						<div class="clearfix"/>
-					</form>
+					</form>					
 				</section>				
 				{{/each}}
-				<button class="btn btn-secondary pull-right" {{action "create"}}>Neue User Story anlegen</button>
-				<button class="btn btn-secondary pull-right" {{action "createEpic"}}>Neue Epic anlegen</button>				
+				<button class="btn btn-secondary pull-right" {{action "createUserStory"}}>Neue User Story anlegen</button>
+				<button class="btn btn-secondary pull-right" {{action "createNewEpic" target="view"}}>Neue Epic anlegen</button>				
 			</div>
 		</div>
 </script>
