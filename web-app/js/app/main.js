@@ -3,7 +3,7 @@ App = Ember.Application.create({
 });
 
 App.Manager = Ember.StateManager.create({
-	enableLoggin: true,
+	enableLogging: true,
 	states: {
 		start: Ember.State.create({}),
 		nothingSelected: Ember.State.create({}),
@@ -25,7 +25,7 @@ App.ApplicationView = Ember.View.extend({
 App.Adapter = DS.RESTAdapter.extend({
     buildURL: function(record, suffix) {
       return 'rest' + this._super(record,suffix)
-    }    
+    }
 });
 
 App.Adapter.configure("plurals", 
@@ -95,7 +95,9 @@ App.IndexRoute = Ember.Route.extend({
 App.EpicRoute = Ember.Route.extend({
 	events: {
 		openModal: function() {
-			var modalView = App.ModalView.create();
+			var modalView = App.ModalView.create({				
+				controller: this.controllerFor('role')
+			});
 			modalView.append();
 		}
 	}
@@ -104,7 +106,7 @@ App.EpicRoute = Ember.Route.extend({
 App.ProjectController = Ember.ObjectController.extend({
 	save: function(){
 		var model = App.store.commit();
-	}	
+	}
 });
 
 App.EpicController = Ember.ObjectController.extend({
@@ -125,14 +127,14 @@ App.EpicController = Ember.ObjectController.extend({
 		var epic = App.Epic.createRecord();
 		epic.set('project', 1);
 		return epic;
-	},
-	needs: ['role']
+	}
 });
 
 App.RoleController = Ember.ObjectController.extend({
 	addRole: function(role){
 		var model = App.store.commit();
-	}
+	},
+	content: App.Role.find(1)
 });
 
 App.AccItemView = Ember.View.extend({
@@ -171,8 +173,6 @@ App.ModalView = Ember.View.extend({
 	  closeModal: function(event) {
 	    this.remove();
 	  },
-	  controller: App.RoleController,
-      contentBinding: 'controller.content',
       addRole: function(event) {
     	  var role = this.buildRoleFromInputs(event);
     	  this.get('controller').addRole(role);
