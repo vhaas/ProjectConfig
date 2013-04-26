@@ -94,6 +94,7 @@
 				{{/each}}
 				<button class="btn btn-secondary pull-right" {{action "createUserStory"}}>Neue User Story anlegen</button>
 				<button class="btn btn-secondary pull-right" {{action "createNewEpic" target="view"}}>Neue Epic anlegen</button>
+				<button class="btn btn-secondary pull-right" {{action "switchToProject"}}>Projekte anzeigen</button>
 			</div>
 		</div>
 </script>

@@ -42,7 +42,7 @@ App.BootstrapControl = Ember.View.extend({
 	layoutName: "bootstrap-control"	
 });
 
-App.Router.map(function(){
+App.Router.map(function(){	
 	this.resource('project', {path: 'project/:project_id'});
 	this.resource('epic', {path:'epic/:epic_id'});
 });
@@ -53,12 +53,6 @@ App.IndexRoute = Ember.Route.extend({
 		var epic = App.Epic.find(1);
 		this.transitionTo('epic', epic);
 	}	
-});
-
-App.ProjectController = Ember.ObjectController.extend({
-	save: function(){
-		var model = App.store.commit();
-	}
 });
 
 App.AccItemView = Ember.View.extend({

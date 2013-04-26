@@ -8,6 +8,10 @@ App.EpicRoute = Ember.Route.extend({
 				controller: roleController
 			});
 			modalView.append();
+		},
+		switchToProject: function() {
+			var project = App.Project.find(1);			
+			this.transitionTo('project', project);
 		}
 	}
 });
