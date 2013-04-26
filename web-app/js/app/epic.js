@@ -11,7 +11,8 @@ App.EpicRoute = Ember.Route.extend({
 		},
 		switchToProject: function() {
 			var project = App.Project.find(1);			
-			this.transitionTo('project', project);
+//			this.transitionTo('project', project);
+			this.transitionTo('projects');
 		}
 	}
 });

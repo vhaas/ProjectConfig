@@ -3,7 +3,8 @@
 			<div class="row-fluid">
 				<ul class="breadcrumb span12">
 					<li><a href="#">Home</a> <span class="divider">/</span></li>
-					<li class="active">Projects</li>
+					<li><a href="#">Projects</a> <span class="divider">/</span></li>
+					<li class="active">{{name}}</li>
 				</ul>
 			</div>
 			<div class="row-fluid">

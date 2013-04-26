@@ -42,7 +42,8 @@ App.BootstrapControl = Ember.View.extend({
 	layoutName: "bootstrap-control"	
 });
 
-App.Router.map(function(){	
+App.Router.map(function(){
+	this.resource('projects', {path: 'projects'});
 	this.resource('project', {path: 'project/:project_id'});
 	this.resource('epic', {path:'epic/:epic_id'});
 });

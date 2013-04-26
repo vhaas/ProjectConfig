@@ -16,6 +16,7 @@
 	<g:render template="/handlebars/form-elements"></g:render>
 	<g:render template="/handlebars/epic-views"></g:render>
 	<g:render template="/handlebars/project-view"></g:render>
+	<g:render template="/handlebars/projects-view"></g:render>
     
 	<script type="text/x-handlebars" data-template-name="application">
 		<div class="navbar navbar-inverse navbar-fixed-top">
@@ -58,6 +59,7 @@
 	<script src="js/app/epic.js"></script>
 	<script src="js/app/popup.js"></script>
 	<script src="js/app/project.js"></script>
+	<script src="js/app/projects.js"></script>
 	
 
 </body>
