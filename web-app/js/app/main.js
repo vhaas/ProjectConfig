@@ -2,20 +2,7 @@ App = Ember.Application.create({
 	LOG_TRANSITIONS: true
 });
 
-App.Manager = Ember.StateManager.create({
-	enableLogging: true,
-	states: {
-		start: Ember.State.create({}),
-		nothingSelected: Ember.State.create({}),
-		projectSelected: Ember.State.create({}),
-		epicSelected: Ember.State.create({
-			projectId: 2,
-			epicId: 1
-		})
-	}
-});
 
-App.Manager.transitionTo('epicSelected');
 
 
 App.ApplicationView = Ember.View.extend({
@@ -39,7 +26,7 @@ App.store = DS.Store.create({
 
 App.BootstrapControl = Ember.View.extend({
 	classNames: ["control-group"],
-	layoutName: "bootstrap-control"	
+	layoutName: "bootstrap-control"
 });
 
 App.Router.map(function(){
@@ -49,10 +36,8 @@ App.Router.map(function(){
 });
 
 App.IndexRoute = Ember.Route.extend({
-	redirect: function(){
-		alert("Redirecting from Index!");
-		var epic = App.Epic.find(1);
-		this.transitionTo('epic', epic);
+	redirect: function(){		
+		this.transitionTo('projects');
 	}	
 });
 

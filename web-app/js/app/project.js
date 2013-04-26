@@ -1,3 +1,12 @@
+App.ProjectRoute = Ember.Route.extend({	
+	events: {
+		selectProject: function(id) {			
+			var epic = App.Epic.find({project_id:id});
+			this.transitionTo('epic', epic.indexOf(0));
+		}
+	}
+});
+
 //Controller
 App.ProjectController = Ember.ObjectController.extend({
 	save: function(){		

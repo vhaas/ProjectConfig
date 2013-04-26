@@ -7,8 +7,8 @@
           <div {{bindAttr id='item.id' }} class="accordion-body collapse in">
             <div class="accordion-inner">				
 				{{#each item.userStories}}				
-        			<ul>{{name}}</ul>
-				{{/each}}				      			             
+        			<ul>{{name}}</ul>					
+				{{/each}}				
             </div>
           </div>
 </script>

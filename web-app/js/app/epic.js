@@ -1,5 +1,15 @@
 //Route
 App.EpicRoute = Ember.Route.extend({
+	setupController: function(controller) {
+		var epics = App.Epic.find({project_id:p_id});
+		alert("Länge: " + epics.length)
+		if (!epics) {
+			this.transitionTo('projects');
+		} else
+			controller.set('epics', epics);
+			controller.set('content', epics.indexOf(0));
+		}
+	},
 	events: {
 		openModal: function(role) {
 			var roleController = this.controllerFor('role');

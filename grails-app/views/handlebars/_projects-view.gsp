@@ -9,20 +9,20 @@
 			<div class="row-fluid">
 				<div class="span4">
 				</div>
-			<div class="span8">
+			<div class="span8">			
 		<!-- Project -->
 			{{#each project in  controller}}
-				<section>
-					<h4>
-						{{name}}						
-					</h4>
-					<form class="form-horizontal" {{action select on="onClick"}}>
+				<section>					
+					<h4 {{action select id}}>
+						{{name}}
+					</h4>					
+					<form class="form-horizontal">
 						{{#view App.BootstrapControl inputId="name" label="Name"}}															
 							{{view Ember.TextField disabled="" valueBinding="name"}}							
 						{{/view}}
 						{{#view App.BootstrapControl inputId="description" label="Beschreibung"}}
 							{{view Ember.TextArea disabled="" valueBinding="description"}}
-						{{/view}}						
+						{{/view}}
 						<div class="clearfix"/>						
 					</form>
 				</section>

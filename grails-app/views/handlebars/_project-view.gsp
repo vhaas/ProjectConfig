@@ -18,14 +18,14 @@
 					</h4>
 					<form class="form-horizontal" {{action save on="submit"}}>
 						{{#view App.BootstrapControl inputId="name" label="Name"}}
-								{{view Ember.TextField disabledBinding="controller.disabledProject" valueBinding="name"}}
+							{{view Ember.TextField disabledBinding="controller.disabledProject" valueBinding="name"}}
 						{{/view}}
 						{{#view App.BootstrapControl inputId="description" label="Beschreibung"}}
-								{{view Ember.TextArea disabledBinding="controller.disabledProject" valueBinding="description"}}
+							{{view Ember.TextArea disabledBinding="controller.disabledProject" valueBinding="description"}}
 						{{/view}}
 						{{#unless isDirty}}
 							<button class="btn btn-secondary pull-right" {{action "enableProject" target="view"}}>Edit</button>
-							<button class="btn btn-secondary pull-right" {{action "selectProject" target="view"}}>Select</button>
+							<button class="btn btn-secondary pull-right" {{action "selectProject" id}}>Select</button>
 						{{else}}
 							<button type="submit" class="btn btn-primary pull-right">Speichern</button>
 						{{/unless}}
