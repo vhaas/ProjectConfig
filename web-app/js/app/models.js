@@ -33,5 +33,13 @@ App.Role = DS.Model.extend({
 
 App.RoadMap = DS.Model.extend({
 	name: DS.attr("string"),
-	description: DS.attr("string")
+	description: DS.attr("string"),
+	project: DS.belongsTo("App.Project"),
+	mileStones: DS.hasMany("App.MileStone")
+});
+
+App.MileStone = DS.Model.extend({
+	name: DS.attr("string"),
+	roadMap: DS.belongsTo("App.RoadMap"),
+	userStories: DS.hasMany("App.UserStory")
 });

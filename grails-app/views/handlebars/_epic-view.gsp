@@ -6,8 +6,8 @@
 			<div class="row-fluid">
 				<ul class="breadcrumb span12">
 					<li><a href="#">Home</a> <span class="divider">/</span></li>
-					<li><a href="#">Projects</a> <span class="divider">/</span></li>
-					<li><a href="#">{{project.name}}</a> <span class="divider">/</span></li>
+					<li><a href="#/projects">Projects</a> <span class="divider">/</span></li>
+					<li><a href="#/projects">{{project.name}}</a> <span class="divider">/</span></li>
 					<li><a href="#">User Story Editor</a> <span class="divider">/</span></li>
 					<li class="active">{{name}}</li>
 				</ul>

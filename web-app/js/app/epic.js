@@ -2,9 +2,8 @@
 App.EpicRoute = Ember.Route.extend({
 	setupController: function(controller, model) {		
 		controller.set('content', model);
-		var id = App.Epic.find(model.id).get('project').get('id');
-//		alert('project ID of epic: ' + id);
-		controller.set('epics', this.getEpics(id));
+		var projectId = this.controller.get('content').get('project').get('id');
+		controller.set('epics', this.getEpics(projectId));
 	},
 	events: {
 		openModal: function(role) {
@@ -16,12 +15,10 @@ App.EpicRoute = Ember.Route.extend({
 			modalView.append();
 		},
 		switchToProject: function() {
-			var project = App.Project.find(1);
-//			this.transitionTo('project', project);
 			this.transitionTo('projects');
 		}
 	},
-	getEpics: function(id) {		
+	getEpics: function(id) {
 		var epics = App.Epic.find({ project: id });
 		epics.one("didLoad", function() {
 			epics.resolve(epics.get("firstObject"));

@@ -1,9 +1,7 @@
 App.ProjectRoute = Ember.Route.extend({	
 	events: {
 		selectProject: function(id) {
-//			var epics = App.Epic.find({project_id: "id"});
-//			var epics = App.Epic.find({ project_id: "id" });
-			var epics = this.controller.get('content').get('epics').get('firstObject');			
+			var epics = this.controller.get('content').get('epics').get('firstObject');
 			this.transitionTo('epic', epics);
 		}
 	}		

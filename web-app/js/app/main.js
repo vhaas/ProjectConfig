@@ -27,19 +27,11 @@ App.BootstrapControl = Ember.View.extend({
 });
 
 App.Router.map(function(){
-//	this.resource('projects', function() {
-//		this.resource('project', function() {
-//			this.resource('epics', function() {
-//				this.resource('epic', {path:'project/:epic_id'});
-//				})
-//			})
-//		})
 	this.resource('projects', {path: 'projects'});
-	this.resource('project', {path: 'project/:project_id'});	
+	this.resource('project', {path: 'project/:project_id'});
 	this.resource('epic', {path: 'epic/:epic_id'});
-//	this.resource('epics', function() {
-//		this.resource('epic', {path:'epic/:epic_id'});
-//	})
+	this.resource('roadmaps', {path: 'roadmaps'});
+	this.resource('roadmap', {path: 'roadmap/:roadmap_id'});
 });
 
 App.IndexRoute = Ember.Route.extend({
@@ -58,4 +50,15 @@ App.AccItemView = Ember.View.extend({
 			});
 		});
 	}
+});
+
+App.SelectController = Ember.ArrayController.extend({
+	selection: null,
+	active: true
+});
+
+App.Select = Ember.Select.extend({
+    multiple: false,
+    optionLabelPath: "content.name",
+    optionValuePath: "content.id"
 });

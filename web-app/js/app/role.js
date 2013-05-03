@@ -4,20 +4,10 @@ App.RoleController = Ember.ObjectController.extend({
 	},
 	create: function() {
 		var role = App.Role.createRecord();
-		role.set('project', App.Project.find(1));
+		var projectId = this.content.get('project').get('id');
+		role.set('project', App.Project.find(projectId));
 		return role;
 	}
-});
-
-App.SelectController = Ember.ArrayController.extend({
-	selection: null,
-	active: true
-});
-
-App.Select = Ember.Select.extend({
-    multiple: false,
-    optionLabelPath: "content.name",
-    optionValuePath: "content.id"
 });
 
 App.SelectRolesController = App.SelectController.create();
