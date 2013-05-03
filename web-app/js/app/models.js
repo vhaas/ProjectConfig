@@ -10,7 +10,8 @@ App.Epic = DS.Model.extend({
 
 App.Project = DS.Model.extend({
 	name: DS.attr("string"),
-	description: DS.attr("string")
+	description: DS.attr("string"),
+	epics: DS.hasMany("App.Epic")
 });
 
 App.UserStory = DS.Model.extend({

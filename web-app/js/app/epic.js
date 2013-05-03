@@ -1,14 +1,10 @@
 //Route
 App.EpicRoute = Ember.Route.extend({
-	setupController: function(controller) {
-		var epics = App.Epic.find({project_id:p_id});
-		alert("Länge: " + epics.length)
-		if (!epics) {
-			this.transitionTo('projects');
-		} else
-			controller.set('epics', epics);
-			controller.set('content', epics.indexOf(0));
-		}
+	setupController: function(controller, model) {		
+		controller.set('content', model);
+		var id = App.Epic.find(model.id).get('project').get('id');
+//		alert('project ID of epic: ' + id);
+		controller.set('epics', this.getEpics(id));
 	},
 	events: {
 		openModal: function(role) {
@@ -20,10 +16,17 @@ App.EpicRoute = Ember.Route.extend({
 			modalView.append();
 		},
 		switchToProject: function() {
-			var project = App.Project.find(1);			
+			var project = App.Project.find(1);
 //			this.transitionTo('project', project);
 			this.transitionTo('projects');
 		}
+	},
+	getEpics: function(id) {		
+		var epics = App.Epic.find({ project: id });
+		epics.one("didLoad", function() {
+			epics.resolve(epics.get("firstObject"));
+		});
+		return epics;
 	}
 });
 
@@ -32,7 +35,6 @@ App.EpicController = Ember.ObjectController.extend({
 	save: function(){		
 		var model = App.store.commit();
 	},
-	epics: App.Epic.find(),	
 	createUserStory: function() {
 		var userStory = App.UserStory.createRecord();
 		userStory.set('epic', this.content);
@@ -49,7 +51,8 @@ App.EpicController = Ember.ObjectController.extend({
 	    App.store.commit();
 	},
 	disabledEpic: true,
-	disabledUserStory: true
+	disabledUserStory: true,
+	epics: null
 });
 
 //View

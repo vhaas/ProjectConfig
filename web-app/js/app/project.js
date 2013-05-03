@@ -1,21 +1,23 @@
 App.ProjectRoute = Ember.Route.extend({	
 	events: {
-		selectProject: function(id) {			
-			var epic = App.Epic.find({project_id:id});
-			this.transitionTo('epic', epic.indexOf(0));
+		selectProject: function(id) {
+//			var epics = App.Epic.find({project_id: "id"});
+//			var epics = App.Epic.find({ project_id: "id" });
+			var epics = this.controller.get('content').get('epics').get('firstObject');			
+			this.transitionTo('epic', epics);
 		}
-	}
+	}		
 });
 
 //Controller
 App.ProjectController = Ember.ObjectController.extend({
-	save: function(){		
+	save: function(){
 		var model = App.store.commit();
 	},
-	createProject: function() {		
-		var project = App.Project.createRecord();		
+	createProject: function() {
+		var project = App.Project.createRecord();
 		return project;
-	},	
+	},
 	disabledProject: true
 });
 
@@ -24,7 +26,7 @@ App.ProjectView = Ember.View.extend({
 	createNewProject: function() {
 		this.get('controller').set('content', this.get('controller').createProject());
 	},
-	isNotDirty: function() { 
+	isNotDirty: function() {
 		return !this.get('controller.content.isDirty') 
 	}.property('controller.content.isDirty').cacheable(),	
 	enableProject: function() {

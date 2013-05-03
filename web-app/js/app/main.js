@@ -2,9 +2,6 @@ App = Ember.Application.create({
 	LOG_TRANSITIONS: true
 });
 
-
-
-
 App.ApplicationView = Ember.View.extend({
 	templateName: 'application'
 });
@@ -30,9 +27,19 @@ App.BootstrapControl = Ember.View.extend({
 });
 
 App.Router.map(function(){
+//	this.resource('projects', function() {
+//		this.resource('project', function() {
+//			this.resource('epics', function() {
+//				this.resource('epic', {path:'project/:epic_id'});
+//				})
+//			})
+//		})
 	this.resource('projects', {path: 'projects'});
-	this.resource('project', {path: 'project/:project_id'});
-	this.resource('epic', {path:'epic/:epic_id'});
+	this.resource('project', {path: 'project/:project_id'});	
+	this.resource('epic', {path: 'epic/:epic_id'});
+//	this.resource('epics', function() {
+//		this.resource('epic', {path:'epic/:epic_id'});
+//	})
 });
 
 App.IndexRoute = Ember.Route.extend({

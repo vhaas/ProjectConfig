@@ -24,7 +24,8 @@ class Project {
 		return [
 			id: id,
 			name: name,
-			description: description
+			description: description,
+			epic_ids: epics.collect{it.id}
 		]					
 	}	
 }

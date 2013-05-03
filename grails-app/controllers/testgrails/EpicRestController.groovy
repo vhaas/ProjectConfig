@@ -20,18 +20,31 @@ class EpicRestController {
 	}
 	
 	def showAllEpics() {
-		def all = Epic.list()
+		def all		
+		if (params.project) {
+			all = Project.findById(params.project)
+			if (!all) {
+				render renderNotFound
+				return
+			}	
+			else {
+				all = all.getEpics()
+			}		
+		} 
+		else {
+			all = Epic.list()
+		}
 		if (all.empty) {
 			render renderNotFound
 		}
 		else {
-			List<Map> returnMap = new ArrayList<Map>()					
+			List<Map> returnMap = new ArrayList<Map>()
 			all.each {
-				def map = it.transformToMap()				
+				def map = it.transformToMap()
 				returnMap.add(map)
-			}			
-			def epics = ["epics": returnMap]
-			render (contentType: "application/json", text: epics as JSON)
+			}
+			def returnedEpics = ["epics": returnMap]
+			render (contentType: "application/json", text: returnedEpics as JSON)
 		}
 	}	
 	

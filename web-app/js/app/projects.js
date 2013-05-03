@@ -5,7 +5,7 @@ App.ProjectsRoute = Ember.Route.extend({
 	events: {
 		select: function(id) {
 			alert("clicked: " + id);
-			var project = App.Project.find(id);			
+			var project = App.Project.find(id);
 			this.transitionTo('project', project);
 		}
 	}
