@@ -13,7 +13,7 @@
 		<!-- Project -->
 			{{#each project in  controller}}
 				<section>					
-					<h4 {{action select id}}>
+					<h4>
 						{{name}}
 					</h4>					
 					<form class="form-horizontal">
@@ -23,6 +23,7 @@
 						{{#view App.BootstrapControl inputId="description" label="Beschreibung"}}
 							{{view Ember.TextArea disabled="" valueBinding="description"}}
 						{{/view}}
+						<button class="btn btn-secondary pull-right" {{action "select" id}}>Select</button>
 						<div class="clearfix"/>						
 					</form>
 				</section>
