@@ -10,6 +10,7 @@ class UserStory {
 	Epic epic
 	Role role
 	
+	static belongsTo = MileStone
 	static hasMany = [
 		systemChanges: SystemChange,
 		requiredUserStories: UserStory,

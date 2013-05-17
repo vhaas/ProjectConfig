@@ -13,20 +13,20 @@ class RestControllerAssistant {
     static JSON renderMultiple(Class clazz, Object it)
     {
         if(it == null) {it = []}
-        String root = rootForType(clazz) + "s"
+//        String root = rootForType(clazz) + "s"
+		String root = it.getMultipleRoot()
         Map result = [:]
         result [root] = it
         return (result as JSON)
     }
 	
-	static JSON renderMultiple_alternative(Class clazz, List objList) {		
+	static JSON renderMultiple_alternative(Class clazz, List objList) {	
 		List<Map> returnMap = new ArrayList<Map>()
 		objList.each {
 			def map = it.transformToMap()
 			returnMap.add(map)
 		}
-		String root = rootForType(clazz) + "s"
-		def returnedObjects = [root: returnMap]
+		def returnedObjects = [(objList.get(0).getMultipleRoot()): returnMap]
 		return returnedObjects
 	}
 
@@ -35,7 +35,7 @@ class RestControllerAssistant {
     {
         String root = rootForType(clazz)
         Map result = [:]
-        result [root] = it
+        result [root] = it.transformToMap()
         return (result as JSON)
     }
     

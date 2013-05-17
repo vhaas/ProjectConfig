@@ -23,7 +23,7 @@ class ProjectRestController {
 			render renderNotFound
 		}
 		else {
-			render RestControllerAssistant.renderMultiple(Project, all)
+			render RestControllerAssistant.renderMultiple_alternative(Project, all)
 			
 			//render (contentType: "application/json", text: RestControllerAssistant.renderMultiple_alternative(Project, all))
 		}
@@ -41,7 +41,7 @@ class ProjectRestController {
 			response.status = 200 // OK
 			projectInstance = projectInstance.transformToMap()
 			projectInstance = ["project": projectInstance]
-			render (contentType: "application/json", text: projectInstance as JSON)			
+			render (contentType: "application/json", text: projectInstance as JSON)
 		}
 		else {
 			response.status = 400 // Bad Request
