@@ -4,7 +4,7 @@ import grails.converters.JSON
 
 
 class ProjectRestController {
-	
+
 	def showProjectById() {
 		def project = Project.get(params.id)
 		if (!project) {
@@ -12,11 +12,9 @@ class ProjectRestController {
 		}
 		else {
 			render RestControllerAssistant.renderSingle(Project, project)
-			
-			//render (contentType: "application/json", text: RestControllerAssistant.renderSingle(Project, project))
 		}
 	}
-	
+
 	def showAllProjects() {
 		def all = Project.list()
 		if (all.empty) {
@@ -24,17 +22,15 @@ class ProjectRestController {
 		}
 		else {
 			render RestControllerAssistant.renderMultiple_alternative(Project, all)
-			
-			//render (contentType: "application/json", text: RestControllerAssistant.renderMultiple_alternative(Project, all))
 		}
 	}
-	
+
 	def create = {
 		def projectInstance = new Project()
 		projectInstance.properties = params
 		return [projectInstance: projectInstance]
 	}
-	
+
 	def save = {
 		def projectInstance = new Project(params)
 		if (projectInstance.save(flush: true)) {
@@ -48,7 +44,7 @@ class ProjectRestController {
 			render projectInstance.errors.allErrors as JSON
 		}
 	}
-	
+
 	def update = {
 		def p = params
 		println(p)
@@ -57,7 +53,8 @@ class ProjectRestController {
 			if (p.version) {
 				def version = p.version.toLong()
 				if (projectInstance.version > version) {
-					projectInstance.errors.rejectValue("version", "default.optimistic.locking.failure", [message(code: 'project.label', default: 'Project')] as Object[], "Another user has updated this UserStory while you were editing")
+					projectInstance.errors.rejectValue("version", "default.optimistic.locking.failure", [
+						message(code: 'project.label', default: 'Project')] as Object[], "Another user has updated this UserStory while you were editing")
 					render render409.curry(projectInstance)
 					return
 				}
@@ -67,7 +64,7 @@ class ProjectRestController {
 				response.status = 200 // OK
 				projectInstance = projectInstance.transformToMap()
 				projectInstance = ["project": projectInstance]
-				render (contentType: "application/json", text: projectInstance as JSON)				
+				render (contentType: "application/json", text: projectInstance as JSON)
 			}
 			else {
 				render render409.curry(projectInstance)
@@ -77,7 +74,7 @@ class ProjectRestController {
 			render renderNotFound
 		}
 	}
-	
+
 	def delete = {
 		def epicInstance = Epic.get(params.id)
 		if (epicInstance) {
@@ -94,8 +91,8 @@ class ProjectRestController {
 		else {
 			render renderNotFound
 		}
-	}	
-	
+	}
+
 	def renderNotFound = {
 		response.status = 404
 		if (!params.id) {
@@ -105,11 +102,9 @@ class ProjectRestController {
 			render "Project ${params.id} not found."
 		}
 	}
-	
+
 	def render409 = { projectInstance ->
 		response.status = 409 // Conflict
 		render projectInstance.errors.allErrors as JSON
 	}
-
-    
 }

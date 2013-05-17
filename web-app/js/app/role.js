@@ -4,7 +4,7 @@ App.RoleController = Ember.ObjectController.extend({
 	},
 	create: function() {
 		var role = App.Role.createRecord();
-		var projectId = this.content.get('project').get('id');
+		var projectId = this.content.get('project').get('id');		
 		role.set('project', App.Project.find(projectId));
 		return role;
 	}

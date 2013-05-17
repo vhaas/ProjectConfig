@@ -1,10 +1,10 @@
 package projectconfig
 
 class Project {
-	
+
 	String name
 	String description
-	
+
 	static hasMany = [
 		configurations: Configuration,
 		epics: Epic,
@@ -15,23 +15,21 @@ class Project {
 		systems: System,
 		systemChanges: SystemChange,
 		userStories: UserStory
-		]	
+	]
 
-    static constraints = {
-    }
-	
+	static constraints = {
+	}
+
 	public transformToMap() {
 		return [
 			id: id,
 			name: name,
 			description: description,
 			epic_ids: epics.collect{it.id}
-		]					
+		]
 	}
-	
+
 	public String getMultipleRoot() {
 		return "projects"
 	}
 }
-
-

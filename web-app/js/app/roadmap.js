@@ -1,12 +1,14 @@
 //Route
 App.RoadMapRoute = Ember.Route.extend({
-	setupController: function(controller, model) {
+	setupController : function(controller, model) {
 		controller.set('content, model');
 		var project = controller.get('content').get('project').get('id');
 		controller.set('unSelectedUserStories', this.getUserStories(project));
 	},
-	getUserStories: function(id) {
-		var userStories = App.UserStory.find({ project: id });
+	getUserStories : function(id) {
+		var userStories = App.UserStory.find({
+			project : id
+		});
 		userStories.one("didLoad", function() {
 			userStories.resolve(userStories.get("firstObject"));
 		});
@@ -15,41 +17,40 @@ App.RoadMapRoute = Ember.Route.extend({
 });
 
 App.RoadMapController = Ember.ObjectController.extend({
-	save: function(){		
+	save : function() {
 		var model = App.store.commit();
 	},
-	createRoadMap: function() {		
+	createRoadMap : function() {
 		var roadMap = App.RoadMap.createRecord();
 		roadMap.set('project', this.content.get('project').get('id'));
 		return roadMap;
 	},
-	selectedUserStories: null,
-	unSelectedUserStories: null
+	selectedUserStories : null,
+	unSelectedUserStories : null
 });
 
-//App.SelectUserStoryController = App.SelectController.create();
-//App.SelectUserStoryController.set('content', App.RoadMapController.get('unSelectedUserStories'));
+// App.SelectUserStoryController = App.SelectController.create();
+// App.SelectUserStoryController.set('content',
+// App.RoadMapController.get('unSelectedUserStories'));
 
-
-
-
-//View
+// View
 App.EpicView = Ember.View.extend({
-	createNewEpic: function() {
-		this.get('controller').set('content', this.get('controller').createEpic());
+	createNewEpic : function() {
+		this.get('controller').set('content',
+				this.get('controller').createEpic());
 	},
-	isNotDirty: function() { 
-		return !this.get('controller.content.isDirty') 
+	isNotDirty : function() {
+		return !this.get('controller.content.isDirty')
 	}.property('controller.content.isDirty').cacheable(),
-	saveAndCreate: function() {
+	saveAndCreate : function() {
 		this.get('controller').save();
 		this.get('controller').createUserStory();
 	},
-	enableEpic: function() {
+	enableEpic : function() {
 		this.get('controller').toggleProperty('disabledEpic');
 		this.get('controller').set('disabledUserStory', true);
 	},
-	enableUserStory: function() {
+	enableUserStory : function() {
 		this.get('controller').toggleProperty('disabledUserStory');
 		this.get('controller').set('disabledEpic', true);
 	}

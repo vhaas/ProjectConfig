@@ -2,8 +2,8 @@ package projectconfig
 
 import grails.converters.JSON
 
-class EpicRestController {  		
-	
+class EpicRestController {
+
 	def showEpicById() {
 		def epic = Epic.get(params.id)
 		if (!epic) {
@@ -13,19 +13,19 @@ class EpicRestController {
 			render RestControllerAssistant.renderSingle(Epic, epic)
 		}
 	}
-	
+
 	def showAllEpics() {
-		def all		
+		def all
 		if (params.project) {
 			all = Project.findById(params.project)
 			if (!all) {
 				render renderNotFound
 				return
-			}	
+			}
 			else {
 				all = all.getEpics()
 			}
-		} 
+		}
 		else {
 			all = Epic.list()
 		}
@@ -41,28 +41,30 @@ class EpicRestController {
 			def returnedEpics = ["epics": returnMap]
 			render (contentType: "application/json", text: returnedEpics as JSON)
 		}
-	}	
-	
+	}
+
 	def create = {
 		def epicInstance = new Epic()
 		epicInstance.properties = params
 		return [epicInstance: epicInstance]
 	}
-	
+
 	def save = {
-		def epicInstance = new Epic(params)
+		def epicInstance = new Epic(params.epic)		
+		def props = params.epic
+		epicInstance.project = Project.get(props.project_id)
 		if (epicInstance.save(flush: true)) {
 			response.status = 200 // OK
 			epicInstance = epicInstance.transformToMap()
 			epicInstance = ["epic": epicInstance]
-			render (contentType: "application/json", text: epicInstance as JSON)			
+			render (contentType: "application/json", text: epicInstance as JSON)
 		}
 		else {
 			response.status = 400 // Bad Request
 			render epicInstance.errors.allErrors as JSON
 		}
 	}
-	
+
 	def update = {
 		def p = params
 		println(p)
@@ -71,7 +73,8 @@ class EpicRestController {
 			if (p.version) {
 				def version = p.version.toLong()
 				if (epicInstance.version > version) {
-					epicInstance.errors.rejectValue("version", "default.optimistic.locking.failure", [message(code: 'epic.label', default: 'Epic')] as Object[], "Another user has updated this Epic while you were editing")
+					epicInstance.errors.rejectValue("version", "default.optimistic.locking.failure", [
+						message(code: 'epic.label', default: 'Epic')] as Object[], "Another user has updated this Epic while you were editing")
 					render render409.curry(epicInstance)
 					return
 				}
@@ -81,7 +84,7 @@ class EpicRestController {
 				response.status = 200 // OK
 				epicInstance = epicInstance.transformToMap()
 				epicInstance = ["epic": epicInstance]
-				render (contentType: "application/json", text: epicInstance as JSON)				
+				render (contentType: "application/json", text: epicInstance as JSON)
 			}
 			else {
 				render render409.curry(epicInstance)
@@ -91,7 +94,7 @@ class EpicRestController {
 			render renderNotFound
 		}
 	}
-	
+
 	def delete = {
 		def epicInstance = Epic.get(params.id)
 		if (epicInstance) {
@@ -109,7 +112,7 @@ class EpicRestController {
 			render renderNotFound
 		}
 	}
-	
+
 	def renderNotFound = {
 		response.status = 404
 		if (!params.id) {
@@ -119,9 +122,9 @@ class EpicRestController {
 			render "Epic ${params.id} not found."
 		}
 	}
-	
+
 	def render409 = { epicInstance ->
 		response.status = 409 // Conflict
 		render epicInstance.errors.allErrors as JSON
-	}	
+	}
 }

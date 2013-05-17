@@ -1,24 +1,25 @@
 <!DOCTYPE HTML>
 <html lang="de">
 <head>
-	<meta charset="utf-8"/>	
-	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-	<link href="css/bootstrap.min.css" rel="stylesheet" media="screen"></link>
-	<link rel="stylesheet/less" type="text/css" href="css/app.less"></link>
-	<title>Project Configurer</title>
-    <style>
-      body {
-        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-      }
-    </style>
-    
-	
-	<g:render template="/handlebars/form-elements"></g:render>	
-	<g:render template="/handlebars/project-view"></g:render>
-	<g:render template="/handlebars/projects-view"></g:render>
-	<g:render template="/handlebars/epic-view"></g:render>
-    
-	<script type="text/x-handlebars" data-template-name="application">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="css/bootstrap.min.css" rel="stylesheet" media="screen"></link>
+<link rel="stylesheet/less" type="text/css" href="css/app.less"></link>
+<title>Project Configurer</title>
+<style>
+body {
+	padding-top: 60px;
+	/* 60px to make the container go all the way to the bottom of the topbar */
+}
+</style>
+
+
+<g:render template="/handlebars/form-elements"></g:render>
+<g:render template="/handlebars/project-view"></g:render>
+<g:render template="/handlebars/projects-view"></g:render>
+<g:render template="/handlebars/epic-view"></g:render>
+
+<script type="text/x-handlebars" data-template-name="application">
 		<div class="navbar navbar-inverse navbar-fixed-top">
 		  <div class="navbar-inner">
 			<div class="container">
@@ -43,7 +44,7 @@
 			{{outlet}}
 		</div>
 	</script>
-	
+
 </head>
 <body>
 	<script src="js/Vendors/handlebars.js"></script>
@@ -53,7 +54,7 @@
 	<script src="js/Vendors/less-1.3.3.min.js"></script>
 	<script src="js/Vendors/ember-data.js"></script>
 	<script src="js/Vendors/ember-data-grails.js"></script>
-	
+
 	<script src="js/app/main.js"></script>
 	<script src="js/app/models.js"></script>
 	<script src="js/app/role.js"></script>
@@ -61,7 +62,7 @@
 	<script src="js/app/popup.js"></script>
 	<script src="js/app/project.js"></script>
 	<script src="js/app/projects.js"></script>
-	
+
 
 </body>
 </html>

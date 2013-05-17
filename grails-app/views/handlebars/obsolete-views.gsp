@@ -1,4 +1,5 @@
-	<script type="text/x-handlebars" data-template-name="index">
+
+<script type="text/x-handlebars" data-template-name="index">
 		<div class="container-fluid" data-spy="scroll" data-target=".nav-tabs">
 			<div class="row-fluid">
 				<ul class="breadcrumb span12">

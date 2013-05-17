@@ -1,23 +1,23 @@
 package projectconfig
 
 class Configuration {
-	
+
 	Project project
 
 	String name
 	String description
-	
-    static constraints = {
-    }
-	
+
+	static constraints = {
+	}
+
 	public transformToMap() {
 		return [
-				id: id,
-				name: name,
-				description: description	
-		]				
+			id: id,
+			name: name,
+			description: description
+		]
 	}
-	
+
 	public String getMultipleRoot() {
 		return "configurations"
 	}

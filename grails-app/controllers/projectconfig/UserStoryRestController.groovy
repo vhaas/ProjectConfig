@@ -14,32 +14,32 @@ class UserStoryRestController {
 			userStory = ["user_story": userStory]
 			render (contentType: "application/json", text: userStory as JSON)
 		}
-	}	
-	
-	def showAllUserStories() {		
+	}
+
+	def showAllUserStories() {
 		def all
-		def ids = params["ids[]"] 
+		def ids = params["ids[]"]
 		if(ids){
 			println "Received: $ids"
 			all = ids.collect{id -> UserStory.get id}
 		}
-		else if (params.epic) {			
+		else if (params.epic) {
 			all = Epic.findById(params.epic)
 			if (!all) {
 				render renderNotFound
 				return
-			}	
+			}
 			else {
 				all = all.getUserStories()
-			}		
-		} 
+			}
+		}
 		else {
 			all = UserStory.list()
 		}
 		if (all.empty) {
 			render renderNotFound
 		}
-		else {			
+		else {
 			List<Map> returnMap = new ArrayList<Map>()
 			all.each {
 				def map = it.transformToMap()
@@ -48,11 +48,10 @@ class UserStoryRestController {
 			def returnedUserStories = ["user_stories": returnMap]
 			render (contentType: "application/json", text: returnedUserStories as JSON)
 		}
-	}	
-	
+	}
+
 	def save = {
 		def userStoryInstance = new UserStory()
-		println(params)
 		def props = params.user_story
 		userStoryInstance.properties = params.user_story
 		def userStoryRole = Role.get(props.role_id)
@@ -70,14 +69,14 @@ class UserStoryRestController {
 			response.status = 200 // OK
 			userStoryInstance = userStoryInstance.transformToMap()
 			userStoryInstance = ["user_story": userStoryInstance]
-			render (contentType: "application/json", text: userStoryInstance as JSON)			
+			render (contentType: "application/json", text: userStoryInstance as JSON)
 		}
 		else {
 			response.status = 400 // Bad Request
 			render userStoryInstance.errors.allErrors as JSON
 		}
 	}
-	
+
 	def update = {
 		def p = params
 		println(p)
@@ -86,7 +85,8 @@ class UserStoryRestController {
 			if (p.version) {
 				def version = p.version.toLong()
 				if (userStoryInstance.version > version) {
-					userStoryInstance.errors.rejectValue("version", "default.optimistic.locking.failure", [message(code: 'userStory.label', default: 'UserStory')] as Object[], "Another user has updated this UserStory while you were editing")
+					userStoryInstance.errors.rejectValue("version", "default.optimistic.locking.failure", [
+						message(code: 'userStory.label', default: 'UserStory')] as Object[], "Another user has updated this UserStory while you were editing")
 					render render409.curry(userStoryInstance)
 					return
 				}
@@ -99,12 +99,12 @@ class UserStoryRestController {
 			else {
 				userStoryInstance.role = null
 			}
-			userStoryInstance.properties = p.user_story			
+			userStoryInstance.properties = p.user_story
 			if (!userStoryInstance.hasErrors() && userStoryInstance.save(flush: true)) {
 				response.status = 200 // OK
 				userStoryInstance = userStoryInstance.transformToMap()
 				userStoryInstance = ["user_story": userStoryInstance]
-				render (contentType: "application/json", text: userStoryInstance as JSON)				
+				render (contentType: "application/json", text: userStoryInstance as JSON)
 			}
 			else {
 				render render409.curry(userStoryInstance)
@@ -114,7 +114,7 @@ class UserStoryRestController {
 			render renderNotFound
 		}
 	}
-	
+
 	def delete = {
 		def userStoryInstance = UserStory.get(params.id)
 		if (userStoryInstance) {
@@ -132,7 +132,7 @@ class UserStoryRestController {
 			render renderNotFound
 		}
 	}
-	
+
 	def renderNotFound = {
 		response.status = 404
 		if (!params.id) {
@@ -142,7 +142,7 @@ class UserStoryRestController {
 			render "UserStory ${params.id} not found."
 		}
 	}
-	
+
 	def render409 = { userStoryInstance ->
 		response.status = 409 // Conflict
 		render userStoryInstance.errors.allErrors as JSON

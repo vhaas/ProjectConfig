@@ -1,33 +1,35 @@
-App.ProjectRoute = Ember.Route.extend({	
-	events: {
-		selectProject: function(id) {
-			var epics = this.controller.get('content').get('epics').get('firstObject');
+App.ProjectRoute = Ember.Route.extend({
+	events : {
+		selectProject : function(id) {
+			var epics = this.controller.get('content').get('epics').get(
+					'firstObject');
 			this.transitionTo('epic', epics);
 		}
-	}		
+	}
 });
 
-//Controller
+// Controller
 App.ProjectController = Ember.ObjectController.extend({
-	save: function(){
+	save : function() {
 		var model = App.store.commit();
 	},
-	createProject: function() {
+	createProject : function() {
 		var project = App.Project.createRecord();
 		return project;
 	},
-	disabledProject: true
+	disabledProject : true
 });
 
-//View
+// View
 App.ProjectView = Ember.View.extend({
-	createNewProject: function() {
-		this.get('controller').set('content', this.get('controller').createProject());
+	createNewProject : function() {
+		this.get('controller').set('content',
+				this.get('controller').createProject());
 	},
-	isNotDirty: function() {
-		return !this.get('controller.content.isDirty') 
-	}.property('controller.content.isDirty').cacheable(),	
-	enableProject: function() {
+	isNotDirty : function() {
+		return !this.get('controller.content.isDirty')
+	}.property('controller.content.isDirty').cacheable(),
+	enableProject : function() {
 		this.get('controller').toggleProperty('disabledProject');
 	}
 });
