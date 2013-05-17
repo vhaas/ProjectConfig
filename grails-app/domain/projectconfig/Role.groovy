@@ -1,24 +1,28 @@
-package testgrails
+package projectconfig
 
-class Configuration {
+class Role {
 	
 	Project project
-
+	
 	String name
 	String description
 	
+	static hasMany = [
+		userStories: UserStory
+		]
+
     static constraints = {
-    }
+    }	
 	
 	public transformToMap() {
 		return [
 				id: id,
 				name: name,
-				description: description	
+				description: description
 		]				
 	}
 	
 	public String getMultipleRoot() {
-		return "configurations"
+		return "roles"
 	}
 }

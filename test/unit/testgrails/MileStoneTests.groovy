@@ -3,6 +3,8 @@ package testgrails
 import java.util.Date;
 import grails.test.mixin.*
 import org.junit.*
+
+import projectconfig.MileStone;
 import grails.buildtestdata.mixin.Build
 
 /**

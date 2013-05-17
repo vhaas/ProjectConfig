@@ -1,4 +1,4 @@
-package testgrails
+package projectconfig
 
 class Project {
 	

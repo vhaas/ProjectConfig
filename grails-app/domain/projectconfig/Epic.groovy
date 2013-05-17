@@ -1,6 +1,6 @@
-package testgrails
+package projectconfig
 
-class Role {
+class Epic {
 	
 	Project project
 	
@@ -10,7 +10,7 @@ class Role {
 	static hasMany = [
 		userStories: UserStory
 		]
-
+	
     static constraints = {
     }	
 	
@@ -18,11 +18,13 @@ class Role {
 		return [
 				id: id,
 				name: name,
-				description: description
-		]				
+				description: description,
+				project_id: project ? project.id : '',
+				user_story_ids: userStories.collect{it.id}
+		]			
 	}
 	
 	public String getMultipleRoot() {
-		return "roles"
+		return "epics"
 	}
 }

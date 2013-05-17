@@ -1,11 +1,14 @@
-package testgrails
+package projectconfig
 
-class System {
+class FirstEffortEstimate {
 	
 	Project project
 	
-	String name
-	String description
+	String effortType
+	Integer minEffort
+	Integer medEffort
+	Integer maxEffort
+	Integer risk
 	
 	static hasMany = [
 		systemChanges: SystemChange
@@ -16,6 +19,6 @@ class System {
     }
 	
 	public String getMultipleRoot() {
-		return "systems"
+		return "first_effort_estimates"
 	}
 }

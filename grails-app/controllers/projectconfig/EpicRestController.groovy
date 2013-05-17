@@ -1,9 +1,6 @@
-package testgrails
-
-import java.util.List;
+package projectconfig
 
 import grails.converters.JSON
-import org.hibernate.transform.DistinctRootEntityResultTransformer
 
 class EpicRestController {  		
 	

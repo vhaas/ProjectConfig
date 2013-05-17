@@ -2,6 +2,8 @@ package testgrails
 
 import grails.test.mixin.*
 import org.junit.*
+
+import projectconfig.Epic;
 import grails.buildtestdata.mixin.Build
 
 /**

@@ -1,5 +1,10 @@
 package testgrails
 
+import projectconfig.Epic;
+import projectconfig.Project;
+import projectconfig.Role;
+import projectconfig.UserStory;
+
 class TestDataGenerationService {
 	
 	def grailsApplication // get grails app injected into test
