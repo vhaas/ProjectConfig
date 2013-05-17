@@ -44,6 +44,24 @@ class UrlMappings {
 			action = [GET: "showAllProjects"]
 		}
 		///////////////////////////////////////////////////////////////////////////////////////////
+		//###RoadMap
+		"/rest/road_maps/$id"(controller: "RoadMapRest", parseRequest: true) {
+			action = [GET: "showRoadMapById", PUT: "update", DELETE: "delete", POST: "save"]
+		}
+		
+		"/rest/road_maps"(controller: "RoadMapRest", parseRequest: true) {
+			action = [GET: "showAllRoadMaps"]
+		}
+		///////////////////////////////////////////////////////////////////////////////////////////
+		//###MileStone
+		"/rest/mile_stones/$id"(controller: "MileStoneRest", parseRequest: true) {
+			action = [GET: "showMileStoneById", PUT: "update", DELETE: "delete", POST: "save"]
+		}
+		
+		"/rest/mile_stones"(controller: "MileStoneRest", parseRequest: true) {
+			action = [GET: "showAllMileStones"]
+		}
+		///////////////////////////////////////////////////////////////////////////////////////////
 		//###Helper
 		"/createTestData"(controller: "TestData", parseRequest: true) {
 			action = [GET: "testBuildAllDomains"]

@@ -1,4 +1,4 @@
-package testgrails
+package projectconfig
 
 import projectconfig.Epic;
 import projectconfig.Project;
@@ -88,7 +88,22 @@ class TestDataGenerationService {
 		epicBB.addToUserStories(storyBBB)
 		roleD.addToUserStories(storyBBA)
 		roleD.addToUserStories(storyBBB)
-
+		
+		RoadMap roadMapAA = new RoadMap(name: "RoadMap AA", description: "Description of RoadMap AA", project: projectA)
+		RoadMap roadMapAB = new RoadMap(name: "RoadMap AB", description: "Description of RoadMap AB", project: projectA)		
+		RoadMap roadMapBA = new RoadMap(name: "RoadMap BA", description: "Description of RoadMap BA", project: projectB)
+		RoadMap roadMapBB = new RoadMap(name: "RoadMap BB", description: "Description of RoadMap BB", project: projectB)
+		
+		MileStone mileStoneAAA = new MileStone(name: "MileStone AAA", description: "Description of MileStone AAA", oderId: 1)
+		MileStone mileStoneAAB = new MileStone(name: "MileStone AAB", description: "Description of MileStone AAB", oderId: 1)
+		roadMapAA.addToMileStones(mileStoneAAA)
+		roadMapAB.addToMileStones(mileStoneAAB)
+		
+		MileStone mileStoneABA = new MileStone(name: "MileStone ABA", description: "Description of MileStone ABA", oderId: 1)
+		MileStone mileStoneABB = new MileStone(name: "MileStone ABB", description: "Description of MileStone ABB", oderId: 1)
+		roadMapBA.addToMileStones(mileStoneABA)
+		roadMapBB.addToMileStones(mileStoneABB)
+		
 		storyAAA.save(failOnError: true)
 		storyAAB.save(failOnError: true)
 		storyABA.save(failOnError: true)
@@ -110,6 +125,17 @@ class TestDataGenerationService {
 		roleB.save(failOnError: true)
 		roleC.save(failOnError: true)
 		roleD.save(failOnError: true)
+		
+		roadMapAA.save(failOnError: true)
+		roadMapAB.save(failOnError: true)
+		roadMapBA.save(failOnError: true)
+		roadMapBB.save(failOnError: true)
+		
+		mileStoneAAA.save(failOnError: true)
+		mileStoneAAB.save(failOnError: true)
+		mileStoneABA.save(failOnError: true)
+		mileStoneABB.save(failOnError: true)
+		
 
 				println "Created the Epic: $epicAA"
 	}

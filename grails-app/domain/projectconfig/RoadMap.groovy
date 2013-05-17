@@ -22,6 +22,7 @@ class RoadMap {
 				id: id,
 				name: name,
 				description: description,
+				project_id: project ? project.id : '',
 				mile_stone_ids: mileStones.collect{it.id}
 		]			
 	}
