@@ -13,5 +13,9 @@ class System {
 
     static constraints = {
 		systemChanges nullable: true		
-    }	
+    }
+	
+	public String getMultipleRoot() {
+		return "systems"
+	}
 }

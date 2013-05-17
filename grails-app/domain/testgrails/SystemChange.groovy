@@ -18,5 +18,9 @@ class SystemChange {
     static constraints = {
 		firstEffortEstimate nullable: true
 		system nullable: true		
-    }	
+    }
+	
+	public String getMultipleRoot() {
+		return "system_changes"
+	}
 }

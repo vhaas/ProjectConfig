@@ -5,19 +5,18 @@ class UserStory {
 	String name
 	String description
 	String goal
-	String benefit
+	String benefit	
 	
-	RoadMap roadMap
 	Epic epic
 	Role role
 	
 	static hasMany = [
 		systemChanges: SystemChange,
-		requiredUserStories: UserStory		
+		requiredUserStories: UserStory,
+		mileStones: MileStone		
 		]	
 
-    static constraints = {		
-		roadMap nullable: true
+    static constraints = {
 		epic nullable: true
 		role nullable: true
     }	
@@ -29,9 +28,13 @@ class UserStory {
 				description: description,
 				goal: goal,
 				benefit: benefit,
-				road_map_id: roadMap ? roadMap.id : '',
+				mile_stone_ids: mileStones.collect{it.id},
 				epic_id: epic ? epic.id : '',
-				role_id: role ? role.id : ''				
+				role_id: role ? role.id : ''
 		]			
-	}	
+	}
+	
+	public String getMultipleRoot() {
+		return "user_stories"
+	}
 }
