@@ -13,9 +13,7 @@ class EpicRestController {
 			render renderNotFound
 		}
 		else {
-			epic = epic.transformToMap()
-			epic = ["epic": epic]
-			render (contentType: "application/json", text: epic as JSON)			
+			render RestControllerAssistant.renderSingle(Epic, epic)
 		}
 	}
 	
@@ -29,7 +27,7 @@ class EpicRestController {
 			}	
 			else {
 				all = all.getEpics()
-			}		
+			}
 		} 
 		else {
 			all = Epic.list()

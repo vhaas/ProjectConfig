@@ -52,6 +52,7 @@
 	<script src="js/Vendors/ember-1.0.0-rc.3.js"></script>
 	<script src="js/Vendors/less-1.3.3.min.js"></script>
 	<script src="js/Vendors/ember-data.js"></script>
+	<script src="js/Vendors/ember-data-grails.js"></script>
 	
 	<script src="js/app/main.js"></script>
 	<script src="js/app/models.js"></script>
