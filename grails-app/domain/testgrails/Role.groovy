@@ -18,7 +18,11 @@ class Role {
 		return [
 				id: id,
 				name: name,
-				description: description	
+				description: description
 		]				
-	}	
+	}
+	
+	public String getMultipleRoot() {
+		return "roles"
+	}
 }

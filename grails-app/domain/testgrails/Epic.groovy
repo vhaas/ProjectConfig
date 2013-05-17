@@ -9,7 +9,7 @@ class Epic {
 	
 	static hasMany = [
 		userStories: UserStory
-		]	
+		]
 	
     static constraints = {
     }	
@@ -22,5 +22,9 @@ class Epic {
 				project_id: project ? project.id : '',
 				user_story_ids: userStories.collect{it.id}
 		]			
-	}	
+	}
+	
+	public String getMultipleRoot() {
+		return "epics"
+	}
 }

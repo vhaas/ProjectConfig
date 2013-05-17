@@ -27,7 +27,11 @@ class Project {
 			description: description,
 			epic_ids: epics.collect{it.id}
 		]					
-	}	
+	}
+	
+	public String getMultipleRoot() {
+		return "projects"
+	}
 }
 
 

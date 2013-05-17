@@ -10,8 +10,7 @@ class RoadMap {
 	Configuration configuration
 	
 	static hasMany = [
-		mileStones: MileStone,
-		userStories: UserStory
+		mileStones: MileStone		
 		]
 
     static constraints = {		
@@ -23,7 +22,11 @@ class RoadMap {
 				id: id,
 				name: name,
 				description: description,
-				configuration_id: configuration ? configuration.id : ''	
+				mile_stone_ids: mileStones.collect{it.id}
 		]			
+	}
+	
+	public String getMultipleRoot() {
+		return "road_maps"
 	}
 }

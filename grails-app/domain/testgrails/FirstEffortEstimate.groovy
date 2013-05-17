@@ -16,5 +16,9 @@ class FirstEffortEstimate {
 
     static constraints = {
 		systemChanges nullable: true		
-    }	
+    }
+	
+	public String getMultipleRoot() {
+		return "first_effort_estimates"
+	}
 }

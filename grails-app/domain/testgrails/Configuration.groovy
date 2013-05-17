@@ -17,4 +17,8 @@ class Configuration {
 				description: description	
 		]				
 	}
+	
+	public String getMultipleRoot() {
+		return "configurations"
+	}
 }
