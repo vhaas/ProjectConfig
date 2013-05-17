@@ -10,10 +10,10 @@ class ProjectRestController {
 		if (!project) {
 			render renderNotFound
 		}
-		else {			
-			project = project.transformToMap()
-			project = ["project": project]			
-			render (contentType: "application/json", text: project as JSON)
+		else {
+			render RestControllerAssistant.renderSingle(Project, project)
+			
+			//render (contentType: "application/json", text: RestControllerAssistant.renderSingle(Project, project))
 		}
 	}
 	
@@ -23,13 +23,9 @@ class ProjectRestController {
 			render renderNotFound
 		}
 		else {
-			List<Map> returnMap = new ArrayList<Map>()
-			all.each {
-				def map = it.transformToMap()
-				returnMap.add(map)
-			}
-			def returnedProjects = ["projects": returnMap]
-			render (contentType: "application/json", text: returnedProjects as JSON)
+			render RestControllerAssistant.renderMultiple(Project, all)
+			
+			//render (contentType: "application/json", text: RestControllerAssistant.renderMultiple_alternative(Project, all))
 		}
 	}
 	
