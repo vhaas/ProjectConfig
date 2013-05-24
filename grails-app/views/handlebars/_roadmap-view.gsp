@@ -32,8 +32,8 @@
 						<div class="clearfix"/>
 					</form>
 				</div>
-				<section>
-					{{#each mileStone}}
+				<section>				
+					{{#each mileStones}}
 						<div class="column-fluid">
 							<div class="span2">
 								<form class="form-vertikal">
@@ -44,19 +44,12 @@
 										<div class="well well-small">
 											{{name}}
 											<button type="button" class="close">&times;</button>
-										</div>
-										{{#unless empty}}
-											{{view App.Select
-												contentBinding="App.SelectUserStoryController"
-												selectionBinding="name"
-												valueBinding="userStories_id"}}
-											{{/view}}
-										{{/unless}}
+										</div>										
 									{{/each}}
 								</form>
 							</div>
 						</div>
-					{{/each}}
+					{{/each}}				
 				</section>
 			</div>
 		</div>	

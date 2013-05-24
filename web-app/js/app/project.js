@@ -4,6 +4,13 @@ App.ProjectRoute = Ember.Route.extend({
 			var epics = this.controller.get('content').get('epics').get(
 					'firstObject');
 			this.transitionTo('epic', epics);
+		},
+		showRoadMap : function(id) {
+			var roadMap = App.RoadMap.find({project : id});
+			roadMap.one("didLoad", function() {
+				roadMap.resolve(roadMap.get("firstObject"));
+			});
+			this.transitionTo('roadmap', roadMap.get("firstObject"));
 		}
 	}
 });

@@ -139,4 +139,13 @@ testProperty: function(){
 				  </ul>
 				</div>
 		
+
+
+{{#unless empty}}
+											{{view App.Select
+												contentBinding="App.SelectUserStoryController"
+												selectionBinding="name"
+												valueBinding="userStories_id"}}
+											{{/view}}
+										{{/unless}}
 	</script>

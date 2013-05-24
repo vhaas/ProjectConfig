@@ -25,7 +25,8 @@
 							{{/view}}
 							{{#unless isDirty}}
 								<button class="btn btn-secondary pull-right" {{action "enableProject" target="view"}}>Edit</button>
-								<button class="btn btn-secondary pull-right" {{action "selectProject" id}}>Select</button>
+								<button class="btn btn-secondary pull-right" {{action "selectProject" id}}>Show Epics</button>
+								<button class="btn btn-secondary pull-right" {{action "showRoadMap" id}}>Show RoadMap</button>
 							{{else}}
 								<button type="submit" class="btn btn-primary pull-right">Speichern</button>
 							{{/unless}}

@@ -42,6 +42,8 @@ App.RoadMap = DS.Model.extend({
 
 App.MileStone = DS.Model.extend({
 	name : DS.attr("string"),
+	description : DS.attr("string"),
+	oderId : DS.attr("integer"),
 	roadMap : DS.belongsTo("App.RoadMap"),
 	userStories : DS.hasMany("App.UserStory")
 });

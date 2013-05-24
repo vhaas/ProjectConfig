@@ -20,3 +20,15 @@ App.ProjectsView = Ember.View.extend({
 		this.toggleProperty('expanded');
 	}
 });
+
+App.ProjectsView = Ember.View.extend({
+	templateName : 'acc_item',
+	classNames : [ 'accordion-group' ],
+	didInsertElement : function() {
+		return Ember.run.next(this, function() {
+			return this.$('.collapse').collapse({
+				parent : "#accordion2"
+			});
+		});
+	}
+});

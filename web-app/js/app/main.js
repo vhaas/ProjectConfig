@@ -21,10 +21,10 @@ App.store = DS.Store.create({
 	adapter : App.Adapter.create(),
 });
 
-App.Store = DS.Store.extend({
-	revision : 11,
-	adapter : DS.GrailsAdapter.create()
-});
+//App.Store = DS.Store.extend({
+//	revision : 11,
+//	adapter : DS.GrailsAdapter.create()
+//});
 
 App.BootstrapControl = Ember.View.extend({
 	classNames : [ "control-group" ],

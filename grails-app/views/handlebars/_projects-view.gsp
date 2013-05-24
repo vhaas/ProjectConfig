@@ -5,11 +5,7 @@
 					<li><a href="#">Home</a> <span class="divider">/</span></li>					
 					<li class="active">Projects</li>
 				</ul>
-			</div>
-			<div class="row-fluid">
-				<div class="span4">
-				</div>
-			<div class="span8">			
+			</div>						
 		<!-- Project -->
 			{{#each project in  controller}}
 				<section>					
@@ -31,3 +27,27 @@
 			</div>
 		</div>
 </script>
+
+<div class="accordion-heading">			
+            <a class="accordion-toggle" data-toggle="collapse"  {{bindAttr href="item.href" }}>              
+			 	{{item.name}}
+            </a>
+			{{#linkTo 'epic' item class="btn btn-secondary pull-righ"}}{{item.name}}{{/linkTo}}						
+          </div>
+          <div {{bindAttr id='item.id' }} class="accordion-body collapse in">
+            <div class="accordion-inner">
+				{{#each item.userStories}}
+        			<ul>{{name}}</ul>					
+				{{/each}}				
+            </div>
+          </div>
+          
+          <div class="span4">
+					<section>
+						<div class="accordion" id="accordion2">
+	      					{{#each item in epics}}
+       							{{view App.AccItemView contextBinding='item'}}
+      						{{/each}}							
+    					</div>
+					</section>
+				</div>

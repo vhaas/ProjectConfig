@@ -2,9 +2,9 @@
 App.EpicRoute = Ember.Route
 		.extend({
 			setupController : function(controller, model) {
-				controller.set('content', model);
+				controller.set('content', model);				
 				var projectId = this.controller.get('content').get('project')
-						.get('id');
+						.get('id');				
 				controller.set('epics', this.getEpics(projectId));
 			},
 			events : {

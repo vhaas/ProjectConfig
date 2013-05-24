@@ -1,22 +1,28 @@
 //Route
-App.RoadMapRoute = Ember.Route.extend({
+App.RoadmapRoute = Ember.Route.extend({
 	setupController : function(controller, model) {
-		controller.set('content, model');
+		controller.set('content', model);
 		var project = controller.get('content').get('project').get('id');
 		controller.set('unSelectedUserStories', this.getUserStories(project));
 	},
+	model: function() {
+	    var controller;
+	    controller = this.controllerFor('roadmap');
+	    return controller.get('content');
+	  },
 	getUserStories : function(id) {
 		var userStories = App.UserStory.find({
 			project : id
 		});
-		userStories.one("didLoad", function() {
+		userStories.one("isLoaded", function() {
 			userStories.resolve(userStories.get("firstObject"));
 		});
 		return userStories;
 	}
 });
 
-App.RoadMapController = Ember.ObjectController.extend({
+App.RoadmapController = Ember.ObjectController.extend({
+	needs: ['userstorys'],
 	save : function() {
 		var model = App.store.commit();
 	},
@@ -29,15 +35,17 @@ App.RoadMapController = Ember.ObjectController.extend({
 	unSelectedUserStories : null
 });
 
+App.UserstorysController = Ember.ArrayController.extend({});
+
 // App.SelectUserStoryController = App.SelectController.create();
 // App.SelectUserStoryController.set('content',
 // App.RoadMapController.get('unSelectedUserStories'));
 
 // View
-App.EpicView = Ember.View.extend({
-	createNewEpic : function() {
+App.RoadMapView = Ember.View.extend({
+	createRoadMapEpic : function() {
 		this.get('controller').set('content',
-				this.get('controller').createEpic());
+				this.get('controller').createRoadMap());
 	},
 	isNotDirty : function() {
 		return !this.get('controller.content.isDirty')
@@ -45,13 +53,13 @@ App.EpicView = Ember.View.extend({
 	saveAndCreate : function() {
 		this.get('controller').save();
 		this.get('controller').createUserStory();
-	},
-	enableEpic : function() {
-		this.get('controller').toggleProperty('disabledEpic');
-		this.get('controller').set('disabledUserStory', true);
-	},
-	enableUserStory : function() {
-		this.get('controller').toggleProperty('disabledUserStory');
-		this.get('controller').set('disabledEpic', true);
 	}
+//	enableEpic : function() {
+//		this.get('controller').toggleProperty('disabledEpic');
+//		this.get('controller').set('disabledUserStory', true);
+//	},
+//	enableUserStory : function() {
+//		this.get('controller').toggleProperty('disabledUserStory');
+//		this.get('controller').set('disabledEpic', true);
+//	}
 });
