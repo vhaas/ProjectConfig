@@ -7,7 +7,7 @@ class MileStone {
 	String name
 	String description
 	Date dueTo
-	Integer oderId
+	Integer orderId
 
 	RoadMap roadMap
 

@@ -94,13 +94,13 @@ class TestDataGenerationService {
 		RoadMap roadMapBA = new RoadMap(name: "RoadMap BA", description: "Description of RoadMap BA", project: projectB)
 		RoadMap roadMapBB = new RoadMap(name: "RoadMap BB", description: "Description of RoadMap BB", project: projectB)
 
-		MileStone mileStoneAAA = new MileStone(name: "MileStone AAA", description: "Description of MileStone AAA", oderId: 1, project: projectA)
-		MileStone mileStoneAAB = new MileStone(name: "MileStone AAB", description: "Description of MileStone AAB", oderId: 1, project: projectA)
+		MileStone mileStoneAAA = new MileStone(name: "MileStone AAA", description: "Description of MileStone AAA", orderId: 1, project: projectA)
+		MileStone mileStoneAAB = new MileStone(name: "MileStone AAB", description: "Description of MileStone AAB", orderId: 1, project: projectA)
 		roadMapAA.addToMileStones(mileStoneAAA)
 		roadMapAB.addToMileStones(mileStoneAAB)
 
-		MileStone mileStoneABA = new MileStone(name: "MileStone ABA", description: "Description of MileStone ABA", oderId: 1, project: projectB)
-		MileStone mileStoneABB = new MileStone(name: "MileStone ABB", description: "Description of MileStone ABB", oderId: 1, project: projectB)
+		MileStone mileStoneABA = new MileStone(name: "MileStone ABA", description: "Description of MileStone ABA", orderId: 1, project: projectB)
+		MileStone mileStoneABB = new MileStone(name: "MileStone ABB", description: "Description of MileStone ABB", orderId: 1, project: projectB)
 		roadMapBA.addToMileStones(mileStoneABA)
 		roadMapBB.addToMileStones(mileStoneABB)
 

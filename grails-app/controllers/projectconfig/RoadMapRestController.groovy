@@ -15,12 +15,24 @@ class RoadMapRestController {
 	}
 
 	def showAllRoadMaps() {
-		def all = RoadMap.list()
+		def all
+		if (params.project) {
+			all = Project.findById(params.project)
+			if (!all) {
+				render renderNotFound
+				return
+			}
+			else {
+				all = all.getRoadMaps()
+			}
+		} else {
+		all = RoadMap.list()
+		}		
 		if (all.empty) {
 			render renderNotFound
 		}
 		else {
-			render RestControllerAssistant.renderMultiple_alternative(RoadMap, all)
+			render RestControllerAssistant.renderMultiple_alternative(RoadMap, all.asList())
 		}
 	}
 
