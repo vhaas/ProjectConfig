@@ -138,5 +138,14 @@ class TestDataGenerationService {
 
 
 		println "Created the Epic: $epicAA"
+		
+		buildAFewProjects()
+	}
+	
+	def buildAFewProjects() {
+		for (int i = 0; i < 50; i++) {
+			Project projectA = new Project(name: "Project " + i, description: "Description for Project " + i)
+			projectA.save(failOnError: true)
+		}
 	}
 }

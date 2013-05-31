@@ -11,7 +11,10 @@ App.Epic = DS.Model.extend({
 App.Project = DS.Model.extend({
 	name : DS.attr("string"),
 	description : DS.attr("string"),
-	epics : DS.hasMany("App.Epic")
+	epics : DS.hasMany("App.Epic"),
+	href : (function() {
+		return "#" + this.get('id');
+	}).property('id').cacheable()
 });
 
 App.UserStory = DS.Model.extend({

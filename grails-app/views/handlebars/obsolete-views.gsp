@@ -149,3 +149,37 @@ testProperty: function(){
 											{{/view}}
 										{{/unless}}
 	</script>
+	
+	
+	
+	
+	
+	
+	
+AUS INDEX:
+
+<!-- 
+<g:render template="/handlebars/project-view"></g:render>
+<g:render template="/handlebars/epic-view"></g:render>
+<g:render template="/handlebars/roadmap-view"></g:render>
+ -->
+ 
+ 	
+	<!-- 
+	<script src="js/Vendors/ember-1.0.0-rc.3.js"></script>
+	<script src="js/Vendors/ember-data.js"></script>
+	<script src="js/Vendors/handlebars.js"></script>			
+	<script src="js/Vendors/ember-data-grails.js"></script>
+	 -->
+	 
+	 	<!-- 
+	<script src="js/app/role.js"></script>
+	<script src="js/app/epic.js"></script>
+	<script src="js/app/popup.js"></script>
+	<script src="js/app/roadmap.js"></script>
+	<script src="js/app/project.js"></script>
+	 -->	
+	 
+	 
+	 
+	 

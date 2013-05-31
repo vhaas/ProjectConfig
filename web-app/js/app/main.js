@@ -1,4 +1,4 @@
-App = Ember.Application.create({
+window.App = Ember.Application.create({
 	LOG_TRANSITIONS : true
 });
 
@@ -16,9 +16,13 @@ App.Adapter.configure("plurals", {
 	"user_story" : "user_stories"
 });
 
-App.store = DS.Store.create({
-	revision : 11,
-	adapter : App.Adapter.create(),
+//App.store = DS.Store.create({
+//	revision : 11,
+//	adapter : App.Adapter.create(),
+//});
+
+App.Store = DS.Store.extend({
+	adapter : 'App.Adapter'
 });
 
 //App.Store = DS.Store.extend({
@@ -32,21 +36,7 @@ App.BootstrapControl = Ember.View.extend({
 });
 
 App.Router.map(function() {
-	this.resource('projects', {
-		path : 'projects'
-	});
-	this.resource('project', {
-		path : 'project/:project_id'
-	});
-	this.resource('epic', {
-		path : 'epic/:epic_id'
-	});
-	this.resource('roadmaps', {
-		path : 'roadmaps'
-	});
-	this.resource('roadmap', {
-		path : 'roadmap/:roadmap_id'
-	});
+	this.resource('projects');
 });
 
 App.IndexRoute = Ember.Route.extend({
@@ -55,25 +45,43 @@ App.IndexRoute = Ember.Route.extend({
 	}
 });
 
-App.AccItemView = Ember.View.extend({
-	templateName : 'acc_item',
-	classNames : [ 'accordion-group' ],
-	didInsertElement : function() {
-		return Ember.run.next(this, function() {
-			return this.$('.collapse').collapse({
-				parent : "#accordion2"
-			});
-		});
-	}
-});
+//App.Router.map(function() {
+//	this.resource('projects', {
+//		path : 'projects'
+//	});
+//	this.resource('project', {
+//		path : 'project/:project_id'
+//	});
+//	this.resource('epic', {
+//		path : 'epic/:epic_id'
+//	});
+//	this.resource('roadmaps', {
+//		path : 'roadmaps'
+//	});
+//	this.resource('roadmap', {
+//		path : 'roadmap/:roadmap_id'
+//	});
+//});
 
-App.SelectController = Ember.ArrayController.extend({
-	selection : null,
-	active : true
-});
+//App.AccItemView = Ember.View.extend({
+//	templateName : 'acc_item',
+//	classNames : [ 'accordion-group' ],
+//	didInsertElement : function() {
+//		return Ember.run.next(this, function() {
+//			return this.$('.collapse').collapse({
+//				parent : "#accordion2"
+//			});
+//		});
+//	}
+//});
 
-App.Select = Ember.Select.extend({
-	multiple : false,
-	optionLabelPath : "content.name",
-	optionValuePath : "content.id"
-});
+//App.SelectController = Ember.ArrayController.extend({
+//	selection : null,
+//	active : true
+//});
+//
+//App.Select = Ember.Select.extend({
+//	multiple : false,
+//	optionLabelPath : "content.name",
+//	optionValuePath : "content.id"
+//});

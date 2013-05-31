@@ -13,12 +13,9 @@ body {
 }
 </style>
 
-
 <g:render template="/handlebars/form-elements"></g:render>
-<g:render template="/handlebars/project-view"></g:render>
 <g:render template="/handlebars/projects-view"></g:render>
-<g:render template="/handlebars/epic-view"></g:render>
-<g:render template="/handlebars/roadmap-view"></g:render>
+
 
 <script type="text/x-handlebars" data-template-name="application">
 		<div class="navbar navbar-inverse navbar-fixed-top">
@@ -48,23 +45,18 @@ body {
 
 </head>
 <body>
-	<script src="js/Vendors/handlebars.js"></script>
+	
 	<script src="js/Vendors/jquery-1.9.1.js"></script>
-	<script src="js/Vendors/bootstrap.js"></script>
-	<script src="js/Vendors/ember-1.0.0-rc.3.js"></script>
+	<script src="js/Vendors/handlebars-1.0.0-rc.4.js"></script>
+	<script src="js/Vendors/ember-1.0.0-rc.4.js"></script>
+	<script src="js/Vendors/ember-data-0.13.js"></script>	
+	<script src="js/Vendors/bootstrap.js"></script>	
 	<script src="js/Vendors/less-1.3.3.min.js"></script>
-	<script src="js/Vendors/ember-data.js"></script>
-	<script src="js/Vendors/ember-data-grails.js"></script>
+
 
 	<script src="js/app/main.js"></script>
 	<script src="js/app/models.js"></script>
-	<script src="js/app/role.js"></script>
-	<script src="js/app/epic.js"></script>
-	<script src="js/app/popup.js"></script>
-	<script src="js/app/project.js"></script>
-	<script src="js/app/projects.js"></script>
-	<script src="js/app/roadmap.js"></script>
-
+	<script src="js/app/projects.js"></script>		
 
 </body>
 </html>

@@ -1,6 +1,6 @@
 App.ProjectsRoute = Ember.Route.extend({
-	setupController : function(controller) {
-		controller.set('content', App.Project.find());
+	model: function() {
+		return App.Project.find();
 	},
 	events : {
 		select : function(id) {
@@ -11,17 +11,14 @@ App.ProjectsRoute = Ember.Route.extend({
 });
 
 App.ProjectsController = Ember.ArrayController.extend({
-	itemController : 'project'
+	itemController: 'project'
 });
 
-App.ProjectsView = Ember.View.extend({
-	expanded : true,
-	expand : function() {
-		this.toggleProperty('expanded');
-	}
+App.ProjectController = Ember.ObjectController.extend({
+	
 });
 
-App.ProjectsView = Ember.View.extend({
+App.ProjectListView = Ember.View.extend({
 	templateName : 'acc_item',
 	classNames : [ 'accordion-group' ],
 	didInsertElement : function() {
