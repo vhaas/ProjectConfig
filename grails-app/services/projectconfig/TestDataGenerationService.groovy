@@ -143,8 +143,11 @@ class TestDataGenerationService {
 	}
 	
 	def buildAFewProjects() {
+		String desc = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr," + 
+						"sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat," + 
+						"sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. ";						
 		for (int i = 0; i < 50; i++) {
-			Project projectA = new Project(name: "Project " + i, description: "Description for Project " + i)
+			Project projectA = new Project(name: "Project " + i, description: desc + i)
 			projectA.save(failOnError: true)
 		}
 	}

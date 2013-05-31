@@ -36,7 +36,10 @@ App.BootstrapControl = Ember.View.extend({
 });
 
 App.Router.map(function() {
-	this.resource('projects');
+	this.resource('projects', { path : 'projects' });
+	this.resource('project', { path : 'project/:project_id' }, function() {
+		this.resource('roadmap', { path : 'roadmap/:roadmap_id' });
+	});
 });
 
 App.IndexRoute = Ember.Route.extend({

@@ -50,13 +50,14 @@ body {
 	<script src="js/Vendors/handlebars-1.0.0-rc.4.js"></script>
 	<script src="js/Vendors/ember-1.0.0-rc.4.js"></script>
 	<script src="js/Vendors/ember-data-0.13.js"></script>	
-	<script src="js/Vendors/bootstrap.js"></script>	
+	<script src="js/Vendors/bootstrap-2.3.2.js"></script>	
 	<script src="js/Vendors/less-1.3.3.min.js"></script>
 
 
 	<script src="js/app/main.js"></script>
 	<script src="js/app/models.js"></script>
-	<script src="js/app/projects.js"></script>		
+	<script src="js/app/projects.js"></script>
+	<script src="js/app/roadmap.js"></script>
 
 </body>
 </html>
