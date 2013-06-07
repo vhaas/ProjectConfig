@@ -11,7 +11,6 @@ App.ProjectsRoute = Ember.Route.extend({
 });
 
 App.ProjectsController = Ember.ArrayController.extend({
-	itemController: 'project'
 });
 
 App.ProjectListView = Ember.View.extend({

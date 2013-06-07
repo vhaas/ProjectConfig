@@ -57,6 +57,7 @@ body {
 	<script src="js/app/main.js"></script>
 	<script src="js/app/models.js"></script>
 	<script src="js/app/projects.js"></script>
+	<script src="js/app/project.js"></script>
 	<script src="js/app/roadmap.js"></script>
 
 </body>

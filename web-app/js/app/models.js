@@ -40,7 +40,10 @@ App.RoadMap = DS.Model.extend({
 	name : DS.attr("string"),
 	description : DS.attr("string"),
 	project : DS.belongsTo("App.Project"),
-	mileStones : DS.hasMany("App.MileStone")
+	mileStones : DS.hasMany("App.MileStone"),
+	href : (function() {
+		return "#" + this.get('id');
+	}).property('id').cacheable()
 });
 
 App.MileStone = DS.Model.extend({
