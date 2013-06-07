@@ -19,14 +19,14 @@ App.ProjectIndexRoute = Ember.Route.extend({
 });
 
 App.ProjectIndexController = Ember.ObjectController.extend({
-	needs: ['roadmaplist']
+	needs: 'roadmaplist'
 });
 
 App.RoadmaplistController = Ember.ArrayController.extend({
 });
 
-App.RoadmapListView = Ember.View.extend({	
-	templateName : 'acc_item',
+App.RoadmapListView = Ember.View.extend({
+	templateName : 'acc_roadmap_item',
 	classNames : [ 'accordion-group' ],
 	didInsertElement : function() {
 		return Ember.run.next(this, function() {

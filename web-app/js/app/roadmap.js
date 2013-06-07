@@ -8,6 +8,6 @@ App.RoadmapRoute = Ember.Route.extend({
 // Controller
 
 
-App.RoadmapsController = Ember.ArrayController.extend({
-});
+//App.RoadmapsController = Ember.ArrayController.extend({
+//});
 

@@ -1,4 +1,4 @@
-<script type="text/x-handlebars" data-template-name="acc_item">
+<script type="text/x-handlebars" data-template-name="acc_roadmap_item">
 	<div class="accordion-group">
 		<div class="accordion-heading">
 			<a class="accordion-toggle" data-toggle="collapse"  {{bindAttr href="item.href"}}>
