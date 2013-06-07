@@ -1,4 +1,5 @@
 <g:render template="/handlebars/roadmap-list-view"></g:render>
+<g:render template="/handlebars/roadmap-view"></g:render>
 <script type="text/x-handlebars" data-template-name="project">
 		<div class="container-fluid" data-spy="scroll" data-target=".nav-tabs">
 			<div class="row-fluid">

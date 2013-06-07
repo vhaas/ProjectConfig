@@ -1,10 +1,12 @@
-<g:render template="/handlebars/accordion-roadmap-views"></g:render>
 <script type="text/x-handlebars" data-template-name="roadmap-list">
-	<section>
-		<div class="accordion" id="accordion2">
-			{{#each item in controllers.roadmaplist}}
-				{{view App.RoadmapListView contextBinding='item'}}
-			{{/each}}
-		</div>
+	<section>		
+		{{#each item in controller}}		
+			<ul>
+				<div class="row-fluid centre">
+					{{#linkTo roadmap item}} {{item.name}} {{/linkTo}}
+					<button class="btn btn-mini pull-right"{{action "select" item.id}}><i class="icon-wrench"></i></button>					
+				</div>
+			</ul>
+		{{/each}}
 	</section>
 </script>

@@ -11,9 +11,9 @@ App.ProjectIndexRoute = Ember.Route.extend({
 	},
 	events : {
 		select : function(id) {
-			alert('RoadMap ID: ' + this.get('controller').get('controllers.roadmaplist').get('content').get('firstObject'));
-//			var roadmap = App.RoadMap.find(id);
-//			this.transitionTo('roadmap', roadmap);
+//			alert('RoadMap ID: ' + this.get('controller').get('controllers.roadmaplist').get('content').get('firstObject'));
+			var roadmap = App.RoadMap.find(id);
+			this.transitionTo('roadmap', roadmap);
 		}
 	}
 });
@@ -26,13 +26,5 @@ App.RoadmaplistController = Ember.ArrayController.extend({
 });
 
 App.RoadmapListView = Ember.View.extend({
-	templateName : 'acc_roadmap_item',
-	classNames : [ 'accordion-group' ],
-	didInsertElement : function() {
-		return Ember.run.next(this, function() {
-			return this.$('.collapse').collapse({
-				parent : "#accordion2"
-			});
-		});
-	}
+
 });

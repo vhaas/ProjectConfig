@@ -1,7 +1,6 @@
-App.RoadmapRoute = Ember.Route.extend({		
-	setupController: function (controller, model){
-	    console.log('sc', model);
-	    this._super(this, arguments);
+App.RoadmapRoute = Ember.Route.extend({
+	model: function(params) {
+	    return App.RoadMap.find(params.roadmap_id);
 	}
 });
 
