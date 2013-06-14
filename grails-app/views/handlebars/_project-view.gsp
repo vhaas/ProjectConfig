@@ -27,7 +27,7 @@
 					</div>
 					<div class="row-fluid">
 						<div class="span4">
-							{{outlet roadmap}}
+							{{outlet roadmap-list}}
 						</div>
 						<div class="span4">
 							<div class="well">

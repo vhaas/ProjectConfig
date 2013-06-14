@@ -9,6 +9,7 @@ class UserStory {
 
 	Epic epic
 	Role role
+	Project project
 
 	static belongsTo = MileStone
 	static hasMany = [
@@ -31,7 +32,8 @@ class UserStory {
 			benefit: benefit,
 			mile_stone_ids: mileStones.collect{it.id},
 			epic_id: epic ? epic.id : '',
-			role_id: role ? role.id : ''
+			role_id: role ? role.id : '',
+			project_id: project ? project.id : '',
 		]
 	}
 

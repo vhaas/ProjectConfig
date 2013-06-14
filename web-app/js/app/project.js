@@ -1,11 +1,15 @@
 App.ProjectIndexRoute = Ember.Route.extend({
 	setupController: function(controller, model) {
-		this.controllerFor('roadmaplist').set('model', App.RoadMap.find());
+		var projectId = model.objectAt(0).get('id');
+		this.controllerFor('roadmaplist').set('model', App.RoadMap.find({project:projectId}));
+	},
+	model: function(params) {
+	    return App.Project.find(params.project_id);
 	},
 	renderTemplate : function() {
 		this.render('roadmap-list', {
 			into : 'project',
-			outlet : 'roadmap',
+			outlet : 'roadmap-list',
 			controller : 'roadmaplist'
 		});
 	},

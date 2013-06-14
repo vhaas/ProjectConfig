@@ -25,6 +25,7 @@ App.UserStory = DS.Model.extend({
 	roadMap : DS.belongsTo("App.RoadMap"),
 	epic : DS.belongsTo("App.Epic"),
 	role : DS.belongsTo("App.Role"),
+	project : DS.belongsTo("App.Project"),
 	willGetDeleted : DS.attr("boolean", {
 		defaultValue : false
 	})
@@ -49,7 +50,7 @@ App.RoadMap = DS.Model.extend({
 App.MileStone = DS.Model.extend({
 	name : DS.attr("string"),
 	description : DS.attr("string"),
-	oderId : DS.attr("integer"),
+	oderId : DS.attr("number"),
 	roadMap : DS.belongsTo("App.RoadMap"),
 	userStories : DS.hasMany("App.UserStory")
 });
