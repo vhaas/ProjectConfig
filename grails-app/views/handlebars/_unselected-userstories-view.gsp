@@ -1,9 +1,11 @@
 <script type="text/x-handlebars" data-template-name="unselected-userstories">
-	{{#each item in controller}}
-		<ul>
-			<div class="row-fluid centre">
-				{{item.name}}				
-			</div>
-		</ul>
-	{{/each}}
+	<table class="table">
+		{{#each item in controller}}
+			<tr>
+				<td>
+					{{item.name}}
+				</td>
+			</tr>
+		{{/each}}
+	</table>
 </script>

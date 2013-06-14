@@ -43,9 +43,7 @@
 				</form>
 			</div>
 			<div class="span9">
-				<form class="form-vertical" style="display: block; height: 50em; overflow-x: scroll"">
-					{{outlet mileStones}}
-				</form>
+				{{outlet mileStones}}
 			</div>
 		</div>
 </script>

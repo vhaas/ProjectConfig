@@ -28,7 +28,7 @@ App.RoadmapRoute = Ember.Route.extend({
 
 // Controller
 App.RoadmapsController = Ember.ArrayController.extend({	
-	needs : ['userstorylist', 'milestones']
+//	needs : ['userstorylist', 'milestones']
 });
 
 App.RoadmapView = Ember.View.extend({
