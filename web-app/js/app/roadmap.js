@@ -2,6 +2,7 @@ App.RoadmapRoute = Ember.Route.extend({
 	setupController: function(controller, model) {
 		var projectId = model.get('project').get('id');
 		this.controllerFor('userstorylist').set('model', App.UserStory.find({project:projectId}));
+//		this.controllerFor('selectuserstories', App.UserStory).set('content', App.UserStory.find({project:projectId}));
 		var roadmapId = model.get('id');
 		this.controllerFor('milestones').set('model', App.MileStone.find({roadmap:roadmapId}));
 	},
@@ -27,6 +28,10 @@ App.RoadmapRoute = Ember.Route.extend({
 	events : {
 		select : function(id) {
 			alert("UserStory " + id + " was selected");
+		},
+		goBack : function(id) {
+			var project = App.Project.find(id);
+			this.transitionTo('project', project);
 		}
 	}
 });
@@ -38,27 +43,25 @@ App.RoadmapsController = Ember.ArrayController.extend({
 
 App.RoadmapView = Ember.View.extend({
 	templateName : 'roadmap',
-	parentView : 'project'
+	parentView : 'project.index'
 });
 
 App.UserstorylistController = Ember.ArrayController.extend({
-	
+	selection : null
 });
 
 App.MilestonesController = Ember.ArrayController.extend({
-	
+
 });
 
-App.SelectUserStoryController = Ember.ArrayController.extend({
-	selection : null,
-	active : true
+App.SelectController = Ember.ArrayController.extend({
+	selection : null
 });
 
-App.Select = Ember.Select.extend({
-	multiple : true,
-	optionLabelPath : "content.name",
-	optionValuePath : "content.id"
+App.SelectUserStory = Ember.Select.extend({
+	contentBinding : "App.UserstorylistController.content",
+	selectionBinding : "content.selection",
+    optionLabelPath : "content.name",
+    optionValuePath : "content.id",
+    prompt : "Please select a userStory"
 });
-
-App.SelectMileStoneUserStoriesController = App.SelectUserStoryController.create();
-App.SelectMileStoneUserStoriesController.set("content", App.UserStory.find());

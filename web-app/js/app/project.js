@@ -32,3 +32,7 @@ App.RoadmaplistController = Ember.ArrayController.extend({
 App.RoadmapListView = Ember.View.extend({
 
 });
+
+App.ProjectIndexView = Ember.View.extend({
+	parentView : 'projects'
+});

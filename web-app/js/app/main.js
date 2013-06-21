@@ -82,9 +82,9 @@ App.IndexRoute = Ember.Route.extend({
 //	selection : null,
 //	active : true
 //});
-//
+
 //App.Select = Ember.Select.extend({
-//	multiple : false,
+//	multiple : true
 //	optionLabelPath : "content.name",
 //	optionValuePath : "content.id"
 //});

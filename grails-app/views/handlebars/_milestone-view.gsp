@@ -18,13 +18,7 @@
 						</tr>
 					{{/each}}
 					</table>
-					{{#view App.BootstrapControl inputId="userStories" label="Unselected User Stories"}}
-						{{view App.Select
-							contentBinding="App.SelectMileStoneUserStoriesController"
-							selectionBinding="userStories"
-							valueBinding="aaa"
-							prompt="Please select a userstory"}}
-					{{/view}}
+					{{view App.SelectUserStory}}
 				</section>
 			<form>
 		</div>
