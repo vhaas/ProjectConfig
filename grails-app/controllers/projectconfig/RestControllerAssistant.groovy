@@ -7,7 +7,14 @@ class RestControllerAssistant {
 
 	static String rootForType(Class clazz) {
 		String name = clazz.getName().tokenize('.')[-1]
-		return name.getAt(0).toLowerCase() + name[1..-1]
+		String[] splittedNames = name.split("(?=\\p{Lu})")
+		if (splittedNames.size() > 1)
+			splittedNames = splittedNames[1..-1]
+		String toReturn = ""
+		for (i in splittedNames)
+			toReturn += i.toLowerCase() + "_"
+		toReturn = toReturn[0..-2]
+		return toReturn
 	}
 
 	static JSON renderMultiple(Class clazz, Object it) {
@@ -35,6 +42,7 @@ class RestControllerAssistant {
 		String root = rootForType(clazz)
 		Map result = [:]
 		result [root] = it.transformToMap()
+		println(result)
 		return (result as JSON)
 	}
 
