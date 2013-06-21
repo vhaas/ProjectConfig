@@ -6,10 +6,10 @@
 				<ul class="breadcrumb span12">
 					<li><a href="#">Home</a> <span class="divider">/</span></li>
 					<li>{{#linkTo projects}}Projects{{/linkTo}}<span class="divider">/</span></li>
-					<li>{{#linkTo project project}}{{project.name}}{{/linkTo}}<span class="divider">/</span></li>
+					<li>{{#linkTo project.index project}}{{project.name}}{{/linkTo}}<span class="divider">/</span></li>
 					<li class="active">{{name}}</li>
 				</ul>
-			</div>			
+			</div>
 		</div>
 		<div class="row-fluid">
 			<div class="span3">

@@ -23,6 +23,11 @@ App.RoadmapRoute = Ember.Route.extend({
 			outlet : 'mileStones',
 			controller : 'milestones'
 		})
+	},
+	events : {
+		select : function(id) {
+			alert("UserStory " + id + " was selected");
+		}
 	}
 });
 
@@ -43,3 +48,17 @@ App.UserstorylistController = Ember.ArrayController.extend({
 App.MilestonesController = Ember.ArrayController.extend({
 	
 });
+
+App.SelectUserStoryController = Ember.ArrayController.extend({
+	selection : null,
+	active : true
+});
+
+App.Select = Ember.Select.extend({
+	multiple : true,
+	optionLabelPath : "content.name",
+	optionValuePath : "content.id"
+});
+
+App.SelectMileStoneUserStoriesController = App.SelectUserStoryController.create();
+App.SelectMileStoneUserStoriesController.set("content", App.UserStory.find());
