@@ -30,7 +30,8 @@ App.RoadmapRoute = Ember.Route.extend({
 			alert("UserStory " + id + " was selected");
 		},
 		goBack : function(id) {
-			var project = App.Project.find(id);
+			var project = App.Project.find(id);+
+			alert(project);
 			this.transitionTo('project', project);
 		}
 	}
@@ -41,9 +42,9 @@ App.RoadmapsController = Ember.ArrayController.extend({
 //	needs : ['userstorylist', 'milestones']
 });
 
-App.RoadmapView = Ember.View.extend({
-	templateName : 'roadmap',
-	parentView : 'project.index'
+App.RoadmapIndexView = Ember.View.extend({
+//	templateName : 'roadmap',
+	parentView : 'application'
 });
 
 App.UserstorylistController = Ember.ArrayController.extend({
