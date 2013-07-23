@@ -26,6 +26,7 @@ App.UserStory = DS.Model.extend({
 	epic : DS.belongsTo("App.Epic"),
 	role : DS.belongsTo("App.Role"),
 	project : DS.belongsTo("App.Project"),
+	mileStones : DS.hasMany("App.MileStone"),
 	willGetDeleted : DS.attr("boolean", {
 		defaultValue : false
 	})

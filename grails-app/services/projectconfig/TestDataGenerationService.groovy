@@ -61,10 +61,13 @@ class TestDataGenerationService {
 		Role roleC = new Role(name: "Role C", description: "Description of Role C", project: projectA)
 		Role roleD = new Role(name: "Role D", description: "Description of Role D", project: projectA)
 
+		UserStory storyAAAA = new UserStory(name: "Story AAAA", benefit: "Benefit ot Story AAAA", goal: "Goal of Story AAAA", description: "Description of Story AAAA", project: projectA)
 		UserStory storyAAA = new UserStory(name: "Story AAA", benefit: "Benefit ot Story AAA", goal: "Goal of Story AAA", description: "Description of Story AAA", project: projectA)
 		UserStory storyAAB = new UserStory(name: "Story AAB", benefit: "Benefit ot Story AAB", goal: "Goal of Story AAB", description: "Description of Story AAB", project: projectA)
+		epicAA.addToUserStories(storyAAAA)
 		epicAA.addToUserStories(storyAAA)
 		epicAA.addToUserStories(storyAAB)
+		roleA.addToUserStories(storyAAAA)
 		roleA.addToUserStories(storyAAA)
 		roleA.addToUserStories(storyAAB)
 

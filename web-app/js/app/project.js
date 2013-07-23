@@ -1,10 +1,10 @@
 App.ProjectIndexRoute = Ember.Route.extend({
-	setupController: function(controller, model) {
+	setupController : function(controller, model) {
 		var projectId = model.objectAt(0).get('id');
-		this.controllerFor('roadmaplist').set('model', App.RoadMap.find({project:projectId}));
+		this.controllerFor('roadmaplist').set('model', App.RoadMap.find({project : projectId}));
 	},
-	model: function(params) {
-	    return App.Project.find(params.project_id);
+	model : function(params) {
+		return App.Project.find(params.project_id);
 	},
 	renderTemplate : function() {
 		this.render('roadmap-list', {
@@ -15,7 +15,8 @@ App.ProjectIndexRoute = Ember.Route.extend({
 	},
 	events : {
 		select : function(id) {
-//			alert('RoadMap ID: ' + this.get('controller').get('controllers.roadmaplist').get('content').get('firstObject'));
+			// alert('RoadMap ID: ' +
+			// this.get('controller').get('controllers.roadmaplist').get('content').get('firstObject'));
 			var roadmap = App.RoadMap.find(id);
 			this.transitionTo('roadmap', roadmap);
 		}
@@ -23,11 +24,10 @@ App.ProjectIndexRoute = Ember.Route.extend({
 });
 
 App.ProjectIndexController = Ember.ObjectController.extend({
-	needs: 'roadmaplist'
+	needs : 'roadmaplist'
 });
 
-App.RoadmaplistController = Ember.ArrayController.extend({
-});
+App.RoadmaplistController = Ember.ArrayController.extend({});
 
 App.RoadmapListView = Ember.View.extend({
 

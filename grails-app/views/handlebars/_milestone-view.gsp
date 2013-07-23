@@ -18,7 +18,11 @@
 						</tr>
 					{{/each}}
 					</table>
-					{{view App.SelectUserStory}}
+					{{view App.Select
+						contentBinding="App.UserstorylistController.content"
+						selectionBinding="milestone.userStories"
+						valueBinding="userstory_id"
+						prompt="Please select a user story"}}
 				</section>
 			<form>
 		</div>
