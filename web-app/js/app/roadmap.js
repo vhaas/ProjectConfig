@@ -2,6 +2,7 @@ App.RoadmapRoute = Ember.Route.extend({
 	setupController: function(controller, model) {
 		var projectId = model.get('project').get('id');
 		var roadmapId = model.get('id');
+		alert('Roadmap Id: ' + roadmapId);
 		var mileStones = App.MileStone.find({roadmap:roadmapId});
 		var userStories = App.UserStory.find({project:projectId});
 		var filteredUserStories = App.UserStory.filter((
@@ -50,6 +51,9 @@ App.RoadmapRoute = Ember.Route.extend({
 			var project = App.Project.find(id);+
 			alert(project);
 			this.transitionTo('project', project);
+		},
+		showContent : function() {
+			alert('Content: ' + this.get('controller'));
 		}
 	}
 });
@@ -65,7 +69,8 @@ App.RoadmapIndexView = Ember.View.extend({
 });
 
 App.UserstorylistController = Ember.ArrayController.extend({
-	selection : null
+	selection : null,
+	active : true
 });
 
 App.MilestonesController = Ember.ArrayController.extend({
@@ -78,11 +83,11 @@ App.SelectController = Ember.ArrayController.extend({
 });
 
 App.Select = Ember.Select.extend({
-	multiple : false,
+	multiple : true,
 	optionLabelPath : 'content.name',
 	optionValuePath : 'content.id'
 });
 
 //App.SelectuserstoryController = App.SelectController.create();
-//App.SelectuserstoryController.set('content', App.UserstorylistController.content);
+//App.SelectuserstoryController.set('content', App.UserStory.find());
 	

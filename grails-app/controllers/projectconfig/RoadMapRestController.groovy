@@ -26,8 +26,8 @@ class RoadMapRestController {
 				all = all.getRoadMaps()
 			}
 		} else {
-		all = RoadMap.list()
-		}		
+			all = RoadMap.list()
+		}
 		if (all.empty) {
 			render renderNotFound
 		}

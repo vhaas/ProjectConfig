@@ -15,12 +15,29 @@ class MileStoneRestController {
 	}
 
 	def showAllMileStones() {
-		def all = MileStone.list()
-		if (all.empty) {
-			render renderNotFound
+		def all
+		def ids = params["ids[]"]
+		if (ids) {
+			println "Received: $ids"
+			all = ids.collect{id -> MileStone.get id}
+		}
+		else if (params.roadmap) {
+			all = RoadMap.findById(params.roadmap)
+			if (!all) {
+				render renderNotFound
+				return 
+			}
+			else {
+				all = all.getMileStones()
+			}
 		}
 		else {
-			render RestControllerAssistant.renderMultiple_alternative(MileStone, all)
+			all = MileStone.list()
+		}
+		if (all.empty) {
+			render renderNotFound
+		} else {
+			render RestControllerAssistant.renderMultiple_alternative(MileStone, all.asList())
 		}
 	}
 

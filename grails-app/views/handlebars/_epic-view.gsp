@@ -7,7 +7,7 @@
 				<ul class="breadcrumb span12">
 					<li><a href="#">Home</a> <span class="divider">/</span></li>
 					<li><a href="#/projects">Projects</a> <span class="divider">/</span></li>
-					<li><a href="#/projects">{{project.name}}</a> <span class="divider">/</span></li>					
+					<li><a href="#/projects">{{project.name}}</a> <span class="divider">/</span></li>
 					<li><a href="#">User Story Editor</a> <span class="divider">/</span></li>
 					<li class="active">{{name}}</li>
 				</ul>
@@ -18,7 +18,7 @@
 						<div class="accordion" id="accordion2">
 	      					{{#each item in epics}}
        							{{view App.AccItemView contextBinding='item'}}
-      						{{/each}}							
+      						{{/each}}
     					</div>
 					</section>
 				</div>
@@ -43,7 +43,7 @@
 							{{else}}
 								<button type="submit" class="btn btn-primary pull-right">Speichern</button>
 							{{/unless}}
-							<div class="clearfix"/>						
+							<div class="clearfix"/>
 						</form>
 					</section>
 	<!-- User Stories -->
@@ -52,7 +52,7 @@
 							<h4>
 								{{name}}
 								{{#if isDirty}}
-									<i class="icon-exclamation-sign"></i>								
+									<i class="icon-exclamation-sign"></i>
 								{{/if}}
 							</h4>
 							<form class="form-horizontal" {{action save on="submit"}}>
@@ -76,7 +76,7 @@
 								{{/view}}
 								{{#view App.BootstrapControl inputId="description" label="Beschreibung"}}
 									{{view Ember.TextArea disabledBinding="controller.disabledUserStory" valueBinding="description"}}
-								{{/view}}						
+								{{/view}}
 								{{#view App.BootstrapControl inputId="willGetDeleted" label="User Story löschen"}}
 									{{view Ember.Checkbox disabledBinding="controller.disabledUserStory" checkedBinding="willGetDeleted"}}
 								{{/view}}
@@ -88,7 +88,7 @@
 								{{else}}
 									<button type="submit" class="btn btn-primary pull-right">Speichern</button>
 									<button class="btn btn-secondary pull-right" {{action "saveAndCreate" target="view"}}>Speichern und neue User Story anlegen</button>
-								{{/unless}}						
+								{{/unless}}
 								<div class="clearfix"/>
 							</form>
 						</section>

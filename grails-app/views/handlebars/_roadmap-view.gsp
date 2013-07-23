@@ -32,6 +32,7 @@
 					<section>
 						<div>
 							<button class="btn" {{action "createNewMileStone" target="view"}}>Create new MileStone</button>
+							<button class="btn" {{action "showContent"}}>Show Content</button>
 						</div>
 						<div>
 							Number of Milestones: {{mileStones.length}}

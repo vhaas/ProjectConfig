@@ -33,6 +33,16 @@ class UserStoryRestController {
 				all = all.getUserStories()
 			}
 		}
+		else if (params.project) {
+			all = Project.findById(params.project)
+			if (!all) {
+				render renderNotFound
+				return
+			}
+			else {
+				all = all.getUserStories()
+			}
+		}
 		else {
 			all = UserStory.list()
 		}
