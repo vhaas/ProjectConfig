@@ -1,8 +1,9 @@
 App.RoadmapRoute = Ember.Route.extend({
 	setupController: function(controller, model) {
+//		alert('Roadmap model: ' + model);
 		var projectId = model.get('project').get('id');
 		var roadmapId = model.get('id');
-		alert('Roadmap Id: ' + roadmapId);
+//		alert('Roadmap Id: ' + roadmapId);
 		var mileStones = App.MileStone.find({roadmap:roadmapId});
 		var userStories = App.UserStory.find({project:projectId});
 		var filteredUserStories = App.UserStory.filter((
@@ -11,7 +12,11 @@ App.RoadmapRoute = Ember.Route.extend({
 					var mileStones = userStory.get('mileStones');
 					var boolean = true;
 					mileStones.forEach(function(mileStone) {
-						boolean = false;
+						if (mileStone.get('roadMap')) {
+							if (mileStone.get('roadMap').get('id') === roadmapId) {
+								boolean = false;
+							}
+						}
 					});
 					return boolean;
 				}
@@ -20,12 +25,9 @@ App.RoadmapRoute = Ember.Route.extend({
 		this.controllerFor('userstorylist').set('model', filteredUserStories);
 		this.controllerFor('milestones').set('model', mileStones);
 	},
-	getUserStories: function(projectId) {
-		var userStories = App.UserStory.find({project:projectId});
-		return userStories;
-	},
 	model: function(params) {
-		this._super();
+//		alert('Roadmap params:' + params);
+		this._super(params);
 	    return App.RoadMap.find(params.roadmap_id);
 	},
 	renderTemplate : function() {
@@ -63,9 +65,9 @@ App.RoadmapsController = Ember.ArrayController.extend({
 //	needs : ['userstorylist', 'milestones']
 });
 
-App.RoadmapIndexView = Ember.View.extend({
-//	templateName : 'roadmap',
-	parentView : 'application'
+App.RoadmapView = Ember.View.extend({
+	templateName : 'roadmap',
+	parentView : 'project.index'
 });
 
 App.UserstorylistController = Ember.ArrayController.extend({
