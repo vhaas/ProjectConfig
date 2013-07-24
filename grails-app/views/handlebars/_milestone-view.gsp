@@ -18,10 +18,12 @@
 						</tr>
 					{{/each}}
 					</table>
+					<button type="button" class="btn" {{action "doda" target="controller"}}>&times;</button>
 					{{#view App.BootstrapControl inputId="milestone.userStories" label="Unassigned User Stories"}}
 						{{view App.Select
-							contentBinding="App.UserstorylistController.content"
+							contentBinding="controller.controllers.userstorylist.content"
 							selectionBinding="milestone.userStories"
+							valueBinding="milestone.userStories_ids"
 							prompt="Please select a user story"}}
 					{{/view}}
 				</section>

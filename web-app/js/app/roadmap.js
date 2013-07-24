@@ -94,7 +94,10 @@ App.UserstorylistController = Ember.ArrayController.extend({
 });
 
 App.MilestonesController = Ember.ArrayController.extend({
-
+	needs: ['userstorylist'],
+	doda: function() {
+		alert(this.get('controllers').get('userstorylist').get('content'));
+	}
 });
 
 App.SelectController = Ember.ArrayController.extend({
@@ -103,11 +106,11 @@ App.SelectController = Ember.ArrayController.extend({
 });
 
 App.Select = Ember.Select.extend({
-	multiple : true,
+	multiple : false,
 	optionLabelPath : 'content.name',
 	optionValuePath : 'content.id'
 });
 
-//App.SelectuserstoryController = App.SelectController.create();
-//App.SelectuserstoryController.set('content', App.UserStory.find());
+// App.SelectuserstoryController = App.SelectController.create();
+//App.SelectuserstoryController.set('content', App.UserStory.find(1));
 	
