@@ -23,8 +23,8 @@
 						{{view App.Select
 							contentBinding="controller.controllers.userstorylist.content"
 							selectionBinding="milestone.userStories"
-							valueBinding="milestone.userStories_ids"
-							prompt="Please select a user story"}}
+							valueBinding="milestone.userStories_id"
+							}}
 					{{/view}}
 				</section>
 			<form>
