@@ -8,7 +8,8 @@ App.ProjectIndexRoute = Ember.Route.extend({
 	},
 	renderTemplate : function() {
 		this.render('project', {
-			into : 'application'
+			into : 'application',
+			controller : 'project'
 		}),
 		this.render('roadmap-list', {
 			into : 'project',
@@ -33,8 +34,9 @@ App.ProjectIndexController = Ember.ObjectController.extend({
 
 App.RoadmaplistController = Ember.ArrayController.extend({});
 
-App.RoadmapListView = Ember.View.extend({
-
+App.RoadmaplistView = Ember.View.extend({
+    sortProperties: ['name'],
+    sortAscending: true
 });
 
 App.ProjectIndexView = Ember.View.extend({

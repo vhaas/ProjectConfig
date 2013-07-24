@@ -12,6 +12,8 @@ App.ProjectsRoute = Ember.Route.extend({
 });
 
 App.ProjectsController = Ember.ArrayController.extend({
+    sortProperties: ['name'],
+    sortAscending: false
 });
 
 App.ProjectListView = Ember.View.extend({

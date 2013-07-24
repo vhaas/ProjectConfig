@@ -38,7 +38,7 @@ class UrlMappings {
 		}
 
 		"/rest/projects"(controller: "ProjectRest", parseRequest: true) {
-			action = [GET: "showAllProjects"]
+			action = [GET: "showAllProjects", POST: "save"]
 		}
 		///////////////////////////////////////////////////////////////////////////////////////////
 		//###RoadMap
@@ -47,7 +47,7 @@ class UrlMappings {
 		}
 
 		"/rest/road_maps"(controller: "RoadMapRest", parseRequest: true) {
-			action = [GET: "showAllRoadMaps"]
+			action = [GET: "showAllRoadMaps", POST: "save"]
 		}
 		///////////////////////////////////////////////////////////////////////////////////////////
 		//###MileStone
@@ -56,7 +56,7 @@ class UrlMappings {
 		}
 
 		"/rest/mile_stones"(controller: "MileStoneRest", parseRequest: true) {
-			action = [GET: "showAllMileStones"]
+			action = [GET: "showAllMileStones", POST: "save"]
 		}
 		///////////////////////////////////////////////////////////////////////////////////////////
 		//###Helper

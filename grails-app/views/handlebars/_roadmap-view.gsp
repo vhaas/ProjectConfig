@@ -15,19 +15,23 @@
 			<div class="span3">
 				<form class="form-vertical">
 					<section>
+						<h4>
+							{{name}}
+							{{#if isDirty}}
+								<i class="icon-exclamation-sign"></i>
+							{{/if}}
+						</h4>
 						<form class="form-vertical" {{action save on="submit"}}>
 							{{#view App.BootstrapControl inputId="name" label="Name"}}
 								{{view Ember.TextField valueBinding="name"}}
 							{{/view}}
-							{{#view App.BootstrapControl inputId="description" label="Beschreibung"}}
+							{{#view App.BootstrapControl inputId="description" label="Description"}}
 								{{view Ember.TextArea valueBinding="description"}}
 							{{/view}}
-							<div>
-								<button type="submit" class="btn" size="1">Save changes</button>
-							</div>
-								<button class="btn" {{action "createNewRoadMap" target="view"}}>Create new RoadMap</button>
+							<button type="submit" class="btn btn-primary pull-righ">Save changes</button>
 							<div class="clearfix"/>
 						</form>
+						<button class="btn" {{action "createRoadMap" target="controller"}}>Create new RoadMap</button>
 					</section>
 					<section>
 						<div>

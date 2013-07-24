@@ -30,12 +30,12 @@ App.RoadmapRoute = Ember.Route.extend({
 		this.controllerFor('milestones').set('content', mileStones);
 	},
 	model : function(params) {
-		alert('Params: ' + params.roadmap_id);
 	    return App.RoadMap.find(params.roadmap_id);
 	},
 	renderTemplate : function() {
 		this.render('roadmap', {
-			into : 'application'
+			into : 'application',
+			controller : 'roadmap'
 		}),
 		this.render('unselected-userstories', {
 			into : 'roadmap',
@@ -59,9 +59,26 @@ App.RoadmapRoute = Ember.Route.extend({
 	}
 });
 
-// Controller
-App.RoadmapsController = Ember.ArrayController.extend({
-//	needs : ['userstorylist', 'milestones']
+App.RoadmapController = Ember.ObjectController.extend({	
+	createRoadMap : function() {
+		var roadmap, _this = this;
+		roadmap = App.RoadMap.createRecord({});
+		roadmap.set('project', this.content.get('project'));
+		roadmap.set('name', 'New RoadMap');
+		roadmap.set('description', 'New RoadMap');
+		roadmap.one('didCreate', function() {
+			return Ember.run.next(_this, function() {
+				return this.transitionTo('roadmap', roadmap);
+			});
+		});
+		return roadmap.get('store').commit();
+	},
+	save : function() {
+		var kitten = this.get('model');
+		kitten.save().then(function() {
+			this.transitionToRoute('index');
+		}.bind(this));
+	}
 });
 
 App.RoadmapView = Ember.View.extend({
@@ -70,6 +87,8 @@ App.RoadmapView = Ember.View.extend({
 });
 
 App.UserstorylistController = Ember.ArrayController.extend({
+    sortProperties: ['name'],
+    sortAscending: true,
 	selection : null,
 	active : true
 });
