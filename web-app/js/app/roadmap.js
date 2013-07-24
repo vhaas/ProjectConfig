@@ -1,33 +1,36 @@
 App.RoadmapRoute = Ember.Route.extend({
 	setupController: function(controller, model) {
-//		alert('Roadmap model: ' + model);
+		this.controller.set('content', model);
+//		var projectId = this.modelFor('project').get('id');
 		var projectId = model.get('project').get('id');
 		var roadmapId = model.get('id');
-//		alert('Roadmap Id: ' + roadmapId);
 		var mileStones = App.MileStone.find({roadmap:roadmapId});
 		var userStories = App.UserStory.find({project:projectId});
 		var filteredUserStories = App.UserStory.filter((
 				function(userStory) {
 				if (userStory) {
-					var mileStones = userStory.get('mileStones');
-					var boolean = true;
-					mileStones.forEach(function(mileStone) {
-						if (mileStone.get('roadMap')) {
-							if (mileStone.get('roadMap').get('id') === roadmapId) {
-								boolean = false;
-							}
+					if (userStory.get('project')) {
+						if (userStory.get('project').get('id') === projectId) {
+							var mileStones = userStory.get('mileStones');
+							var boolean = true;
+							mileStones.forEach(function(mileStone) {
+								if (mileStone.get('roadMap')) {
+									if (mileStone.get('roadMap').get('id') === roadmapId) {
+										boolean = false;
+									}
+								}
+							});
+							return boolean;
 						}
-					});
-					return boolean;
+					}
 				}
 				return false;
 			}));		
-		this.controllerFor('userstorylist').set('model', filteredUserStories);
-		this.controllerFor('milestones').set('model', mileStones);
+		this.controllerFor('userstorylist').set('content', filteredUserStories);
+		this.controllerFor('milestones').set('content', mileStones);
 	},
-	model: function(params) {
-//		alert('Roadmap params:' + params);
-		this._super(params);
+	model : function(params) {
+		alert('Params: ' + params.roadmap_id);
 	    return App.RoadMap.find(params.roadmap_id);
 	},
 	renderTemplate : function() {
@@ -50,18 +53,14 @@ App.RoadmapRoute = Ember.Route.extend({
 			alert("UserStory " + id + " was selected");
 		},
 		goBack : function(id) {
-			var project = App.Project.find(id);+
-			alert(project);
+			var project = App.Project.find(id);
 			this.transitionTo('project', project);
-		},
-		showContent : function() {
-			alert('Content: ' + this.get('controller'));
 		}
 	}
 });
 
 // Controller
-App.RoadmapsController = Ember.ArrayController.extend({	
+App.RoadmapsController = Ember.ArrayController.extend({
 //	needs : ['userstorylist', 'milestones']
 });
 
