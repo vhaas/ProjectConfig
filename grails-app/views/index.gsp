@@ -3,8 +3,10 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link href="css/bootstrap.min.css" rel="stylesheet" media="screen"></link>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"></link>
 <link rel="stylesheet/less" type="text/css" href="css/app.less"></link>
+<link rel="stylesheet" type="text/css" href="css/modal.css"></link>
+
 <title>Project Configurer</title>
 <style>
 body {
@@ -15,6 +17,7 @@ body {
 
 <g:render template="/handlebars/form-elements"></g:render>
 <g:render template="/handlebars/projects-view"></g:render>
+<g:render template="/handlebars/empty-view"></g:render>
 
 
 <script type="text/x-handlebars" data-template-name="application">
@@ -41,21 +44,26 @@ body {
 		<div class="container-fluid">
 			{{outlet}}
 		</div>
+		{{outlet modal}}
 	</script>
 
 </head>
 <body>
 
-	<script src="js/Vendors/jquery-1.9.1.js"></script>
+	<script src="js/Vendors/jquery-2.0.3.js"></script>
 	<script src="js/Vendors/handlebars-1.0.0-rc.4.js"></script>
 	<script src="js/Vendors/ember-1.0.0-rc.6.js"></script>
 	<script src="js/Vendors/ember-data-0.13.js"></script>
 	<script src="js/Vendors/bootstrap-2.3.2.js"></script>
 	<script src="js/Vendors/less-1.3.3.min.js"></script>
 
-
 	<script src="js/app/main.js"></script>
 	<script src="js/app/models.js"></script>
+
+	<script src="js/app/modal/modal_animations.js"></script>
+	<script src="js/app/modal/modal_controller.js"></script>
+	<script src="js/app/modal/modal_view.js"></script>
+
 	<script src="js/app/projects.js"></script>
 	<script src="js/app/project.js"></script>
 	<script src="js/app/roadmap.js"></script>

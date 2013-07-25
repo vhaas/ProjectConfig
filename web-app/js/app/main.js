@@ -2,6 +2,26 @@ window.App = Ember.Application.create({
 	LOG_TRANSITIONS : true
 });
 
+App.ApplicationRoute = Em.Route.extend({
+	events : {
+		openModal : function(modal) {
+			this.render(modal, {
+				into : 'application',
+				outlet : 'modal'
+			});
+		},
+		closeModal : function() {
+			alert('Called closeModal');
+			App.animateModalClose().then(function() {
+				this.render('empty', {
+					into : 'application',
+					outlet : 'modal'
+				});
+			}.bind(this));
+		}
+	}
+});
+
 App.ApplicationView = Ember.View.extend({
 	templateName : 'application'
 });

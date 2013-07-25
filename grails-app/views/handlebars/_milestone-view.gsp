@@ -9,7 +9,6 @@
 						{{#if nameIsEmpty}}
 							{{milestone.orderId}}
 						{{else}}
-							test
 							{{milestone.name}}
 						{{/if}}
 					</h5>
@@ -19,9 +18,6 @@
 						<tr>
 							<td>
 								{{story.name}}
-							</td>
-							<td>
-								<button type="button" class="close" {{action "select" story.id}}>&times;</button>
 							</td>
 						</tr>
 					{{/each}}

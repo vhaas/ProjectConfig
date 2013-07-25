@@ -1,6 +1,7 @@
 <g:render template="/handlebars/milestone-view"></g:render>
 <g:render template="/handlebars/unselected-userstories-view"></g:render>
 <g:render template="/handlebars/popup-view"></g:render>
+<g:render template="/handlebars/modal2-view"></g:render>
 <g:render template="/handlebars/create-milestone-modal-view"></g:render>
 <script type="text/x-handlebars" data-template-name="roadmap">
 		<div class="container-fluid" data-spy="scroll" data-target=".nav-tabs">
@@ -37,7 +38,7 @@
 					</section>
 					<section>
 						<div>
-							<button class="btn" {{action "openNewMileStoneModal" this}}>Create new MileStone</button>
+							<button class="btn" {{action "edit" this}}>Create new MileStone</button>
 						</div>
 						<div>
 							Number of Milestones: {{mileStones.length}}
