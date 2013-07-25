@@ -28,6 +28,7 @@ class MileStone {
 			name: name,
 			description: description,
 			road_map_id: roadMap ? roadMap.id : '',
+			project_id: project ? project.id : '',
 			user_story_ids: userStories.collect{it.id},
 			oder_id: orderId
 		]

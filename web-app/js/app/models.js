@@ -51,7 +51,11 @@ App.RoadMap = DS.Model.extend({
 App.MileStone = DS.Model.extend({
 	name : DS.attr("string"),
 	description : DS.attr("string"),
-	oderId : DS.attr("number"),
+	orderId : DS.attr("number"),
 	roadMap : DS.belongsTo("App.RoadMap"),
-	userStories : DS.hasMany("App.UserStory")
+	userStories : DS.hasMany("App.UserStory"),
+	project : DS.belongsTo("App.Project"),
+	nameIsEmpty : (function() {
+		return Ember.isEmpty(this.name);
+	})
 });

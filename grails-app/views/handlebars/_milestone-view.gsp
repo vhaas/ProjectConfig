@@ -4,7 +4,15 @@
 		<div class="span3">
 			<form>
 				<section>
-					<h5>{{milestone.name}}</h5>
+					<h5>
+						{{milestone.oderId}}
+						{{#if nameIsEmpty}}
+							{{milestone.orderId}}
+						{{else}}
+							test
+							{{milestone.name}}
+						{{/if}}
+					</h5>
 					<div class="well well-small">{{milestone.description}}</div>
 					<table class="table">
 					{{#each story in milestone.userStories}}
