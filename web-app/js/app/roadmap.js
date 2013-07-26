@@ -5,7 +5,7 @@ App.RoadmapRoute = Ember.Route.extend({
 		var projectId = model.get('project').get('id');
 		var roadmapId = model.get('id');
 		var mileStones = App.MileStone.find({roadmap:roadmapId});
-		var userStories = App.UserStory.find({project:projectId});
+		var userStories = App.UserStory.find({project:projectId});		
 //		var filteredUserStories = App.UserStory.filter((
 //				function(userStory) {
 //				if (userStory) {
@@ -149,7 +149,7 @@ App.UserstorylistController = Ember.ArrayController.extend({
 	removeItem: function(value){
 //        var obj = this.findProperty('id', value);
 //        this.removeObject(obj);
-		alert('The following item will be removed: ' + value);
+//		alert('The following item will be removed: ' + value);
     }
 });
 
@@ -164,10 +164,10 @@ App.MilestonesController = Ember.ArrayController.extend({
 });
 
 App.MilestoneController = Ember.ObjectController.extend({
-	createMileStone : function(milestone) {		
-		milestone.get('store').commit();
-		return this.transitionTo('roadmap', this.get('content').get('roadmap'));
-	},
+//	createMileStone : function(milestone) {		
+//		milestone.get('store').commit();
+//		return this.transitionTo('roadmap', this.get('content').get('roadmap'));
+//	},
 	needs: ['userstorylist'],
 	selectedUserStory : null,
 	selectedChanged : function() {

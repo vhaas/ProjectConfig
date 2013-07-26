@@ -13,6 +13,7 @@
 						{{/if}}
 					<button class="btn btn-mini pull-right"{{action "editMilestone" milestone}}><i class="icon-wrench"></i></button>
 					</h5>
+					{{milestone.userStories.length}}
 					<div class="well well-small">{{milestone.description}}</div>
 					<table class="table">
 					{{#each story in milestone.userStories}}

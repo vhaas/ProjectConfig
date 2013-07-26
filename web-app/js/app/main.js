@@ -28,7 +28,22 @@ App.ApplicationView = Ember.View.extend({
 App.Adapter = DS.RESTAdapter.extend({
 	buildURL : function(record, suffix) {
 		return 'rest' + this._super(record, suffix)
-	}
+	},
+	dirtyRecordsForHasManyChange : function(dirtySet, record, relationship) {
+		alert(dirtySet);
+		relationship.childReference.parent = relationship.parentReference;
+		this._dirtyTree(dirtySet, record);
+	},
+	serializer : DS.RESTSerializer.extend({
+		addHasMany : function(hash, record, key, relationship) {
+			var ids = record.get(relationship.key).map(function(item) {
+				return parseInt(item.get('id'));
+			});
+//		    hash[this.singularize(Ember.String.decamelize(relationship.key)) + '_ids'] = ids;
+//		    hash[relationship.key] = ids;
+		    hash[key] = ids;
+		}
+	})
 });
 
 App.Adapter.configure("plurals", {

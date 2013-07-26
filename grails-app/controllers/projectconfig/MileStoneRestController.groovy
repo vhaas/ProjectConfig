@@ -18,7 +18,6 @@ class MileStoneRestController {
 		def all
 		def ids = params["ids[]"]
 		if (ids) {
-			println "Received: $ids"
 			all = ids.collect{id -> MileStone.get id}
 		}
 		else if (params.roadmap) {

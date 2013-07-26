@@ -1,6 +1,7 @@
 package projectconfig
 
 import grails.converters.JSON
+import groovy.json.JsonSlurper;
 
 class UserStoryRestController {
 
@@ -20,7 +21,6 @@ class UserStoryRestController {
 		def all
 		def ids = params["ids[]"]
 		if(ids){
-			println "Received: $ids"
 			all = ids.collect{id -> UserStory.get id}
 		}
 		else if (params.epic) {
@@ -87,9 +87,8 @@ class UserStoryRestController {
 		}
 	}
 
-	def update = {
+	def update = {		
 		def p = params
-		println(p)
 		def userStoryInstance = UserStory.get(params.id)
 		if (userStoryInstance) {
 			if (p.version) {
@@ -101,15 +100,26 @@ class UserStoryRestController {
 					return
 				}
 			}
-			def props = p.user_story
+			def props = p.user_story			
 			def userStoryRole = Role.get(props.role_id)
 			if (userStoryRole) {
 				userStoryInstance.role = userStoryRole
 			}
 			else {
 				userStoryInstance.role = null
-			}
+			}			
 			userStoryInstance.properties = p.user_story
+			def paramMileStone = request.JSON as Map
+			def mileStoneIds = paramMileStone.get('user_story').get('mile_stone_ids')
+			if (mileStoneIds) {
+				List<MileStone> mileStones = new ArrayList<MileStone>()
+				mileStoneIds.each {
+					def mileStone = MileStone.get(it)
+					mileStone.userStories.add(userStoryInstance)
+					mileStones.add(mileStone)
+				}
+				userStoryInstance.mileStones = mileStones
+			}
 			if (!userStoryInstance.hasErrors() && userStoryInstance.save(flush: true)) {
 				response.status = 200 // OK
 				userStoryInstance = userStoryInstance.transformToMap()

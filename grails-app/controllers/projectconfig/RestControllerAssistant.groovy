@@ -42,7 +42,6 @@ class RestControllerAssistant {
 		String root = rootForType(clazz)
 		Map result = [:]
 		result [root] = it.transformToMap()
-		println(result)
 		return (result as JSON)
 	}
 

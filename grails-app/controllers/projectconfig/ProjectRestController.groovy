@@ -47,7 +47,6 @@ class ProjectRestController {
 
 	def update = {
 		def p = params
-		println(p)
 		def projectInstance = Project.get(params.id)
 		if (projectInstance) {
 			if (p.version) {

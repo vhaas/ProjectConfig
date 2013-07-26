@@ -22,7 +22,7 @@ App.UserStory = DS.Model.extend({
 	description : DS.attr("string"),
 	goal : DS.attr("string"),
 	benefit : DS.attr("string"),
-	roadMap : DS.belongsTo("App.RoadMap"),
+//	roadMap : DS.belongsTo("App.RoadMap"),
 	epic : DS.belongsTo("App.Epic"),
 	role : DS.belongsTo("App.Role"),
 	project : DS.belongsTo("App.Project"),
@@ -30,6 +30,10 @@ App.UserStory = DS.Model.extend({
 	willGetDeleted : DS.attr("boolean", {
 		defaultValue : false
 	})
+//	mileStoneUserStories : DS.hasMany("App.MileStoneUserStory"),
+//	mileStones: (function() {
+//		return this.get('mileStoneUserStories').getEach('mileStone');
+//	}).property('mileStoneUserStories.@each.relationshipsLoaded')
 });
 
 App.Role = DS.Model.extend({
@@ -58,4 +62,16 @@ App.MileStone = DS.Model.extend({
 	nameIsEmpty : (function() {
 		return Ember.isEmpty(this.get('name'));
 	})
+//	mileStoneUserStories : DS.hasMany("App.MileStoneUserStory"),
+//	userStories: (function() {
+//		return this.get('mileStoneUserStories').getEach('userStory');
+//	}).property('mileStoneUserStories.@each.relationshipsLoaded')
 });
+
+//App.MileStoneUserStory = DS.Model.extend({
+//	mileStone : DS.belongsTo("App.MileStone"),
+//	userStory : DS.belongsTo("App.UserStory"),
+//	relationshipsLoaded : (function(){
+//		return this.get('mileStone.isLoaded') && this.get('userStory.isLoaded');
+//	}).property('mileStone.isLoaded', 'userStory.isLoaded')
+//});
