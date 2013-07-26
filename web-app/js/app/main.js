@@ -29,11 +29,11 @@ App.Adapter = DS.RESTAdapter.extend({
 	buildURL : function(record, suffix) {
 		return 'rest' + this._super(record, suffix)
 	},
-	dirtyRecordsForHasManyChange : function(dirtySet, record, relationship) {
-		alert(dirtySet);
-		relationship.childReference.parent = relationship.parentReference;
-		this._dirtyTree(dirtySet, record);
-	},
+//	dirtyRecordsForHasManyChange : function(dirtySet, record, relationship) {
+//		alert(dirtySet);
+//		relationship.childReference.parent = relationship.parentReference;
+//		this._dirtyTree(dirtySet, record);
+//	},
 	serializer : DS.RESTSerializer.extend({
 		addHasMany : function(hash, record, key, relationship) {
 			var ids = record.get(relationship.key).map(function(item) {

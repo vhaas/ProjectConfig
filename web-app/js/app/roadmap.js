@@ -100,7 +100,8 @@ App.MilestoneModalController = App.ModalController.extend({
 		milestone.set('roadMap', roadmap);
 		milestone.set('project', roadmap.get('project'));
 		milestone.on('didCreate', this, function() {
-			this.transitionToRoute('roadmap', roadmap);
+//			this.transitionToRoute('roadmap', roadmap);
+//			this.render();
 			this.send('close');
 	    });
 	    this.set('model', milestone);
@@ -127,9 +128,7 @@ App.RoadmapController = Ember.ObjectController.extend({
 		return roadmap.get('store').commit();
 	},
 	save : function() {
-		roadmap.save().then(function() {
-			this.transitionToRoute('roadmap', roadmap);
-		}.bind(this));
+		this.get('model.transaction').commit();
 	},	
 	isNotDirty : function() {
 		return !this.get('isDirty');
@@ -138,7 +137,10 @@ App.RoadmapController = Ember.ObjectController.extend({
 
 App.RoadmapView = Ember.View.extend({
 	templateName : 'roadmap',
-	parentView : 'project.index'
+	parentView : 'project.index',
+	save : function() {
+		this.get('controller').save();
+	}
 });
 
 App.UserstorylistController = Ember.ArrayController.extend({
@@ -164,10 +166,6 @@ App.MilestonesController = Ember.ArrayController.extend({
 });
 
 App.MilestoneController = Ember.ObjectController.extend({
-//	createMileStone : function(milestone) {		
-//		milestone.get('store').commit();
-//		return this.transitionTo('roadmap', this.get('content').get('roadmap'));
-//	},
 	needs: ['userstorylist'],
 	selectedUserStory : null,
 	selectedChanged : function() {
@@ -176,8 +174,6 @@ App.MilestoneController = Ember.ObjectController.extend({
 		this.get('controllers').get('userstorylist').removeItem(this.get('selectedUserStory').get('id'));
 		this.get('content').get('userStories').pushObject(this.get('selectedUserStory'));
 		this.get("model.transaction").commit();
-//		this.get('selectedUserStory').get('mileStones').pushObject(App.MileStone.find(this.get('content').get('id')));
-//		this.get('selectedUserStory').get('store').commit();
 	}.observes('selectedUserStory'),
 	controllercheck : function() {
 		alert(this);

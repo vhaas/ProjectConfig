@@ -61,7 +61,7 @@ App.MileStone = DS.Model.extend({
 	project : DS.belongsTo("App.Project"),
 	nameIsEmpty : (function() {
 		return Ember.isEmpty(this.get('name'));
-	})
+	}).property('name')
 //	mileStoneUserStories : DS.hasMany("App.MileStoneUserStory"),
 //	userStories: (function() {
 //		return this.get('mileStoneUserStories').getEach('userStory');

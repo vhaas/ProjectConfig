@@ -78,6 +78,17 @@ class MileStoneRestController {
 					return
 				}
 			}
+			def paramUserStory = request.JSON as Map
+			def userStoryIds = paramUserStory.get('mile_stone').get('user_story_ids')
+			if (userStoryIds) {
+				List<UserStory> userStories = new ArrayList<UserStory>()
+				userStoryIds.each {
+					def userStory = UserStory.get(it)
+					userStory.mileStones.add(milestoneInstance)
+					userStories.add(userStory)
+				}
+				milestoneInstance.userStories = userStories
+			}
 			milestoneInstance.properties = p.mile_stone
 			if (!milestoneInstance.hasErrors() && milestoneInstance.save(flush: true)) {
 				response.status = 200 // OK

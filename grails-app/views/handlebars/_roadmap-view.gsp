@@ -44,7 +44,7 @@
 							Number of Milestones: {{mileStones.length}}
 						</div>
 					</section>
-					<section style="display: block; overflow-y: scroll">
+					<section style="height:22em;display: block; overflow: auto">
 						{{outlet unselected-user-stories}}
 					</section>
 				</form>
