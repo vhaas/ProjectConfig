@@ -5,9 +5,9 @@
 			<form>
 				<section>
 					<h5>
-						{{milestone.orderid}}
-						{{#if nameIsEmpty}}
-							{{milestone.orderid}}
+						{{#if milestone.nameIsEmpty}}
+							{{milestone.orderId}}
+							{{milestone.name}}
 						{{else}}
 							{{milestone.name}}
 						{{/if}}
@@ -29,10 +29,11 @@
 					{{#view App.BootstrapControl inputId="milestone.userStories" label="Unassigned User Stories"}}
 						{{view App.Select
 							contentBinding="controller.controllers.userstorylist.content"
-							selectionBinding="milestone.userStories"
+							selectionBinding="controller.selectedUserStory"
 							valueBinding="milestone.userStories_id"
 							}}
 					{{/view}}
+					<button type="button" {{action "controllercheck"}}>&times;</button>
 				</section>
 			<form>
 		</div>
