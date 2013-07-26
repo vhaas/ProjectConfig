@@ -1,8 +1,8 @@
 <g:render template="/handlebars/milestone-view"></g:render>
 <g:render template="/handlebars/unselected-userstories-view"></g:render>
 <g:render template="/handlebars/popup-view"></g:render>
-<g:render template="/handlebars/modal2-view"></g:render>
-<g:render template="/handlebars/create-milestone-modal-view"></g:render>
+<g:render template="/handlebars/roadmap-modal-view"></g:render>
+<g:render template="/handlebars/milestone-modal-view"></g:render>
 <script type="text/x-handlebars" data-template-name="roadmap">
 		<div class="container-fluid" data-spy="scroll" data-target=".nav-tabs">
 			<div class="row-fluid">
@@ -31,14 +31,14 @@
 							{{#view App.BootstrapControl inputId="description" label="Description"}}
 								{{view Ember.TextArea valueBinding="description"}}
 							{{/view}}
-							<button type="submit" class="btn btn-primary pull-righ">Save changes</button>
+							<button type="submit" class="btn btn-primary pull-left" style="width:12em" {{bindAttr disabled="isNotDirty"}}>Save changes</button>
 							<div class="clearfix"/>
 						</form>
-						<button class="btn" {{action "createRoadMap" target="controller"}}>Create new RoadMap</button>
+						<button class="btn pull-right" style="width:12em" {{action "createRoadmap" this}}>Create new RoadMap</button>
 					</section>
-					<section>
+					<section style="height:3em">
 						<div>
-							<button class="btn" {{action "edit" this}}>Create new MileStone</button>
+							<button class="btn pull-right" style="width:12em" {{action "createMilestone" this}}>Create new MileStone</button>
 						</div>
 						<div>
 							Number of Milestones: {{mileStones.length}}

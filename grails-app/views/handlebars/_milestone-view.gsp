@@ -5,12 +5,13 @@
 			<form>
 				<section>
 					<h5>
-						{{milestone.oderId}}
+						{{milestone.orderid}}
 						{{#if nameIsEmpty}}
-							{{milestone.orderId}}
+							{{milestone.orderid}}
 						{{else}}
 							{{milestone.name}}
 						{{/if}}
+					<button class="btn btn-mini pull-right"{{action "editMilestone" milestone}}><i class="icon-wrench"></i></button>
 					</h5>
 					<div class="well well-small">{{milestone.description}}</div>
 					<table class="table">
@@ -19,10 +20,12 @@
 							<td>
 								{{story.name}}
 							</td>
+							<td>
+								<button type="button" class="close" {{action "select" story.id}}>&times;</button>
+							</td>
 						</tr>
 					{{/each}}
 					</table>
-					<button type="button" class="btn" {{action "doda" target="controller"}}>&times;</button>
 					{{#view App.BootstrapControl inputId="milestone.userStories" label="Unassigned User Stories"}}
 						{{view App.Select
 							contentBinding="controller.controllers.userstorylist.content"

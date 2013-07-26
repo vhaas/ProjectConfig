@@ -52,7 +52,7 @@ body {
 
 	<script src="js/Vendors/jquery-2.0.3.js"></script>
 	<script src="js/Vendors/handlebars-1.0.0-rc.4.js"></script>
-	<script src="js/Vendors/ember-1.0.0-rc.6.js"></script>
+	<script src="js/Vendors/ember-1.0.0-rc.6.1.js"></script>
 	<script src="js/Vendors/ember-data-0.13.js"></script>
 	<script src="js/Vendors/bootstrap-2.3.2.js"></script>
 	<script src="js/Vendors/less-1.3.3.min.js"></script>

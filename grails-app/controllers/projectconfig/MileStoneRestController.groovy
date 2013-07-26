@@ -79,7 +79,7 @@ class MileStoneRestController {
 					return
 				}
 			}
-			milestoneInstance.properties = p.milestone
+			milestoneInstance.properties = p.mile_stone
 			if (!milestoneInstance.hasErrors() && milestoneInstance.save(flush: true)) {
 				response.status = 200 // OK
 				milestoneInstance = milestoneInstance.transformToMap()

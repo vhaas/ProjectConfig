@@ -62,29 +62,55 @@ App.RoadmapRoute = Ember.Route.extend({
 			});
 			modalView.append();
 		},
-	    edit: function(roadmap) {
-	        this.controllerFor('roadmap.modal').edit(roadmap);
+	    createRoadmap: function(roadmap) {
+	        this.controllerFor('roadmap.modal').create(roadmap);
 	        this.send('openModal', 'roadmap.modal');
-	    }
+	    },
+	    editMilestone: function(milestone) {
+	        this.controllerFor('milestone.modal').edit(milestone);
+	        this.send('openModal', 'milestone.modal');
+	    },
+	    createMilestone: function(roadmap) {
+	        this.controllerFor('milestone.modal').create(roadmap);
+	        this.send('openModal', 'milestone.modal');
+	    },
 	}
 });
 
 App.RoadmapModalController = App.ModalController.extend({
-	create : function () {
-		alert('Called create');
-		var roadmap = App.RoadMap.createRecord();
-		roadmap.on('didCreate', this, function() {
+	create : function (roadmap) {
+		var newRoadmap = App.RoadMap.createRecord();
+		newRoadmap.set('project', roadmap.get('project'));
+		newRoadmap.on('didCreate', this, function() {
+			this.transitionToRoute('roadmap', newRoadmap);
 			this.send('close');
 	    });
-	    this.set('model', roadmap);
+	    this.set('model', newRoadmap);
 	}
 });
 
 App.RoadmapModalView = App.ModalView.extend({
-	templateName : 'modal2'
+	templateName : 'roadmap-modal'
 });
 
-App.RoadmapController = Ember.ObjectController.extend({	
+App.MilestoneModalController = App.ModalController.extend({
+	create : function (roadmap) {
+		var milestone = App.MileStone.createRecord();
+		milestone.set('roadMap', roadmap);
+		milestone.set('project', roadmap.get('project'));
+		milestone.on('didCreate', this, function() {
+			this.transitionToRoute('roadmap', roadmap);
+			this.send('close');
+	    });
+	    this.set('model', milestone);
+	}
+});
+
+App.MilestoneModalView = App.ModalView.extend({
+	templateName : 'milestone-modal'
+});
+
+App.RoadmapController = Ember.ObjectController.extend({
 	needs: ['milestones'],
 	createRoadMap : function() {
 		var roadmap, _this = this;
@@ -103,7 +129,10 @@ App.RoadmapController = Ember.ObjectController.extend({
 		roadmap.save().then(function() {
 			this.transitionToRoute('roadmap', roadmap);
 		}.bind(this));
-	}	
+	},	
+	isNotDirty : function() {
+		return !this.get('isDirty');
+	}.property('isDirty')
 });
 
 App.RoadmapView = Ember.View.extend({
@@ -121,10 +150,10 @@ App.UserstorylistController = Ember.ArrayController.extend({
 App.MilestonesController = Ember.ArrayController.extend({
 	needs: ['userstorylist'],
 	sortProperties: ['orderId'],
-    sortAscending: true,	
-	doda: function() {
-		alert(this.get('controllers').get('userstorylist').get('content'));
-	}
+    sortAscending: true,
+    doda : function() {
+    	alert('OrderId: ' + this.content.get('order_id'));
+    }
 });
 
 App.MilestoneController = Ember.ObjectController.extend({
@@ -134,25 +163,11 @@ App.MilestoneController = Ember.ObjectController.extend({
 	}
 });
 
-App.NewMilestoneModalView = Ember.View.extend({
-	templateName : 'newMileStone',
-	layoutName : 'modal',
-	closeModale : function(event) {
-		this.get('controller').get('content').deleteRecord();
-		this.remove();
-	},
-	saveMilestone : function() {
-		this.get('controller').createMileStone(this.get('controller').get('content'));
-		this.remove();
-	},
-	resetForm : function() {
-		this.set('name', '');
-		this.set('description', '');
-	},
-	isNotDirty : function() {
-		return !this.get('controller.content.isDirty')
-	}.property('controller.content.isDirty').cacheable()
-});
+App.MileStoneView = Ember.View.extend({
+	mouseover : function() {
+		
+	}
+})
 
 App.Select = Ember.Select.extend({
 	multiple : true,

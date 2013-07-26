@@ -11,7 +11,6 @@ App.ApplicationRoute = Em.Route.extend({
 			});
 		},
 		closeModal : function() {
-			alert('Called closeModal');
 			App.animateModalClose().then(function() {
 				this.render('empty', {
 					into : 'application',

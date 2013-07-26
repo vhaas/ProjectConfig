@@ -1,8 +1,8 @@
-<script type="text/x-handlebars" data-template-name="modal2">
-	<div class="modal">
+<script type="text/x-handlebars" data-template-name="milestone-modal">
+	<div class="modal soft">
   		<div class="modal-header">
     		{{#if isNew}}
-      			Create Widget
+      			Create MileStone
 			{{else}}
       			Editing: {{unbound name}}
 			{{/if}}
@@ -13,11 +13,14 @@
         			<label>Name</label>
     				{{view Ember.TextField valueBinding="name"}}
         				{{#each msg in errors.name}}{{msg}}{{/each}}
+    				<label>Description</label>
+    				{{view Ember.TextArea valueBinding="description"}}
+        				{{#each msg in errors.name}}{{msg}}{{/each}}
       			</div>
     		</div>
 			<div class="modal-footer">
-      			<button type="submit" {{bindAttr disabled="shouldDisableSubmit"}}>Save</button>
-      			<button {{action close}}>Cancel</button>
+      			<button class="btn" style="width:6em" type="submit" {{bindAttr disabled="shouldDisableSubmit"}}>Save</button>
+      			<button class="btn" style="width:6em" {{action close}}>Cancel</button>
       			{{#if isSaving}}
         			<img src="{{unbound App.AJAX_LOADER_IMG}}" alt="Loading..." class="ajax-loader">
         			Saving...
