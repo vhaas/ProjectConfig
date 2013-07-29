@@ -14,7 +14,6 @@
 								{{/if}}
 							<button class="btn btn-mini pull-right"{{action "editMilestone" milestone}}><i class="icon-wrench"></i></button>
 							</h5>
-							{{milestone.userStories.length}}
 							<div class="well well-small">{{milestone.description}}</div>
 							<table class="table">
 							{{#each story in milestone.userStories}}
@@ -30,7 +29,7 @@
 							</table>
 							{{#view App.BootstrapControl inputId="milestone.userStories" label="Unassigned User Stories"}}
 								{{view App.Select
-									contentBinding="controller.controllers.userstorylist.content"
+									contentBinding="controller.controllers.userstorylist.filteredContent"
 									selectionBinding="controller.selectedUserStory"
 									valueBinding="milestone.userStories_id"
 									}}

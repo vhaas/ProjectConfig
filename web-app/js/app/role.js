@@ -1,3 +1,7 @@
+App.RolesController = Ember.ArrayController.extend({
+	itemController : 'role'
+});
+
 App.RoleController = Ember.ObjectController.extend({
 	save: function() {		
 		var model = App.store.commit();
@@ -10,5 +14,24 @@ App.RoleController = Ember.ObjectController.extend({
 	}
 });
 
-App.SelectRolesController = App.SelectController.create();
-App.SelectRolesController.set("content", App.Role.find());
+App.RoleModalController = App.ModalController.extend({
+	create : function (userStory) {
+		var newRole = App.Role.createRecord();
+		newRole.set('project', userStory.get('project'));
+		newRole.on('didCreate', this, function() {
+			this.send('close');
+	    });
+	    this.set('model', newRole);
+	}
+});
+
+App.RoleModalView = App.ModalView.extend({
+	templateName : 'basic-modal',
+	className : 'Role'
+});
+
+App.RoleSelect = Ember.Select.extend({
+	multiple : false,
+	optionLabelPath : 'content.name',
+	optionValuePath : 'content.id',	
+});

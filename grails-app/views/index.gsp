@@ -68,6 +68,8 @@ body {
 	<script src="js/app/projects.js"></script>
 	<script src="js/app/project.js"></script>
 	<script src="js/app/roadmap.js"></script>
+	<script src="js/app/epic.js"></script>
+	<script src="js/app/role.js"></script>
 
 </body>
 </html>

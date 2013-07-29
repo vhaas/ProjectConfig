@@ -39,8 +39,6 @@ App.Adapter = DS.RESTAdapter.extend({
 			var ids = record.get(relationship.key).map(function(item) {
 				return parseInt(item.get('id'));
 			});
-//		    hash[this.singularize(Ember.String.decamelize(relationship.key)) + '_ids'] = ids;
-//		    hash[relationship.key] = ids;
 		    hash[key] = ids;
 		}
 	})
@@ -50,19 +48,9 @@ App.Adapter.configure("plurals", {
 	"user_story" : "user_stories"
 });
 
-//App.store = DS.Store.create({
-//	revision : 11,
-//	adapter : App.Adapter.create(),
-//});
-
 App.Store = DS.Store.extend({
 	adapter : 'App.Adapter'
 });
-
-//App.Store = DS.Store.extend({
-//	revision : 11,
-//	adapter : DS.GrailsAdapter.create()
-//});
 
 App.BootstrapControl = Ember.View.extend({
 	classNames : [ "control-group" ],
@@ -73,6 +61,7 @@ App.Router.map(function() {
 	this.resource('projects', { path : '/' });
 	this.resource('project', { path : 'project/:project_id' }, function() {
 		this.resource('roadmap', { path : 'roadmap/:roadmap_id' });
+		this.resource('epic', { path : 'epic/:epic_id' });
 	});
 });
 

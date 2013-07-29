@@ -1,8 +1,8 @@
-<script type="text/x-handlebars" data-template-name="milestone-modal">
+<script type="text/x-handlebars" data-template-name="basic-modal">
 	<div class="modal soft">
   		<div class="modal-header">
     		{{#if isNew}}
-      			Create MileStone
+      			Create new {{view.className}}
 			{{else}}
       			Editing: {{unbound name}}
 			{{/if}}

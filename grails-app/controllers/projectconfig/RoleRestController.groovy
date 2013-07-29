@@ -17,18 +17,25 @@ class RoleRestController {
 	}
 
 	def showAllRoles() {
-		def all = Role.list()
+		def all
+		if (params.project) {
+			all = Project.findById(params.project)
+			if (!all) {
+				render renderNotFound
+				return
+			}
+			else {
+				all = all.getRoles()
+			}
+		}
+		else {
+			all = Role.list()
+		}
 		if (all.empty) {
 			render renderNotFound
 		}
 		else {
-			List<Map> returnMap = new ArrayList<Map>()
-			all.each {
-				def map = it.transformToMap()
-				returnMap.add(map)
-			}
-			def returnedRoles = ["roles": returnMap]
-			render (contentType: "application/json", text: returnedRoles as JSON)
+			render RestControllerAssistant.renderMultiple_alternative(Role, all.asList())
 		}
 	}
 

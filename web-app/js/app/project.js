@@ -1,7 +1,8 @@
 App.ProjectIndexRoute = Ember.Route.extend({
 	setupController : function(controller, model) {
 		var projectId = this.modelFor('project').get('id');
-		this.controllerFor('roadmaplist').set('content', App.RoadMap.find({project : projectId}));
+		this.controllerFor('roadmap.list').set('content', App.RoadMap.find({project : projectId}));
+		this.controllerFor('epic.list').set('content', App.Epic.find({project : projectId}));
 	},
 	model : function(params) {
 		return App.Project.find(params.project_id);
@@ -14,13 +15,22 @@ App.ProjectIndexRoute = Ember.Route.extend({
 		this.render('roadmap-list', {
 			into : 'project',
 			outlet : 'roadmap-list',
-			controller : 'roadmaplist'
+			controller : 'roadmap.list'
+		}),
+		this.render('epic-list', {
+			into : 'project',
+			outlet : 'epic-list',
+			controller : 'epic.list'
 		});
 	},
 	events : {
-		select : function(id) {
+		selectRoadmap : function(id) {
 			var roadmap = App.RoadMap.find(id);
 			this.transitionTo('roadmap', roadmap);
+		},
+		selectEpic : function(id) {
+			var epic = App.Epic.find(id);
+			this.transitionTo('epic', epic);
 		},
 		error: function(error, transition) {
 			alert('ERROR: ' + error);
@@ -29,12 +39,21 @@ App.ProjectIndexRoute = Ember.Route.extend({
 });
 
 App.ProjectIndexController = Ember.ObjectController.extend({
-	needs : 'roadmaplist'
+	needs : ['roadmap.list', 'epic.list']
 });
 
-App.RoadmaplistController = Ember.ArrayController.extend({});
+App.RoadmapListController = Ember.ArrayController.extend({});
 
-App.RoadmaplistView = Ember.View.extend({
+App.EpicListController = Ember.ArrayController.extend({});
+
+App.RoadmapListView = Ember.View.extend({
+	templateName : 'roadmap-list',
+    sortProperties: ['name'],
+    sortAscending: true
+});
+
+App.EpicListView = Ember.View.extend({
+	templateName : 'epic-list',
     sortProperties: ['name'],
     sortAscending: true
 });

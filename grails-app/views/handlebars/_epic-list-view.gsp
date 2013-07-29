@@ -1,4 +1,4 @@
-<script type="text/x-handlebars" data-template-name="roadmap-list">
+<script type="text/x-handlebars" data-template-name="epic-list">
 	<section>
 		<table class="table">
 			{{#each item in controller}}
@@ -7,7 +7,7 @@
 						{{#linkTo roadmap item}} {{item.name}} {{/linkTo}}
 					</td>
 					<td>
-						<button class="btn btn-mini pull-right"{{action "selectRoadmap" item.id}}><i class="icon-wrench"></i></button>
+						<button class="btn btn-mini pull-right"{{action "selectEpic" item.id}}><i class="icon-wrench"></i></button>
 					</td>
 				</tr>
 			{{/each}}
