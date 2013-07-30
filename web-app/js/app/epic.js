@@ -17,7 +17,7 @@ App.EpicRoute = Ember.Route.extend({
 			into : 'application',
 			controller : 'epic'
 		}),
-		this.render('userstory-list', {
+		this.render('userstory', {
 			into : 'epic',
 			outlet : 'userStories',
 			controller : 'userstories'
@@ -86,7 +86,36 @@ App.UserstoriesController = Ember.ArrayController.extend({
 });
 
 App.UserstoryController = Ember.ObjectController.extend({
-	needs : ['roles']
+	needs : ['roles'],
+	enabledUserStory : null,
+	isEnabled : (function() {
+		if (Ember.isEmpty(this.get('enabledUserStory'))) {
+			return true;
+		} else {
+			return Ember.isEqual(this.get('content').get('id'), this.get('enabledUserStory').get('id'));
+		}
+	}).property('enabledUserStory'),
+	setEnabled : function() {
+		if (Ember.isEmpty(this.enabledUserStory)) {
+			console.log('set enabled to user story: ' + this.get('content'));
+			console.log('controllers: ' + this.get('controllers').get(''));
+		}
+//		this.set('enabledUserStory', this.get('content'));
+//		console.log('isEnabled: ' + this.enabledUserStory);
+	}
+});
+
+App.UserstoryView = Ember.View.extend({
+	templateName : 'userstory-list',
+	enableUserstory : function(userStory) {
+		console.log('called enableUserstory on ' + this.get('controller').get('content') + userStory);
+		this.disableUserstories();
+		console.log(this.get('controller').get('content'));
+		this.get('controller').set('enabledUserStory', userStory);
+	},
+	disableUserstories : function() {
+		this.get('controller').set('enabledUserStory', null);
+	}
 });
 
 // View

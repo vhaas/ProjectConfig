@@ -9,7 +9,7 @@
 		<div {{bindAttr id='item.id' }} class="accordion-body collapse in">
 			<div class="accordion-inner">
 				<div class="row-fluid">
-					<span class="label">Description</span>
+					<label>Description</label>
 					<div class="well">
 						{{item.description}}
 					</div>
