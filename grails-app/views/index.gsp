@@ -3,9 +3,10 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"></link>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css"></link>
 <link rel="stylesheet/less" type="text/css" href="css/app.less"></link>
 <link rel="stylesheet" type="text/css" href="css/modal.css"></link>
+<!--link rel="stylesheet" type="text/css" href="css/bootstrap-glyphicons.css"></link-->
 
 <title>Project Configurer</title>
 <style>
@@ -56,6 +57,7 @@ body {
 	<!--script src="js/Vendors/ember-data-0.13.js"></script-->
 	<script src="js/Vendors/ember-data-latest.js"></script>
 	<script src="js/Vendors/bootstrap-2.3.2.js"></script>
+	<!--script src="js/Vendors/bootstrap.js"></script-->
 	<script src="js/Vendors/less-1.3.3.min.js"></script>
 
 	<script src="js/app/main.js"></script>

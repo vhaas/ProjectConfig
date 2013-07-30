@@ -3,7 +3,7 @@
 		<div class="accordion-heading">
 			<a class="accordion-toggle" data-toggle="collapse"  {{bindAttr href="item.href"}}>
 				{{item.name}}
-				<button class="btn btn-mini pull-right"{{action "select" item.id}}><i class="icon-arrow-right"></i></button>
+				<button class="btn btn-mini pull-right"{{action "select" item}}><i class="icon-arrow-right"></i></button>
             </a>
 		</div>
 		<div {{bindAttr id='item.id' }} class="accordion-body collapse in">

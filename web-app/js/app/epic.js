@@ -22,7 +22,7 @@ App.EpicRoute = Ember.Route.extend({
 			outlet : 'userStories',
 			controller : 'userstories'
 		}),
-		this.render('epic-accordion', {
+		this.render('epics', {
 			into : 'epic',
 			outlet : 'epic-accordion',
 			controller : 'epics'
@@ -48,7 +48,10 @@ App.EpicRoute = Ember.Route.extend({
 
 // Controller
 App.EpicsController = Ember.ArrayController.extend({
-	itemController : 'epic'
+	itemController : 'epic',
+	select : function(epic) {
+		this.transitionToRoute('epic', epic);
+	}
 });
 
 App.EpicController = Ember.ObjectController.extend({
@@ -107,6 +110,10 @@ App.EpicView = Ember.View.extend({
 		this.get('controller').toggleProperty('disabledUserStory');
 		this.get('controller').set('disabledEpic', true);
 	}
+});
+
+App.EpicsView = Ember.View.extend({
+	templateName : 'epic-accordion'
 });
 
 App.EpicAccordionView = Ember.View.extend({
