@@ -100,9 +100,6 @@ App.UserstoryController = Ember.ObjectController.extend({
 	setEnabled : function() {
 		console.log('controllersBeforeEnable: ' + this.get('parentController').get('enabledUserstory'));
 		this.get('parentController').set('enabledUserstory', this.get('content'));
-//		this.set('isEnabled', false);
-//		this.set('enabledUserStory', this.get('content'));
-//		console.log('isEnabled: ' + this.enabledUserStory);
 		console.log('controllersAfterEnable: ' + this.get('parentController').get('enabledUserstory'));
 	}
 });
