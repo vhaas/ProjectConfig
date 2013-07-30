@@ -1,4 +1,4 @@
-<script type="text/x-handlebars" data-template-name="acc_item">
+<script type="text/x-handlebars" data-template-name="project-acc-item">
 	<div class="accordion-group">
 		<div class="accordion-heading">
 			<a class="accordion-toggle" data-toggle="collapse"  {{bindAttr href="item.href"}}>
@@ -9,7 +9,7 @@
 		<div {{bindAttr id='item.id' }} class="accordion-body collapse in">
 			<div class="accordion-inner">
 				<div class="row-fluid">
-					<span class="label">Description</span>
+					<label>Description</label>
 					<div class="well">
 						{{item.description}}
 					</div>

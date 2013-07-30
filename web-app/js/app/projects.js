@@ -17,7 +17,7 @@ App.ProjectsController = Ember.ArrayController.extend({
 });
 
 App.ProjectListView = Ember.View.extend({
-	templateName : 'acc_item',
+	templateName : 'project-acc-item',
 	classNames : [ 'accordion-group' ],
 	didInsertElement : function() {
 		return Ember.run.next(this, function() {
