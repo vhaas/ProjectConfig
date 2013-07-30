@@ -82,26 +82,28 @@ App.EpicController = Ember.ObjectController.extend({
 });
 
 App.UserstoriesController = Ember.ArrayController.extend({
-	itemController : 'userstory'
+	itemController : 'userstory',
+	enabledUserstory : null
 });
 
 App.UserstoryController = Ember.ObjectController.extend({
 	needs : ['roles'],
-	enabledUserStory : null,
 	isEnabled : (function() {
-		if (Ember.isEmpty(this.get('enabledUserStory'))) {
+		if (Ember.isEmpty(this.get('parentController').get('enabledUserstory'))) {
+			console.log('is true');
 			return true;
 		} else {
-			return Ember.isEqual(this.get('content').get('id'), this.get('enabledUserStory').get('id'));
+//			console.log(!Ember.isEqual(this.get('content'), this.get('parentController').get('enabledUserstory')));
+			return !Ember.isEqual(this.get('content'), this.get('parentController').get('enabledUserstory'));
 		}
-	}).property('enabledUserStory'),
+	}).property('parentController.enabledUserstory', 'content'),
 	setEnabled : function() {
-		if (Ember.isEmpty(this.enabledUserStory)) {
-			console.log('set enabled to user story: ' + this.get('content'));
-			console.log('controllers: ' + this.get('controllers').get(''));
-		}
+		console.log('controllersBeforeEnable: ' + this.get('parentController').get('enabledUserstory'));
+		this.get('parentController').set('enabledUserstory', this.get('content'));
+//		this.set('isEnabled', false);
 //		this.set('enabledUserStory', this.get('content'));
 //		console.log('isEnabled: ' + this.enabledUserStory);
+		console.log('controllersAfterEnable: ' + this.get('parentController').get('enabledUserstory'));
 	}
 });
 
