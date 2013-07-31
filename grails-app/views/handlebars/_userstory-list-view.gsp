@@ -25,7 +25,10 @@
 							selectionBinding="role"
 							valueBinding="role_id"
 							prompt="Please select a role"}}
-						<button class="btn btn-secondary" {{action "editRole" role}}{{bindAttr disabled="controller.isDisabled"}}>Edit Role</button>
+						{{#unless hasRole}}
+							<button class="btn btn-secondary" {{action "editRole" role}}{{bindAttr disabled="controller.isDisabled"}}>Edit Role</button>
+						{{/unless}}
+						<button class="btn btn-secondary" {{action "createRole" this}}{{bindAttr disabled="controller.isDisabled"}}>Create new Role</button>
 					{{/view}}
 					{{#view App.BootstrapControl inputId="description" label="Description"}}
 						{{view Ember.TextArea disabledBinding="controller.isDisabled" valueBinding="description"}}

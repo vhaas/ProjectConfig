@@ -12,6 +12,8 @@ class Epic {
 	]
 
 	static constraints = {
+		name nullable: true
+		description nullable: true
 	}
 
 	public transformToMap() {

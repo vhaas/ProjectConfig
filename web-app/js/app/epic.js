@@ -111,7 +111,22 @@ App.EpicController = Ember.ObjectController.extend({
 		}
 	}).observes('isDisabled'),
 	save : function() {
-		
+		this.get('model.transaction').commit();
+		this.get('model').one('didUpdate', this, function() {
+			this.setDisabled();
+		});
+	},
+	create : function() {
+		var epic,
+	      _this = this;
+		epic = App.Epic.createRecord({});
+		epic.set('project', this.get('content').get('project'));
+		epic.one('didCreate', function() {
+	      return Ember.run.next(_this, function() {
+	        return this.transitionTo("epic", epic);
+	      });
+	    });
+	    return epic.get("store").commit();
 	}
 	
 });
@@ -172,7 +187,10 @@ App.UserstoryController = Ember.ObjectController.extend({
 	remove : function() {
 		this.get('content').deleteRecord();
 		this.get('model.transaction').commit();
-	}
+	},
+	hasRole : (function() {
+		return Ember.isNone(this.get('model').get('role'));
+	}).property('content.role')
 });
 
 App.UserstoryView = Ember.View.extend({
