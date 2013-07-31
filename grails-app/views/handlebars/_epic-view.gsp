@@ -2,6 +2,7 @@
 <g:render template="/handlebars/epic-acc-item-view"></g:render>
 <g:render template="/handlebars/userstory-list-view"></g:render>
 <g:render template="/handlebars/basic-modal-view"></g:render>
+<g:render template="/handlebars/confirm-changes-modal-view"></g:render>
 <script type="text/x-handlebars" data-template-name="epic">
 		<div class="container-fluid" data-spy="scroll" data-target=".nav-tabs">
 			<div class="row-fluid">
@@ -28,13 +29,17 @@
 						</h4>
 						<form class="form-horizontal" {{action save on="submit"}}>
 							{{#view App.BootstrapControl inputId="name" label="Name"}}
-								{{view Ember.TextField disabledBinding="controller.disabledEpic" valueBinding="name"}}
+								{{view Ember.TextField disabledBinding="controller.isDisabled" valueBinding="name"}}
 							{{/view}}
 							{{#view App.BootstrapControl inputId="description" label="Beschreibung"}}
-								{{view Ember.TextArea disabledBinding="controller.disabledEpic" valueBinding="description"}}
+								{{view Ember.TextArea disabledBinding="controller.isDisabled" valueBinding="description"}}
 							{{/view}}
 							{{#unless isDirty}}
-								<button class="btn btn-secondary pull-right" {{action "enableEpic" target="view"}}>Enable</button>
+								{{#if controller.isDisabled}}
+									<button class="btn btn-secondary pull-right" {{action "setEnabled" this target="controller"}}>Enable</button>
+								{{else}}
+									<button class="btn btn-secondary pull-right" {{action "setDisabled" this target="controller"}}>Disable</button>
+								{{/if}}
 							{{else}}
 								<button type="submit" class="btn btn-primary pull-right">Speichern</button>
 							{{/unless}}

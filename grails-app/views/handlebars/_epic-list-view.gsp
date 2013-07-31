@@ -4,7 +4,7 @@
 			{{#each item in controller}}
 				<tr>
 					<td>
-						{{#linkTo roadmap item}} {{item.name}} {{/linkTo}}
+						{{#linkTo epic item}} {{item.name}} {{/linkTo}}
 					</td>
 					<td>
 						<button class="btn btn-mini pull-right"{{action "selectEpic" item.id}}><i class="icon-wrench"></i></button>
