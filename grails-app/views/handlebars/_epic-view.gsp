@@ -40,8 +40,10 @@
 								{{else}}
 									<button class="btn btn-secondary pull-right" {{action "setDisabled" this target="controller"}}>Disable</button>
 								{{/if}}
+								<button class="btn btn-secondary pull-left" {{action "createNewEpic" target="view"}}>Create new Epic</button>
+								<button class="btn btn-secondary pull-left" {{action "createUserstory" this }}>Create new User Story</button>
 							{{else}}
-								<button type="submit" class="btn btn-primary pull-right">Speichern</button>
+								<button type="submit" class="btn btn-primary pull-right">Save</button>
 							{{/unless}}
 							<div class="clearfix"/>
 						</form>

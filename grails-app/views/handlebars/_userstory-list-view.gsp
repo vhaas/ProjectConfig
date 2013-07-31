@@ -12,47 +12,44 @@
 					{{#view App.BootstrapControl inputId="name" label="Name"}}
 						{{view Ember.TextField disabledBinding="controller.isDisabled" valueBinding="name"}}
 					{{/view}}
-					{{#view App.BootstrapControl inputId="goal" label="Ziel"}}
+					{{#view App.BootstrapControl inputId="goal" label="Goal"}}
 						{{view Ember.TextField disabledBinding="controller.isDisabled" valueBinding="goal"}}
 					{{/view}}
-					{{#view App.BootstrapControl inputId="benefit" label="Nutzen"}}
+					{{#view App.BootstrapControl inputId="benefit" label="Benefit"}}
 						{{view Ember.TextField disabledBinding="controller.isDisabled" valueBinding="benefit"}}
 					{{/view}}
-					{{#view App.BootstrapControl inputId="role" label="Rolle"}}
+					{{#view App.BootstrapControl inputId="role" label="Role"}}
 						{{view App.RoleSelect
 							disabledBinding="controller.isDisabled"
 							contentBinding="controller.controllers.roles.content"
 							selectionBinding="role"
 							valueBinding="role_id"
 							prompt="Please select a role"}}
-						<button class="btn btn-secondary" {{action "editRole" role}}{{bindAttr disabled="controller.isDisabled"}}>Rolle editieren</button>
+						<button class="btn btn-secondary" {{action "editRole" role}}{{bindAttr disabled="controller.isDisabled"}}>Edit Role</button>
 					{{/view}}
-					{{#view App.BootstrapControl inputId="description" label="Beschreibung"}}
+					{{#view App.BootstrapControl inputId="description" label="Description"}}
 						{{view Ember.TextArea disabledBinding="controller.isDisabled" valueBinding="description"}}
 					{{/view}}
-					{{#view App.BootstrapControl inputId="willGetDeleted" label="User Story löschen"}}
-						{{view Ember.Checkbox disabledBinding="controller.isDisabled" checkedBinding="willGetDeleted"}}
+					{{#view App.BootstrapControl inputId="controller.willGetDeleted" label="Delete User Story"}}
+						{{view Ember.Checkbox disabledBinding="controller.isDisabled" checkedBinding="controller.willGetDeleted"}}
 					{{/view}}
-					{{#if willGetDeleted}}
-						<button class="btn btn-primary pull-right" {{action "deleteUserStory" id}}>User Story löschen</button>
+					{{#if controller.willGetDeleted}}
+						<button class="btn btn-primary pull-right" {{action "remove" target="controller"}}>Delete User Story</button>
 					{{else}}
 						{{#unless isDirty}}
 							{{#if controller.isDisabled}}
-								<button class="btn btn-secondary pull-right" {{action "setEnabled" this target="controller"}}>Enable</button>
+								<button class="btn btn-secondary pull-right" {{action "setEnabled" target="controller"}}>Enable</button>
 							{{else}}
-								<button class="btn btn-secondary pull-right" {{action "setDisabled" this target="controller"}}>Disable</button>
+								<button class="btn btn-secondary pull-right" {{action "setDisabled" target="controller"}}>Disable</button>
 							{{/if}}
 						{{else}}
-							<button type="submit" class="btn btn-primary pull-right">Speichern</button>
-							<button class="btn btn-secondary pull-right" {{action "saveAndCreate" target="view"}}>Speichern und neue User Story anlegen</button>
+							<button type="submit" class="btn btn-primary pull-right">Save</button>
+							<button class="btn btn-secondary pull-right" {{action "saveAndCreate" target="view"}}>Save and create new User Story</button>
 						{{/unless}}
 					{{/if}}
 					<div class="clearfix"/>
 				</form>
 			</section>
 		{{/each}}
-		<button class="btn btn-secondary pull-right" {{action "createUserStory"}}>Neue User Story anlegen</button>
-		<button class="btn btn-secondary pull-right" {{action "createNewEpic" target="view"}}>Neue Epic anlegen</button>
-		<button class="btn btn-secondary pull-right" {{action "switchToProject"}}>Projekte anzeigen</button>
 	</section>
 </script>

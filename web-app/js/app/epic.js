@@ -43,6 +43,9 @@ App.EpicRoute = Ember.Route.extend({
 		leaveFormDirty : function(model) {
 			this.controllerFor('leave.dirty.modal').leaveDirty(model, 'epic');
 			this.send('openModal', 'leave.dirty.modal');
+		},
+		createUserstory : function(epic) {
+			this.get('controller').get('controllers').get('userstories').create(epic);			
 		}
 	}
 });
@@ -79,6 +82,8 @@ App.LeaveDirtyModalView = App.ModalView.extend({
 
 // Controller
 App.EpicsController = Ember.ArrayController.extend({
+	sortProperties: ['name'],
+    sortAscending: true,
 	itemController : 'epic',
 	select : function(epic) {
 		this.transitionToRoute('epic', epic);
@@ -102,41 +107,36 @@ App.EpicController = Ember.ObjectController.extend({
 	}).observes('controllers.userstories.enabledUserstory'),
 	leaveDirty : (function() {
 		if (this.get('content').get('isDirty')) {
-			console.log('Left epic form dirty');
 			this.send('leaveFormDirty', this.get('content'));
 		}
-	}).observes('isDisabled')
-//	save : function() {
-//		var model = App.store.commit();
-//	},
-//	createUserStory : function() {
-//		var userStory = App.UserStory.createRecord();
-//		userStory.set('epic', this.content);
-//		this.set('disabledEpic', true);
-//		this.set('disabledUserStory', false);
-//		return userStory;
-//	},
-//	createEpic : function() {
-//		var epic = App.Epic.createRecord();
-//		epic.set('project', this.content.get('project'));
-//		this.set('disabledEpic', false);
-//		return epic;
-//	}	
+	}).observes('isDisabled'),
+	save : function() {
+		
+	}
+	
 });
 
 App.UserstoriesController = Ember.ArrayController.extend({
+	sortProperties: ['name'],
+    sortAscending: true,
 	itemController : 'userstory',
-	enabledUserstory : null
+	enabledUserstory : null,
+	create : function(epic) {
+		var newUserstory = App.UserStory.createRecord();
+		newUserstory.set('project', epic.get('project'));
+		newUserstory.set('epic', epic);
+		this.set('enabledUserstory', newUserstory);
+	}
 });
 
 App.UserstoryController = Ember.ObjectController.extend({
 	needs : ['roles'],
+	willGetDeleted : false,	
 	isDisabled : (function() {
-		if (Ember.isEmpty(this.get('parentController').get('enabledUserstory'))) {
+		if (Ember.isNone(this.get('parentController').get('enabledUserstory'))) {
 			console.log('is true');
 			return true;
 		} else {
-//			console.log(!Ember.isEqual(this.get('content'), this.get('parentController').get('enabledUserstory')));
 			return !Ember.isEqual(this.get('content'), this.get('parentController').get('enabledUserstory'));
 		}
 	}).property('parentController.enabledUserstory', 'content'),
@@ -150,26 +150,34 @@ App.UserstoryController = Ember.ObjectController.extend({
 	},
 	leaveDirty : (function() {
 		if (!Ember.isNone(this.get('content'))) {
-			console.log('Left form');
 			if (this.get('content').get('isDirty')) {
-				console.log('Route of userstory: ' + this.get('route'));
-				this.send('leaveFormDirty', this.get('content'));
+				if (!Ember.isEmpty(this.get('content').get('id'))) {
+					this.send('leaveFormDirty', this.get('content'));
+				}
 			}
-		}		
-	}).observes('isDisabled')
+		}
+	}).observes('isDisabled'),
+	save : function() {
+		this.get('model.transaction').commit();
+		if (Ember.isNone(this.get('content').get('id'))) {
+			this.get('model').one('didCreate', this, function() {
+				this.setDisabled();
+			});
+		} else {
+			this.get('model').one('didUpdate', this, function() {
+				this.setDisabled();
+			});
+		}
+	},
+	remove : function() {
+		this.get('content').deleteRecord();
+		this.get('model.transaction').commit();
+	}
 });
 
 App.UserstoryView = Ember.View.extend({
 	templateName : 'userstory-list',
-	enableUserstory : function(userStory) {
-		console.log('called enableUserstory on ' + this.get('controller').get('content') + userStory);
-		this.disableUserstories();
-		console.log(this.get('controller').get('content'));
-		this.get('controller').set('enabledUserStory', userStory);
-	},
-	disableUserstories : function() {
-		this.get('controller').set('enabledUserStory', null);
-	}
+	
 });
 
 // View

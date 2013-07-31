@@ -64,17 +64,21 @@ class UserStoryRestController {
 		def userStoryInstance = new UserStory()
 		def props = params.user_story
 		userStoryInstance.properties = params.user_story
+		def userStoryEpic = Epic.get(props.epic_id)
+		if (userStoryEpic) {
+			userStoryInstance.epic = userStoryEpic
+		}
+		def userStoryProject = Project.get(props.project_id)
+		if (userStoryProject) {
+			userStoryInstance.project = userStoryProject
+		}
 		def userStoryRole = Role.get(props.role_id)
 		if (userStoryRole) {
 			userStoryInstance.role = userStoryRole
 		}
 		else {
 			userStoryInstance.role = null
-		}
-		def userStoryEpic = Epic.get(props.epic_id)
-		if (userStoryEpic) {
-			userStoryInstance.epic = userStoryEpic
-		}
+		}		
 		if (userStoryInstance.save(flush: true)) {
 			response.status = 200 // OK
 			userStoryInstance = userStoryInstance.transformToMap()
@@ -100,14 +104,21 @@ class UserStoryRestController {
 					return
 				}
 			}
-			def props = p.user_story			
+			def props = p.user_story
 			def userStoryRole = Role.get(props.role_id)
 			if (userStoryRole) {
 				userStoryInstance.role = userStoryRole
 			}
 			else {
 				userStoryInstance.role = null
-			}			
+			}
+			def userStoryEpic = Epic.get(props.epic_id)
+			if (userStoryEpic) {
+				userStoryInstance.epic = userStoryEpic
+			}
+			else {
+				userStoryInstance.epic = null
+			}
 			userStoryInstance.properties = p.user_story
 			def paramMileStone = request.JSON as Map
 			def mileStoneIds = paramMileStone.get('user_story').get('mile_stone_ids')

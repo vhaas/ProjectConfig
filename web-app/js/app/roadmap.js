@@ -125,7 +125,7 @@ App.RoadmapView = Ember.View.extend({
 
 App.UserstorylistController = Ember.ArrayController.extend({
 	sortProperties: ['name'],
-    sortAscending: true,    
+    sortAscending: true,
     roadmap : null,
 //    filteredContent : (function() {
 //		// alert(this.get('roadmap'));
