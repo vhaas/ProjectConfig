@@ -23,7 +23,7 @@
 										{{story.name}}
 									</td>
 									<td>
-										<button type="button" class="close" {{action "select" story.id}}>&times;</button>
+										<button type="button" class="close" {{action "removeUserstory" story}}>&times;</button>
 									</td>
 								</tr>
 							{{/each}}

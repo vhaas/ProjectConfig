@@ -1,32 +1,8 @@
 App.RoadmapRoute = Ember.Route.extend({
 	setupController: function(controller, model) {
 		this.controller.set('content', model);
-//		var projectId = this.modelFor('project').get('id');
 		var projectId = model.get('project').get('id');
-		var roadmapId = model.get('id');
-//		var mileStones = App.MileStone.find({roadmap:roadmapId});
 		var userStories = App.UserStory.find({project:projectId});
-//		var filteredUserStories = App.UserStory.filter((
-//				function(userStory) {
-//				if (userStory) {
-//					if (userStory.get('project')) {
-//						if (userStory.get('project').get('id') === projectId) {
-//							var mileStones = userStory.get('mileStones');
-//							var boolean = true;
-//							mileStones.forEach(function(mileStone) {
-//								if (mileStone.get('roadMap')) {
-//									if (mileStone.get('roadMap').get('id') === roadmapId) {
-//										boolean = false;
-//									}
-//								}
-//							});
-//							return boolean;
-//						}
-//					}
-//				}
-//				return false;
-//			}));
-		this.controllerFor('userstorylist').set('roadmap', model);
 		this.controllerFor('userstorylist').set('content', userStories);
 		this.controllerFor('milestones').set('content', model.get('mileStones'));
 	},
@@ -98,7 +74,6 @@ App.MilestoneModalController = App.ModalController.extend({
 		newMilestone.one('didCreate', this, function() {
 			roadmap.get('mileStones').addObject(newMilestone);
 //			this.transitionToRoute('roadmap', roadmap);
-//			this.render('milestone');
 			this.send('close');
 	    });
 	    this.set('model', newMilestone);
@@ -132,7 +107,6 @@ App.UserstorylistController = Ember.ArrayController.extend({
 	sortProperties: ['name'],
     sortAscending: true,
     needs : ['milestones'],
-    roadmap : null,
     filteredContent : (function() {
     	var content = this.get('content'),
     		milestones = this.get('controllers').get('milestones').get('content');
@@ -140,29 +114,28 @@ App.UserstorylistController = Ember.ArrayController.extend({
     		return content;
     	}
     	return content.filter(function(item) {
-    		var isAssigned = false;
+    		var isAssigned = true;
     		milestones.forEach(function(milestone) {
     			var userstories = milestone.get('userStories');
     			if (!userstories) {
     				return;
     			} else {
-    				if (!userstories.contains(item)) {
-    					isAssigned = true;
-    				} else {
-    					isAssigned = false;
-    				}
+    				userstories.forEach(function(userstory) {
+    					if (!userstory) {
+    						return;
+    					} else {
+    						if (Ember.isEqual(item.get('id'), userstory.get('id'))) {    							
+    							isAssigned = false;
+    						}
+    					}
+    				});
     			}
     		});
     		return isAssigned;
     	});
     }).property('content.@each.isLoaded', 'controllers.milestones.content.@each.isLoaded'),
 	selection : null,
-	active : true,
-	removeItem: function(value){
-// var obj = this.findProperty('id', value);
-//        this.removeObject(obj);
-//		alert('The following item will be removed: ' + value);
-    }
+	active : true
 });
 
 App.MilestonesController = Ember.ArrayController.extend({
@@ -177,12 +150,24 @@ App.MilestoneController = Ember.ObjectController.extend({
 	needs: ['milestone.userstories', 'userstorylist'],
 	selectedUserStory : null,
 	selectedChanged : function() {
-		this.get('controllers').get('userstorylist').removeItem(this.get('selectedUserStory').get('id'));
+//		this.get('controllers').get('userstorylist').removeItem(this.get('selectedUserStory').get('id'));
 		this.get('content').get('userStories').pushObject(this.get('selectedUserStory'));
 		this.get("model.transaction").commit();
 	}.observes('selectedUserStory'),
 	controllercheck : function() {
 		alert(this);
+	},
+	removeUserstory : function(userstory) {
+		console.log(this.get('content').get('userStories').toArray().length);
+		if (this.get('content').get('userStories').toArray().length === 1) {
+			this.get('content').get('userStories').clear;
+		} else {
+			this.get('content').get('userStories').removeObject(userstory);
+		}		
+		this.save();
+	},
+	save : function() {
+		this.get('model.transaction').commit();
 	}
 });
 
