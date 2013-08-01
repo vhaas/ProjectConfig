@@ -8,12 +8,15 @@
 		</div>
 		<div {{bindAttr id='item.id' }} class="accordion-body collapse in">
 			<div class="accordion-inner">
-				<div class="row-fluid">
-					<label>Description</label>
-					<div class="well">
-						{{item.description}}
-					</div>
-				</div>
+				<table class="table table-bordered">
+					{{#each item.userStories}}
+						<tr>
+							<td>
+								{{name}}
+							</td>
+						</tr>
+					{{/each}}
+				</table>
             </div>
 		</div>
 	</div>

@@ -1,5 +1,7 @@
 App.RolesController = Ember.ArrayController.extend({
-	itemController : 'role'
+	itemController : 'role',
+	sortProperties: ['name'],
+    sortAscending: true
 });
 
 App.RoleController = Ember.ObjectController.extend({
@@ -16,12 +18,16 @@ App.RoleController = Ember.ObjectController.extend({
 
 App.RoleModalController = App.ModalController.extend({
 	create : function (userStory) {
-		var newRole = App.Role.createRecord();
+		var newRole = App.Role.createRecord(),
+			_this = this;
 		newRole.set('project', userStory.get('project'));
-		newRole.on('didCreate', this, function() {
-			userStory.set('role', newRole);
-			console.log(userStory.get('role'));
-			this.send('close');
+		newRole.one('didCreate', function() {			
+			Ember.run.next(_this, function() {				
+				console.log('New Role: ' + newRole);
+				userStory.set('role', newRole);
+				console.log('Role create log: ' + userStory.get('role'));				
+				this.send('close');
+			});
 	    });
 	    this.set('model', newRole);
 	}

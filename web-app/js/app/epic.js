@@ -84,8 +84,13 @@ App.LeaveDirtyModalView = App.ModalView.extend({
 	templateName : 'confirm-changes-modal'
 });
 
+App.EpicUserstoriesController = Ember.ArrayController.extend({
+	
+});
+
 // Controller
 App.EpicsController = Ember.ArrayController.extend({
+	needs : ['epic.userstories'],
 	sortProperties: ['name'],
     sortAscending: true,
 	itemController : 'epic',

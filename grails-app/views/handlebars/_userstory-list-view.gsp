@@ -21,7 +21,7 @@
 					{{#view App.BootstrapControl inputId="role" label="Role"}}
 						{{view App.RoleSelect
 							disabledBinding="controller.isDisabled"
-							contentBinding="controller.controllers.roles.content"
+							contentBinding="controller.controllers.roles.arrangedContent"
 							selectionBinding="role"
 							valueBinding="role_id"
 							prompt="Please select a role"}}

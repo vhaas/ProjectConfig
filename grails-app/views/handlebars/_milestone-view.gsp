@@ -1,7 +1,7 @@
 <script type="text/x-handlebars" data-template-name="milestone">
 	<form class="form-vertical" style="height: 50em; overflow-x:auto">
 	<table class="table">
-		<tr>
+		<tr class="pull-left">
 			{{#each milestone in controller}}
 				<td>
 					<div>
