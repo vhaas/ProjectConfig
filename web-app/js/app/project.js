@@ -42,20 +42,22 @@ App.ProjectIndexController = Ember.ObjectController.extend({
 	needs : ['roadmap.list', 'epic.list']
 });
 
-App.RoadmapListController = Ember.ArrayController.extend({});
-
-App.EpicListController = Ember.ArrayController.extend({});
-
-App.RoadmapListView = Ember.View.extend({
-	templateName : 'roadmap-list',
-    sortProperties: ['name'],
+App.RoadmapListController = Ember.ArrayController.extend({
+	sortProperties: ['name'],
     sortAscending: true
 });
 
-App.EpicListView = Ember.View.extend({
-	templateName : 'epic-list',
-    sortProperties: ['name'],
+App.EpicListController = Ember.ArrayController.extend({
+	sortProperties: ['name'],
     sortAscending: true
+});
+
+App.RoadmapListView = Ember.View.extend({
+	templateName : 'roadmap-list'
+});
+
+App.EpicListView = Ember.View.extend({
+	templateName : 'epic-list'
 });
 
 App.ProjectIndexView = Ember.View.extend({

@@ -1,7 +1,7 @@
 <script type="text/x-handlebars" data-template-name="roadmap-list">
 	<section>
 		<table class="table">
-			{{#each item in controller}}
+			{{#each item in controller.arrangedContent}}
 				<tr>
 					<td>
 						{{#linkTo roadmap item}} {{item.name}} {{/linkTo}}

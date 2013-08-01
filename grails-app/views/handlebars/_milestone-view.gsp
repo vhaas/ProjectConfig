@@ -1,5 +1,5 @@
 <script type="text/x-handlebars" data-template-name="milestone">
-	<form class="form-vertical" style="height: 50em; overflow:auto">
+	<form class="form-vertical" style="height: 50em; overflow-x:auto">
 	<table class="table">
 		<tr>
 			{{#each milestone in controller}}
@@ -12,7 +12,8 @@
 								{{else}}
 									{{milestone.name}}
 								{{/if}}
-							<button class="btn btn-mini pull-right"{{action "editMilestone" milestone}}><i class="icon-wrench"></i></button>
+								<button class="btn btn-mini pull-right"{{action "deleteMilestone" milestone}}><i class="icon-trash"></i></button>
+								<button class="btn btn-mini pull-right"{{action "editMilestone" milestone}}><i class="icon-wrench"></i></button>
 							</h5>
 							<div class="well well-small">{{milestone.description}}</div>
 							<table class="table">

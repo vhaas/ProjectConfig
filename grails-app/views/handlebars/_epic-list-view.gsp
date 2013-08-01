@@ -1,7 +1,7 @@
 <script type="text/x-handlebars" data-template-name="epic-list">
 	<section>
 		<table class="table">
-			{{#each item in controller}}
+			{{#each item in controller.arrangedContent}}
 				<tr>
 					<td>
 						{{#linkTo epic item}} {{item.name}} {{/linkTo}}

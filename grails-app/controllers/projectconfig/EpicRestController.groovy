@@ -100,7 +100,8 @@ class EpicRestController {
 			try {
 				epicInstance.delete(flush: true)
 				response.status = 200 // OK
-				render "${message(code: 'default.deleted.message', args: [message(code: 'epic.label', default: 'Epic'), params.id])}"
+				render null
+//				render "${message(code: 'default.deleted.message', args: [message(code: 'epic.label', default: 'Epic'), params.id])}"
 			}
 			catch (org.springframework.dao.DataIntegrityViolationException e) {
 				response.status = 409 // Conflict

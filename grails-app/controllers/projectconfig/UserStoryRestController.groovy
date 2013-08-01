@@ -152,7 +152,8 @@ class UserStoryRestController {
 			try {
 				userStoryInstance.delete(flush: true)
 				response.status = 200 // OK
-				render "${message(code: 'default.deleted.message', args: [message(code: 'userStory.label', default: 'UserStory'), params.id])}"
+				render null
+//				render "${message(code: 'default.deleted.message', args: [message(code: 'userStory.label', default: 'UserStory'), params.id])}"
 			}
 			catch (org.springframework.dao.DataIntegrityViolationException e) {
 				response.status = 409 // Conflict

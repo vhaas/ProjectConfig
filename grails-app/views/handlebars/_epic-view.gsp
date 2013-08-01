@@ -1,8 +1,7 @@
 <g:render template="/handlebars/epic-accordion-view"></g:render>
 <g:render template="/handlebars/epic-acc-item-view"></g:render>
 <g:render template="/handlebars/userstory-list-view"></g:render>
-<g:render template="/handlebars/basic-modal-view"></g:render>
-<g:render template="/handlebars/confirm-changes-modal-view"></g:render>
+
 <script type="text/x-handlebars" data-template-name="epic">
 		<div class="container-fluid" data-spy="scroll" data-target=".nav-tabs">
 			<div class="row-fluid">

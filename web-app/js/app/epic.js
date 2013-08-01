@@ -46,6 +46,10 @@ App.EpicRoute = Ember.Route.extend({
 		},
 		createUserstory : function(epic) {
 			this.get('controller').get('controllers').get('userstories').create(epic);			
+		},
+		deleteUserstory : function(userstory) {
+			this.controllerFor('confirm.delete').confirmDelete(userstory);
+	    	this.send('openModal', 'confirm.delete');
 		}
 	}
 });
@@ -61,7 +65,7 @@ App.LeaveDirtyModalController = Ember.ObjectController.extend({
 		
 		model.on('didUpdate', this, function() {
 			this.close();
-			if (!Ember.isEmpty(after)) {
+			if (!Ember.isNone(after)) {
 				this.transitionToRoute(after);
 			}
 		});
@@ -131,9 +135,7 @@ App.EpicController = Ember.ObjectController.extend({
 	
 });
 
-App.UserstoriesController = Ember.ArrayController.extend({
-	sortProperties: ['name'],
-    sortAscending: true,
+App.UserstoriesController = Ember.ArrayController.extend({	
 	itemController : 'userstory',
 	enabledUserstory : null,
 	create : function(epic) {
@@ -194,8 +196,7 @@ App.UserstoryController = Ember.ObjectController.extend({
 });
 
 App.UserstoryView = Ember.View.extend({
-	templateName : 'userstory-list',
-	
+	templateName : 'userstory-list'	
 });
 
 // View

@@ -37,7 +37,7 @@
 						{{view Ember.Checkbox disabledBinding="controller.isDisabled" checkedBinding="controller.willGetDeleted"}}
 					{{/view}}
 					{{#if controller.willGetDeleted}}
-						<button class="btn btn-primary pull-right" {{action "remove" target="controller"}}>Delete User Story</button>
+						<button class="btn btn-primary pull-right" {{action "deleteUserstory" this}}>Delete User Story</button>
 					{{else}}
 						{{#unless isDirty}}
 							{{#if controller.isDisabled}}

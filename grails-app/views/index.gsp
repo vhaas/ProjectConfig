@@ -19,7 +19,9 @@ body {
 <g:render template="/handlebars/form-elements"></g:render>
 <g:render template="/handlebars/projects-view"></g:render>
 <g:render template="/handlebars/empty-view"></g:render>
-
+<g:render template="/handlebars/basic-modal-view"></g:render>
+<g:render template="/handlebars/confirm-changes-modal-view"></g:render>
+<g:render template="/handlebars/confirm-delete-modal-view"></g:render>
 
 <script type="text/x-handlebars" data-template-name="application">
 		<div class="navbar navbar-inverse navbar-fixed-top">
@@ -66,6 +68,7 @@ body {
 	<script src="js/app/modal/modal_animations.js"></script>
 	<script src="js/app/modal/modal_controller.js"></script>
 	<script src="js/app/modal/modal_view.js"></script>
+	<script src="js/app/modal/confirm_delete_controller.js"></script>
 
 	<script src="js/app/projects.js"></script>
 	<script src="js/app/project.js"></script>

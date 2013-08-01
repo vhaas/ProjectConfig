@@ -19,6 +19,8 @@ App.RoleModalController = App.ModalController.extend({
 		var newRole = App.Role.createRecord();
 		newRole.set('project', userStory.get('project'));
 		newRole.on('didCreate', this, function() {
+			userStory.set('role', newRole);
+			console.log(userStory.get('role'));
 			this.send('close');
 	    });
 	    this.set('model', newRole);
