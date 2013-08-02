@@ -10,15 +10,17 @@ class RoleRestController {
 			render renderNotFound
 		}
 		else {
-			role = role.transformToMap()
-			role = ["role": role]
-			render (contentType: "application/json", text: role as JSON)
+			render RestControllerAssistant.renderSingle(Role, role)
 		}
 	}
 
 	def showAllRoles() {
 		def all
-		if (params.project) {
+		def ids = params["ids[]"]
+		if(ids){
+			all = ids.collect{id -> Role.get id}
+		}
+		else if (params.project) {
 			all = Project.findById(params.project)
 			if (!all) {
 				render renderNotFound
@@ -41,8 +43,9 @@ class RoleRestController {
 
 	def save = {
 		def roleInstance = new Role()
-		roleInstance.properties = params.role
-		def roleProject = Project.get(params.role.project_id)
+		def props = params.role
+		roleInstance.properties = props
+		def roleProject = Project.get(props.project_id)
 		if (roleProject) {
 			roleInstance.project = roleProject
 		}
@@ -51,9 +54,7 @@ class RoleRestController {
 		}
 		if (roleInstance.save(flush: true)) {
 			response.status = 200 // OK
-			roleInstance = roleInstance.transformToMap()
-			roleInstance = ["role": roleInstance]
-			render (contentType: "application/json", text: roleInstance as JSON)
+			render RestControllerAssistant.renderSingle(Role, roleInstance)
 		}
 		else {
 			response.status = 400 // Bad Request
@@ -77,9 +78,7 @@ class RoleRestController {
 			roleInstance.properties = p.role
 			if (!roleInstance.hasErrors() && roleInstance.save(flush: true)) {
 				response.status = 200 // OK
-				roleInstance = roleInstance.transformToMap()
-				roleInstance = ["role": roleInstance]
-				render (contentType: "application/json", text: roleInstance as JSON)
+				render RestControllerAssistant.renderSingle(Role, roleInstance)
 			}
 			else {
 				render render409.curry(roleInstance)

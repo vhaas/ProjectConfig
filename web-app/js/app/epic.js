@@ -201,7 +201,7 @@ App.UserstoryController = Ember.ObjectController.extend({
 });
 
 App.UserstoryView = Ember.View.extend({
-	templateName : 'userstory-list'	
+	templateName : 'userstory-list'
 });
 
 // View

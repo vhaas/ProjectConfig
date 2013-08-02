@@ -27,10 +27,6 @@ App.UserStory = DS.Model.extend({
 	role : DS.belongsTo("App.Role"),
 	project : DS.belongsTo("App.Project"),
 	mileStones : DS.hasMany("App.MileStone")
-//	mileStoneUserStories : DS.hasMany("App.MileStoneUserStory"),
-//	mileStones: (function() {
-//		return this.get('mileStoneUserStories').getEach('mileStone');
-//	}).property('mileStoneUserStories.@each.relationshipsLoaded')
 });
 
 App.Role = DS.Model.extend({
@@ -59,16 +55,40 @@ App.MileStone = DS.Model.extend({
 	nameIsEmpty : (function() {
 		return Ember.isEmpty(this.get('name'));
 	}).property('name')
-//	mileStoneUserStories : DS.hasMany("App.MileStoneUserStory"),
-//	userStories: (function() {
-//		return this.get('mileStoneUserStories').getEach('userStory');
-//	}).property('mileStoneUserStories.@each.relationshipsLoaded')
 });
 
-//App.MileStoneUserStory = DS.Model.extend({
-//	mileStone : DS.belongsTo("App.MileStone"),
-//	userStory : DS.belongsTo("App.UserStory"),
-//	relationshipsLoaded : (function(){
-//		return this.get('mileStone.isLoaded') && this.get('userStory.isLoaded');
-//	}).property('mileStone.isLoaded', 'userStory.isLoaded')
-//});
+App.System = DS.Model.extend({
+	name : DS.attr("string"),
+	description : DS.attr("string"),
+	systemChanges : DS.hasMany("App.SystemChange"),
+	project : DS.belongsTo("App.Project"),
+	href : (function() {
+		return "#" + this.get('id');
+	}).property('id').cacheable()
+});
+
+App.SystemChange = DS.Model.extend({	
+	adaptionAspect : DS.attr("string"),
+	project : DS.belongsTo("App.Project"),
+	system : DS.belongsTo("App.System"),
+	adaptionType : DS.belongsTo("App.AdaptionType"),
+	firstEffortEstimate : DS.belongsTo("App.FirstEffortEstimate"),
+	userStories : DS.hasMany("App.UserStory")
+});
+
+App.FirstEffortEstimate = DS.Model.extend({
+	effortType = DS.attr("string"),
+	minEffort = DS.attr("string"),
+	medEffort = DS.attr("string"),
+	maxEffort = DS.attr("string"),
+	risk = DS.attr("string"),
+	project : DS.belongsTo("App.Project"),
+	systemChanges : DS.hasMany("App.SystemChange")
+});
+
+App.AdaptionType = DS.Model.extend({
+	name : DS.attr("string"),
+	description : DS.attr("string"),
+	systemChanges : DS.hasMany("App.SystemChange"),
+	project : DS.belongsTo("App.Project")
+});

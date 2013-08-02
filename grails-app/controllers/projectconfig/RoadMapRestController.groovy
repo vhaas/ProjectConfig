@@ -16,7 +16,11 @@ class RoadMapRestController {
 
 	def showAllRoadMaps() {
 		def all
-		if (params.project) {
+		def ids = params["ids[]"]
+		if(ids){
+			all = ids.collect{id -> RoadMap.get id}
+		}
+		else if (params.project) {
 			all = Project.findById(params.project)
 			if (!all) {
 				render renderNotFound
@@ -43,9 +47,7 @@ class RoadMapRestController {
 		roadmapInstance.project = Project.get(props.project_id)
 		if (roadmapInstance.save(flush: true)) {
 			response.status = 200 //OK
-			roadmapInstance = roadmapInstance.transformToMap()
-			roadmapInstance = ["road_map": roadmapInstance]
-			render (contentType: "application/json", text: roadmapInstance as JSON)
+			render RestControllerAssistant.renderSingle(RoadMap, roadmapInstance)
 		}
 		else {
 			response.status = 400 // Bad Request
@@ -69,9 +71,7 @@ class RoadMapRestController {
 			roadMapInstance.properties = p.road_map
 			if (!roadMapInstance.hasErrors() && roadMapInstance.save(flush: true)) {
 				response.status = 200 // OK
-				roadMapInstance = roadMapInstance.transformToMap()
-				roadMapInstance = ["road_map": roadMapInstance]
-				render (contentType: "application/json", text: roadMapInstance as JSON)
+				rorender RestControllerAssistant.renderSingle(RoadMap, roadmapInstance)
 			}
 			else {
 				render render409.curry(roadMapInstance)

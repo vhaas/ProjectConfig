@@ -5,17 +5,30 @@ class FirstEffortEstimate {
 	Project project
 
 	String effortType
-	Integer minEffort
-	Integer medEffort
-	Integer maxEffort
-	Integer risk
+	String minEffort
+	String medEffort
+	String maxEffort
+	String risk
+	SystemChange systemChange
 
-	static hasMany = [
-		systemChanges: SystemChange
+	static hasMany = [		
 	]
 
 	static constraints = { systemChanges nullable: true }
 
+	public transformToMap() {
+		return [
+			id: id,
+			effort_type: effortType,
+			min_effort: minEffort,
+			med_effort: medEffort,
+			max_effort: maxEffort,
+			risk: risk,
+			project_id: project ? project.id : '',
+			system_change_id: systemChange ? systemChange.id : ''
+		]
+	}	
+	
 	public String getMultipleRoot() {
 		return "first_effort_estimates"
 	}

@@ -1,7 +1,6 @@
 package projectconfig
 
 import grails.converters.JSON
-import groovy.json.JsonSlurper;
 
 class UserStoryRestController {
 
@@ -11,9 +10,7 @@ class UserStoryRestController {
 			render renderNotFound
 		}
 		else {
-			userStory = userStory.transformToMap()
-			userStory = ["user_story": userStory]
-			render (contentType: "application/json", text: userStory as JSON)
+			render RestControllerAssistant.renderSingle(UserStory, userStory)
 		}
 	}
 
@@ -50,13 +47,7 @@ class UserStoryRestController {
 			render renderNotFound
 		}
 		else {
-			List<Map> returnMap = new ArrayList<Map>()
-			all.each {
-				def map = it.transformToMap()
-				returnMap.add(map)
-			}
-			def returnedUserStories = ["user_stories": returnMap]
-			render (contentType: "application/json", text: returnedUserStories as JSON)
+			render RestControllerAssistant.renderMultiple_alternative(UserStory, all.asList())
 		}
 	}
 
@@ -81,9 +72,7 @@ class UserStoryRestController {
 		}		
 		if (userStoryInstance.save(flush: true)) {
 			response.status = 200 // OK
-			userStoryInstance = userStoryInstance.transformToMap()
-			userStoryInstance = ["user_story": userStoryInstance]
-			render (contentType: "application/json", text: userStoryInstance as JSON)
+			render RestControllerAssistant.renderSingle(UserStory, userStory)
 		}
 		else {
 			response.status = 400 // Bad Request
@@ -119,9 +108,18 @@ class UserStoryRestController {
 			else {
 				userStoryInstance.epic = null
 			}
-			userStoryInstance.properties = p.user_story
-			def paramMileStone = request.JSON as Map
-			def mileStoneIds = paramMileStone.get('user_story').get('mile_stone_ids')
+			def paramMap = request.JSON as Map
+			def systemChangeIds = paramMap.get('user_story').get('system_change_ids')
+			if (systemChangeIds) {
+				List<SystemChange> systemChanges = new ArrayList<SystemChange>()
+				mileStoneIds.each {
+					def systemChange = SystemChange.get(it)
+					systemChange.userStories.add(userStoryInstance)
+					systemChanges.add(systemChange)
+				}
+				userStoryInstance.systemChanges = systemChanges
+			}
+			def mileStoneIds = paramMap.get('user_story').get('mile_stone_ids')
 			if (mileStoneIds) {
 				List<MileStone> mileStones = new ArrayList<MileStone>()
 				mileStoneIds.each {
@@ -131,11 +129,10 @@ class UserStoryRestController {
 				}
 				userStoryInstance.mileStones = mileStones
 			}
+			userStoryInstance.properties = p.user_story
 			if (!userStoryInstance.hasErrors() && userStoryInstance.save(flush: true)) {
 				response.status = 200 // OK
-				userStoryInstance = userStoryInstance.transformToMap()
-				userStoryInstance = ["user_story": userStoryInstance]
-				render (contentType: "application/json", text: userStoryInstance as JSON)
+				render RestControllerAssistant.renderSingle(UserStory, userStory)
 			}
 			else {
 				render render409.curry(userStoryInstance)

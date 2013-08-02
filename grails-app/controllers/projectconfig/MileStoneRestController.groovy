@@ -47,17 +47,15 @@ class MileStoneRestController {
 		milestoneInstance.project = Project.get(props.project_id)
 		def roadmap = RoadMap.get(props.road_map_id)
 		milestoneInstance.roadMap = roadmap
-		def mileStones = MileStone.findAllByRoadMap(roadmap, [sort: 'orderId', order: 'desc'])
+		def mileStones = MileStone.findAllByRoadMap(roadmap, [sort: 'orderId', order: 'asc'])
 		if (mileStones.empty) {
 			milestoneInstance.orderId = 1
 		} else {
-			milestoneInstance.orderId = mileStones.get(0).orderId + 1
+			milestoneInstance.orderId = mileStones.last().orderId + 1
 		}
 		if (milestoneInstance.save(flush: true)) {
 			response.status = 200 //OK
-			milestoneInstance = milestoneInstance.transformToMap()
-			milestoneInstance = ["mile_stone": milestoneInstance]
-			render (contentType: "application/json", text: milestoneInstance as JSON)
+			render RestControllerAssistant.renderSingle(MileStone, milestoneInstance)
 		}
 		else {
 			response.status = 400 // Bad Request
@@ -92,9 +90,7 @@ class MileStoneRestController {
 			milestoneInstance.properties = p.mile_stone
 			if (!milestoneInstance.hasErrors() && milestoneInstance.save(flush: true)) {
 				response.status = 200 // OK
-				milestoneInstance = milestoneInstance.transformToMap()
-				milestoneInstance = ["mile_stone": milestoneInstance]
-				render (contentType: "application/json", text: milestoneInstance as JSON)
+				render RestControllerAssistant.renderSingle(MileStone, milestoneInstance)
 			}
 			else {
 				render render409.curry(milestoneInstance)

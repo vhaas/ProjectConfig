@@ -16,7 +16,11 @@ class EpicRestController {
 
 	def showAllEpics() {
 		def all
-		if (params.project) {
+		def ids = params["ids[]"]
+		if(ids){
+			all = ids.collect{id -> Epic.get id}
+		}
+		else if (params.project) {
 			all = Project.findById(params.project)
 			if (!all) {
 				render renderNotFound
@@ -33,31 +37,18 @@ class EpicRestController {
 			render renderNotFound
 		}
 		else {
-			List<Map> returnMap = new ArrayList<Map>()
-			all.each {
-				def map = it.transformToMap()
-				returnMap.add(map)
-			}
-			def returnedEpics = ["epics": returnMap]
-			render (contentType: "application/json", text: returnedEpics as JSON)
+			render RestControllerAssistant.renderMultiple_alternative(Epic, all.asList())
 		}
-	}
-
-	def create = {
-		def epicInstance = new Epic()
-		epicInstance.properties = params
-		return [epicInstance: epicInstance]
-	}
+	}	
 
 	def save = {
-		def epicInstance = new Epic(params.epic)		
+		def epicInstance = new Epic()
 		def props = params.epic
+		epicInstance.properties = props
 		epicInstance.project = Project.get(props.project_id)
 		if (epicInstance.save(flush: true)) {
 			response.status = 200 // OK
-			epicInstance = epicInstance.transformToMap()
-			epicInstance = ["epic": epicInstance]
-			render (contentType: "application/json", text: epicInstance as JSON)
+			render RestControllerAssistant.renderSingle(Epic, epic)
 		}
 		else {
 			response.status = 400 // Bad Request
@@ -81,9 +72,7 @@ class EpicRestController {
 			epicInstance.properties = p.epic
 			if (!epicInstance.hasErrors() && epicInstance.save(flush: true)) {
 				response.status = 200 // OK
-				epicInstance = epicInstance.transformToMap()
-				epicInstance = ["epic": epicInstance]
-				render (contentType: "application/json", text: epicInstance as JSON)
+				render RestControllerAssistant.renderSingle(Epic, epicInstance)
 			}
 			else {
 				render render409.curry(epicInstance)

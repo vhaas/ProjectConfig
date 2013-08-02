@@ -5,8 +5,7 @@ class Project {
 	String name
 	String description
 
-	static hasMany = [
-		configurations: Configuration,
+	static hasMany = [		
 		epics: Epic,
 		firstEffortEstimates: FirstEffortEstimate,
 		mileStones: MileStone,

@@ -16,7 +16,14 @@ class ProjectRestController {
 	}
 
 	def showAllProjects() {
-		def all = Project.list()
+		def all
+		def ids = params["ids[]"]
+		if(ids){
+			all = ids.collect{id -> Project.get id}
+		}
+		else {
+			all = Project.list()
+		}
 		if (all.empty) {
 			render renderNotFound
 		}
@@ -25,19 +32,11 @@ class ProjectRestController {
 		}
 	}
 
-	def create = {
-		def projectInstance = new Project()
-		projectInstance.properties = params
-		return [projectInstance: projectInstance]
-	}
-
 	def save = {
 		def projectInstance = new Project(params)
 		if (projectInstance.save(flush: true)) {
 			response.status = 200 // OK
-			projectInstance = projectInstance.transformToMap()
-			projectInstance = ["project": projectInstance]
-			render (contentType: "application/json", text: projectInstance as JSON)
+			render RestControllerAssistant.renderSingle(Project, projectInstance)
 		}
 		else {
 			response.status = 400 // Bad Request
@@ -61,9 +60,7 @@ class ProjectRestController {
 			projectInstance.properties = p.project
 			if (!projectInstance.hasErrors() && projectInstance.save(flush: true)) {
 				response.status = 200 // OK
-				projectInstance = projectInstance.transformToMap()
-				projectInstance = ["project": projectInstance]
-				render (contentType: "application/json", text: projectInstance as JSON)
+				render RestControllerAssistant.renderSingle(Project, projectInstance)
 			}
 			else {
 				render render409.curry(projectInstance)

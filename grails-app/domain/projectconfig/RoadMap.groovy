@@ -7,8 +7,6 @@ class RoadMap {
 	String name
 	String description
 
-	Configuration configuration
-
 	static hasMany = [
 		mileStones: MileStone
 	]
