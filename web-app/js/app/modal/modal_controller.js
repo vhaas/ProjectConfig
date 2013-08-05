@@ -12,12 +12,15 @@ App.ModalController = Em.ObjectController.extend({
 	},
 	
 	close : function() {
-		var model = this.get('model'), transaction = model.get('transaction');
+		var model = this.get('model'), transaction;
 
-		if (transaction)
-			transaction.rollback();
-		if (model.get('errors'))
-			model.set('errors', null);
+		if (model) {
+			 transaction = model.get('transaction');
+			 if (transaction)
+				transaction.rollback();
+			 if (model.get('errors'))
+					model.set('errors', null);
+		}
 
 		this.send("closeModal");
 	},
