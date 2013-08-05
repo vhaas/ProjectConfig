@@ -14,6 +14,9 @@
 							<td>
 								{{name}}
 							</td>
+							<td>
+								{{#linkTo systemchange this}} {{name}} {{/linkTo}}
+							</td>
 						</tr>
 					{{/each}}
 				</table>

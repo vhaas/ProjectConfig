@@ -11,7 +11,8 @@ class RoadMap {
 		mileStones: MileStone
 	]
 
-	static constraints = { configuration nullable: true }
+	static constraints = {
+	}
 
 	public transformToMap() {
 		return [

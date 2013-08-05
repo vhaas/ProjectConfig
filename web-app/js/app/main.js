@@ -62,6 +62,8 @@ App.Router.map(function() {
 	this.resource('project', { path : 'project/:project_id' }, function() {
 		this.resource('roadmap', { path : 'roadmap/:roadmap_id' });
 		this.resource('epic', { path : 'epic/:epic_id' });
+		this.resource('system', { path : 'system/:system_id' });
+		this.resource('systemchange', {path : 'systemchangeinput/:user_story_id'});
 	});
 });
 

@@ -16,6 +16,7 @@ class SystemRestController {
 	
 	def showAllSystems() {
 		def all
+		def ids = params["ids[]"]
 		if (ids) {
 			all = ids.collect{id -> System.get id}
 		}

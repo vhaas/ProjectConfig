@@ -1,0 +1,92 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="1318" measuredH="760" mockupW="990" mockupH="713">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::BrowserWindow" x="328" y="47" w="990" h="713" measuredW="450" measuredH="400" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>A%20Web%20Page%0Ahttp%3A//</text>
+      </controlProperties>
+    </control>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::VerticalScrollBar" x="1287" y="166" w="-1" h="549" measuredW="16" measuredH="100" zOrder="1" locked="false" isInGroup="-1"/>
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::BreadCrumbs" x="343" y="128" w="-1" h="-1" measuredW="136" measuredH="24" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Home%2C%20Epic%20Overview</text>
+      </controlProperties>
+    </control>
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::VerticalTabBar" x="343" y="166" w="944" h="549" measuredW="200" measuredH="152" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <selectedIndex>2</selectedIndex>
+        <text>Roadmaps%0AEpics%0ASystems</text>
+      </controlProperties>
+    </control>
+    <control controlID="4" controlTypeID="com.balsamiq.mockups::Accordion" x="420" y="166" w="867" h="549" measuredW="150" measuredH="159" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>System%20A%0ASystem%20B%0ASystem%20C</text>
+      </controlProperties>
+    </control>
+    <control controlID="5" controlTypeID="com.balsamiq.mockups::DataGrid" x="420" y="193" w="867" h="470" measuredW="727" measuredH="85" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>System%20Change%2C%20User%20Stories%2C%20Adaption%20Type%2C%20min%20effort%2C%20med%20effort%2C%20max%20effort%2C%20risk%2C%20Effort%20Type%2C%20Effort%28md%29%0ASystem%20Change%20A%2C%20User%20Story%20A%5CnUser%20Story%20B%2C%20Adaption%20Type%20C%2C%202%2C%203.5%2C%206%2C%20med%2C%20md%2C%204%0ASystem%20Change%20B%2C%20User%20Story%20A%5CnUser%20Story%20D%2C%20Adaption%20Type%20D%2C%202.5%2C%203.5%2C%205%2C%20min%2C%20md%2C%203.75</text>
+        <verticalScrollbar>false</verticalScrollbar>
+      </controlProperties>
+    </control>
+    <control controlID="10" controlTypeID="com.balsamiq.mockups::Label" x="1152" y="170" w="-1" h="-1" measuredW="124" measuredH="21" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Total%20effort%28md%29%3A%207.75</text>
+      </controlProperties>
+    </control>
+    <control controlID="14" controlTypeID="com.balsamiq.mockups::Label" x="568" y="170" w="-1" h="-1" measuredW="91" measuredH="21" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>User%20Stories%3A%204</text>
+      </controlProperties>
+    </control>
+    <control controlID="15" controlTypeID="com.balsamiq.mockups::Label" x="808" y="170" w="-1" h="-1" measuredW="203" measuredH="21" zOrder="8" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>min%20/%20med%20/%20max%20effort%3A%204.5%20/%207%20/%2011</text>
+      </controlProperties>
+    </control>
+    <control controlID="42" controlTypeID="com.balsamiq.mockups::Label" x="1052" y="170" w="77" h="-1" measuredW="62" measuredH="21" zOrder="9" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Risk%20%3A%20med</text>
+      </controlProperties>
+    </control>
+    <control controlID="43" controlTypeID="com.balsamiq.mockups::Label" x="1152" y="690" w="-1" h="-1" measuredW="108" measuredH="21" zOrder="10" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Total%20effort%28md%29%3A%202</text>
+      </controlProperties>
+    </control>
+    <control controlID="44" controlTypeID="com.balsamiq.mockups::Label" x="568" y="690" w="-1" h="-1" measuredW="87" measuredH="21" zOrder="11" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>User%20Stories%3A%201</text>
+      </controlProperties>
+    </control>
+    <control controlID="45" controlTypeID="com.balsamiq.mockups::Label" x="808" y="690" w="-1" h="-1" measuredW="209" measuredH="21" zOrder="12" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>min%20/%20med%20/%20max%20effort%3A%201.5%20/%202%20/%202.5</text>
+      </controlProperties>
+    </control>
+    <control controlID="46" controlTypeID="com.balsamiq.mockups::Label" x="1052" y="690" w="77" h="-1" measuredW="57" measuredH="21" zOrder="13" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Risk%20%3A%20min</text>
+      </controlProperties>
+    </control>
+    <control controlID="47" controlTypeID="com.balsamiq.mockups::Label" x="1152" y="663" w="-1" h="-1" measuredW="130" measuredH="21" zOrder="14" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Total%20effort%28md%29%3A%2015.25</text>
+      </controlProperties>
+    </control>
+    <control controlID="48" controlTypeID="com.balsamiq.mockups::Label" x="568" y="663" w="-1" h="-1" measuredW="89" measuredH="21" zOrder="15" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>User%20Stories%3A%207</text>
+      </controlProperties>
+    </control>
+    <control controlID="49" controlTypeID="com.balsamiq.mockups::Label" x="808" y="663" w="-1" h="-1" measuredW="217" measuredH="21" zOrder="16" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>min%20/%20med%20/%20max%20effort%3A%2011%20/%2014.5%20/%2020</text>
+      </controlProperties>
+    </control>
+    <control controlID="50" controlTypeID="com.balsamiq.mockups::Label" x="1052" y="663" w="77" h="-1" measuredW="61" measuredH="21" zOrder="17" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Risk%20%3A%20high</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>

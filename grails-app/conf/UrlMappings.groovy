@@ -59,6 +59,42 @@ class UrlMappings {
 			action = [GET: "showAllMileStones", POST: "save"]
 		}
 		///////////////////////////////////////////////////////////////////////////////////////////
+		//###System
+		"/rest/systems/$id"(controller: "SystemRest", parseRequest: true) {
+			action = [GET: "showSystemById", PUT: "update", DELETE: "delete", POST: "save"]
+		}
+
+		"/rest/systems"(controller: "SystemRest", parseRequest: true) {
+			action = [GET: "showAllSystems", POST: "save"]
+		}
+		///////////////////////////////////////////////////////////////////////////////////////////
+		//###SystemChange
+		"/rest/system_changes/$id"(controller: "SystemChangeRest", parseRequest: true) {
+			action = [GET: "showSystemChangeById", PUT: "update", DELETE: "delete", POST: "save"]
+		}
+
+		"/rest/system_changes"(controller: "SystemChangeRest", parseRequest: true) {
+			action = [GET: "showAllSystemChanges", POST: "save"]
+		}
+		///////////////////////////////////////////////////////////////////////////////////////////
+		//###AdaptionType
+		"/rest/adaption_types/$id"(controller: "AdaptionTypeRest", parseRequest: true) {
+			action = [GET: "showAdaptionTypeById", PUT: "update", DELETE: "delete", POST: "save"]
+		}
+
+		"/rest/adaption_types"(controller: "AdaptionTypeRest", parseRequest: true) {
+			action = [GET: "showAllAdaptionTypes", POST: "save"]
+		}
+		///////////////////////////////////////////////////////////////////////////////////////////
+		//###FirstEffortEstimate
+		"/rest/first_effort_estimates/$id"(controller: "FirstEffortEstimateRest", parseRequest: true) {
+			action = [GET: "showFirstEffortEstimateById", PUT: "update", DELETE: "delete", POST: "save"]
+		}
+
+		"/rest/first_effort_estimates"(controller: "FirstEffortEstimateRest", parseRequest: true) {
+			action = [GET: "showAllFirstEffortEstimates", POST: "save"]
+		}
+		///////////////////////////////////////////////////////////////////////////////////////////
 		//###Helper
 		"/createTestData"(controller: "TestData", parseRequest: true) {
 			action = [GET: "testBuildAllDomains"]

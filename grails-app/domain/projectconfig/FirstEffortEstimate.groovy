@@ -14,7 +14,9 @@ class FirstEffortEstimate {
 	static hasMany = [		
 	]
 
-	static constraints = { systemChanges nullable: true }
+	static constraints = { 
+		systemChange nullable: true
+	}
 
 	public transformToMap() {
 		return [

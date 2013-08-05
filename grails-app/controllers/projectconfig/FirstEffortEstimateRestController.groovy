@@ -29,17 +29,7 @@ class FirstEffortEstimateRestController {
 			else {
 				all = all.getFirstEffortEstimates()
 			}
-		}
-		else if (params.system_change) {
-			all = SystemChange.findById(params.system_change)
-			if (!all) {
-				render renderNotFound
-				return
-			}
-			else {
-				all = all.getSystemChanges
-			}
-		}
+		}		
 		else {
 			all = FirstEffortEstimate.list()
 		}
@@ -86,18 +76,13 @@ class FirstEffortEstimateRestController {
 				}
 			}
 			def props = p.first_effort_estimate
-			
-			def paramMap = request.JSON as Map
-			def systemChangeIds = paramMap.get('first_effort_estimate').get('system_change_ids')
-			if (systemChangeIds) {
-				List<SystemChange> systemChanges = new ArrayList<SystemChange>()
-				mileStoneIds.each {
-					def systemChange = SystemChange.get(it)
-					systemChange.firstEffortEstimate = userStoryInstance
-					systemChanges.add(systemChange)
-				}
-				firstEffortEstimateInstance.systemChanges = systemChanges
-			}			
+			def paramSystemChange = SystemChange.get(props.system_change_id)
+			if (paramSystemChange) {
+				firstEffortEstimateInstance.systemChange = paramSystemChange
+			}
+			else {
+				firstEffortEstimateInstance.systemChange = null
+			}									
 			firstEffortEstimateInstance.properties = p.first_effort_estimate
 			if (!firstEffortEstimateInstance.hasErrors() && firstEffortEstimateInstance.save(flush: true)) {
 				response.status = 200 // OK

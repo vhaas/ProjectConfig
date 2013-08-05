@@ -12,6 +12,8 @@ App.Project = DS.Model.extend({
 	name : DS.attr("string"),
 	description : DS.attr("string"),
 	epics : DS.hasMany("App.Epic"),
+	systems : DS.hasMany("App.System"),
+	roadMaps : DS.hasMany("App.RoadMap"),
 	href : (function() {
 		return "#" + this.get('id');
 	}).property('id').cacheable()
@@ -77,13 +79,13 @@ App.SystemChange = DS.Model.extend({
 });
 
 App.FirstEffortEstimate = DS.Model.extend({
-	effortType = DS.attr("string"),
-	minEffort = DS.attr("string"),
-	medEffort = DS.attr("string"),
-	maxEffort = DS.attr("string"),
-	risk = DS.attr("string"),
+	effortType : DS.attr("string"),
+	minEffort : DS.attr("string"),
+	medEffort : DS.attr("string"),
+	maxEffort : DS.attr("string"),
+	risk : DS.attr("string"),
 	project : DS.belongsTo("App.Project"),
-	systemChanges : DS.hasMany("App.SystemChange")
+	systemChanges : DS.belongsTo("App.SystemChange")
 });
 
 App.AdaptionType = DS.Model.extend({

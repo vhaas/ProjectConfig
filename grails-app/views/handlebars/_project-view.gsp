@@ -1,5 +1,6 @@
 <g:render template="/handlebars/roadmap-list-view"></g:render>
 <g:render template="/handlebars/epic-list-view"></g:render>
+<g:render template="/handlebars/system-list-view"></g:render>
 <g:render template="/handlebars/roadmap-view"></g:render>
 <g:render template="/handlebars/epic-view"></g:render>
 <script type="text/x-handlebars" data-template-name="project">
@@ -29,15 +30,16 @@
 					</div>
 					<div class="row-fluid">
 						<div class="span4">
+							<h5>Roadmaps</h5>
 							{{outlet roadmap-list}}
 						</div>
 						<div class="span4">
+							<h5>Epics</h5>
 							{{outlet epic-list}}
 						</div>
 						<div class="span4">
-							<div class="well">
-								test
-							</div>
+							<h5>Systems</h5>
+							{{outlet system-list}}
 						</div>
 					</div>
 				</form>

@@ -58,8 +58,8 @@ class TestDataGenerationService {
 
 		Role roleA = new Role(name: "Role A", description: "Description of Role A", project: projectA)
 		Role roleB = new Role(name: "Role B", description: "Description of Role B", project: projectA)
-		Role roleC = new Role(name: "Role C", description: "Description of Role C", project: projectA)
-		Role roleD = new Role(name: "Role D", description: "Description of Role D", project: projectA)
+		Role roleC = new Role(name: "Role C", description: "Description of Role C", project: projectB)
+		Role roleD = new Role(name: "Role D", description: "Description of Role D", project: projectB)
 
 		UserStory storyAAAA = new UserStory(name: "Story AAAA", benefit: "Benefit ot Story AAAA", goal: "Goal of Story AAAA", description: "Description of Story AAAA", project: projectA)
 		UserStory storyAAA = new UserStory(name: "Story AAA", benefit: "Benefit ot Story AAA", goal: "Goal of Story AAA", description: "Description of Story AAA", project: projectA)
@@ -114,7 +114,49 @@ class TestDataGenerationService {
 		mileStoneABA.addToUserStories(storyBAB)
 		mileStoneABB.addToUserStories(storyBBA)
 		mileStoneABB.addToUserStories(storyBBB)
+		
+		System systemAA = new System(name: "System AA", description: "Description of System AA", project: projectA)
+		System systemAB = new System(name: "System AB", description: "Description of System AB", project: projectA)
+		System systemBA = new System(name: "System BA", description: "Description of System BA", project: projectB)
+		System systemBB = new System(name: "System BB", description: "Description of System BB", project: projectB)
+		
+		AdaptionType adaptionTypeA = new AdaptionType(name: "AdaptionType A", description: "Description of AdaptionType A", project: projectA)
+		AdaptionType adaptionTypeB = new AdaptionType(name: "AdaptionType B", description: "Description of AdaptionType B", project: projectA)
+		AdaptionType adaptionTypeC = new AdaptionType(name: "AdaptionType C", description: "Description of AdaptionType C", project: projectB)
+		AdaptionType adaptionTypeD = new AdaptionType(name: "AdaptionType D", description: "Description of AdaptionType D", project: projectB)
+		
+		FirstEffortEstimate firstEffortEstimateAAA = new FirstEffortEstimate(effortType: "Effort Type of First Effort Estimate AAA", minEffort: "1", medEffort: "2", maxEffort: "3", risk: "50", project: projectA)
+		FirstEffortEstimate firstEffortEstimateAAB = new FirstEffortEstimate(effortType: "Effort Type of First Effort Estimate AAB", minEffort: "1", medEffort: "2", maxEffort: "3", risk: "50", project: projectA)		
+		
+		SystemChange systemChangeAAA = new SystemChange(adaptionAspect: "Adaption Aspect AAA", project: projectA, adaptionType: adaptionTypeA, firstEffortEstimate: firstEffortEstimateAAA, system: systemAA)
+		SystemChange systemChangeAAB = new SystemChange(adaptionAspect: "Adaption Aspect AAB", project: projectA, adaptionType: adaptionTypeA, firstEffortEstimate: firstEffortEstimateAAB, system: systemAA)
+		storyAAA.addToSystemChanges(systemChangeAAA)
+		storyAAB.addToSystemChanges(systemChangeAAB)
+		
+		FirstEffortEstimate firstEffortEstimateABA = new FirstEffortEstimate(effortType: "Effort Type of First Effort Estimate ABA", minEffort: "1", medEffort: "2", maxEffort: "3", risk: "50", project: projectA)
+		FirstEffortEstimate firstEffortEstimateABB = new FirstEffortEstimate(effortType: "Effort Type of First Effort Estimate ABB", minEffort: "1", medEffort: "2", maxEffort: "3", risk: "50", project: projectA)
 
+		SystemChange systemChangeABA = new SystemChange(adaptionAspect: "Adaption Aspect ABA", project: projectA, adaptionType: adaptionTypeB, firstEffortEstimate: firstEffortEstimateABA, system: systemAB)
+		SystemChange systemChangeABB = new SystemChange(adaptionAspect: "Adaption Aspect ABB", project: projectA, adaptionType: adaptionTypeB, firstEffortEstimate: firstEffortEstimateABB, system: systemAB)
+		storyABA.addToSystemChanges(systemChangeABA)
+		storyABB.addToSystemChanges(systemChangeABB)
+		
+		FirstEffortEstimate firstEffortEstimateBAA = new FirstEffortEstimate(effortType: "Effort Type of First Effort Estimate BAA", minEffort: "1", medEffort: "2", maxEffort: "3", risk: "50", project: projectB)
+		FirstEffortEstimate firstEffortEstimateBAB = new FirstEffortEstimate(effortType: "Effort Type of First Effort Estimate BAB", minEffort: "1", medEffort: "2", maxEffort: "3", risk: "50", project: projectB)
+
+		SystemChange systemChangeBAA = new SystemChange(adaptionAspect: "Adaption Aspect BAA", project: projectB, adaptionType: adaptionTypeC, firstEffortEstimate: firstEffortEstimateBAA, system: systemBA)
+		SystemChange systemChangeBAB = new SystemChange(adaptionAspect: "Adaption Aspect BAB", project: projectB, adaptionType: adaptionTypeC, firstEffortEstimate: firstEffortEstimateBAB, system: systemBA)
+		storyBAA.addToSystemChanges(systemChangeBAA)
+		storyBAB.addToSystemChanges(systemChangeBAB)
+		
+		FirstEffortEstimate firstEffortEstimateBBA = new FirstEffortEstimate(effortType: "Effort Type of First Effort Estimate BBA", minEffort: "1", medEffort: "2", maxEffort: "3", risk: "50", project: projectB)
+		FirstEffortEstimate firstEffortEstimateBBB = new FirstEffortEstimate(effortType: "Effort Type of First Effort Estimate BBB", minEffort: "1", medEffort: "2", maxEffort: "3", risk: "50", project: projectB)
+
+		SystemChange systemChangeBBA = new SystemChange(adaptionAspect: "Adaption Aspect BBA", project: projectB, adaptionType: adaptionTypeD, firstEffortEstimate: firstEffortEstimateBBA, system: systemBB)
+		SystemChange systemChangeBBB = new SystemChange(adaptionAspect: "Adaption Aspect BBB", project: projectB, adaptionType: adaptionTypeD, firstEffortEstimate: firstEffortEstimateBBB, system: systemBB)		
+		storyBBA.addToSystemChanges(systemChangeBBA)
+		storyBBB.addToSystemChanges(systemChangeBBB)
+		
 		projectA.save(failOnError: true)
 		projectB.save(failOnError: true)
 		
@@ -146,9 +188,34 @@ class TestDataGenerationService {
 		mileStoneAAB.save(failOnError: true)
 		mileStoneABA.save(failOnError: true)
 		mileStoneABB.save(failOnError: true)
-
-
-		println "Created the Epic: $epicAA"
+		
+		systemAA.save(failOnError: true)
+		systemAB.save(failOnError: true)
+		systemBA.save(failOnError: true)
+		systemBB.save(failOnError: true)
+		
+		adaptionTypeA.save(failOnError: true)
+		adaptionTypeB.save(failOnError: true)
+		adaptionTypeC.save(failOnError: true)
+		adaptionTypeD.save(failOnError: true)
+		
+		firstEffortEstimateAAA.save(failOnError: true)
+		firstEffortEstimateAAB.save(failOnError: true)
+		firstEffortEstimateABA.save(failOnError: true)
+		firstEffortEstimateABB.save(failOnError: true)
+		firstEffortEstimateBAA.save(failOnError: true)
+		firstEffortEstimateBAB.save(failOnError: true)
+		firstEffortEstimateBBA.save(failOnError: true)
+		firstEffortEstimateBBB.save(failOnError: true)
+		
+		systemChangeAAA.save(failOnError: true)
+		systemChangeAAB.save(failOnError: true)
+		systemChangeABA.save(failOnError: true)
+		systemChangeABB.save(failOnError: true)
+		systemChangeBAA.save(failOnError: true)
+		systemChangeBAB.save(failOnError: true)
+		systemChangeBBA.save(failOnError: true)
+		systemChangeBBB.save(failOnError: true)
 		
 		buildAFewProjects()
 	}
@@ -157,7 +224,7 @@ class TestDataGenerationService {
 		String desc = "Lorem ipsum dolor sit amet, consetetur sadipscing elitr," + 
 						"sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat," + 
 						"sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. ";						
-		for (int i = 0; i < 50; i++) {
+		for (int i = 0; i < 10; i++) {
 			Project projectA = new Project(name: "Project " + i, description: desc + i)
 			projectA.save(failOnError: true)
 		}

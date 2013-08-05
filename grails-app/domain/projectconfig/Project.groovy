@@ -24,7 +24,9 @@ class Project {
 			id: id,
 			name: name,
 			description: description,
-			epic_ids: epics.collect{it.id}
+			epic_ids: epics.collect{it.id},			
+			road_map_ids: roadMaps.collect{it.id},
+			system_ids: systems.collect{it.id}
 		]
 	}
 

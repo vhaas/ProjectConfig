@@ -34,6 +34,7 @@ class UserStory {
 			epic_id: epic ? epic.id : '',
 			role_id: role ? role.id : '',
 			project_id: project ? project.id : '',
+			system_change_ids: systemChanges.collect{it.id}
 		]
 	}
 
