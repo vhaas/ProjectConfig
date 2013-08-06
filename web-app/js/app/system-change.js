@@ -3,10 +3,12 @@ App.SystemchangeRoute = Ember.Route.extend({
 		this.controllerFor('user.story.table').set('content', model);
 		this.controllerFor('user.stories.table').set('selected', model);
 		var projectId = model.get('project').get('id');
+		var systems = App.System.find({project:projectId});
 		this.controllerFor('user.stories.table').set('content', App.UserStory.find({project:projectId}));
-		this.controllerFor('systems.table').set('content', App.System.find({project:projectId}));
-		this.controllerFor('system.changes').set('content', model.get('systemChanges'));
-		this.controllerFor('filter.system').set('content', App.System.find({project:projectId}));
+		this.controllerFor('systems.table').set('content', systems);
+		this.controllerFor('filter.system').set('content',systems);
+    	this.controllerFor('system.changes.modal').set('content', App.SystemChange.find({project:projectId}));
+//		this.controllerFor('system.changes').set('content', model.get('systemChanges'));
 //		this.controllerFor('system.changes').set('content', model.get('systemChanges'));
 	},
 	model : function(params) {
@@ -106,15 +108,33 @@ App.SystemsController = Ember.ArrayController.extend({
 
 App.SystemChangesModalController = Ember.ArrayController.extend({
 	selectedFilter : null,
-	itemControlller : 'systemChangeModal',
-	needs : ['filter.system'],
 	create : function(userstory) {
 		
-	}
+	},
+	selectedSystemChange : null,
+	beforeSelected : null,
+	doCall : (function() {
+		console.log(this.get('selectedSystemChange'));
+	}).observes('selectedSystemChange')
 });
 
 App.SystemChangeModalController = App.ModalController.extend({
-	
+	needs : ['filterSystem', 'systemChangesModal'],
+	doda : function(id) {
+		console.log('this' + this.get('controllers').get('systemChangesModal').get('content') + ';id: ' + id);
+	},
+	selectSystemChange : function(systemChange) {		
+		this.get('controllers').get('systemChangesModal').set('selectedSystemChange', systemChange);
+	},
+	isSelected : (function() {
+		var selected = this.get('controllers').get('systemChangesModal').get('selectedSystemChange');
+		var boolean = Ember.isEqual(this.get('controllers').get('systemChangesModal').get('beforeSelected'), selected);
+		console.log(boolean + ', content: ' + this.get('controllers').get('systemChangesModal').get('beforeSelected') + ', selected' + selected);
+		return boolean;
+	}).property('controllers.systemChangesModal.selectedSystemChange'),
+	beforeObserver : (function() {
+		this.get('controllers').get('systemChangesModal').set('beforeSelected', this.get('controllers').get('systemChangesModal').get('selectedSystemChange'));
+	}).observesBefore('controllers.systemChangesModal.selectedSystemChange')
 });
 
 App.SelectFilterSystem = Ember.Select.extend({

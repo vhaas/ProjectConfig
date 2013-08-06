@@ -10,7 +10,7 @@ class SystemRestController {
 			render renderNotFound
 		}
 		else {
-			render RestControllerAssistant.renderSingle(Syste, system)
+			render RestControllerAssistant.renderSingle(System, system)
 		}
 	}
 	
