@@ -3,13 +3,9 @@ App.SystemchangeRoute = Ember.Route.extend({
 		this.controllerFor('user.story.table').set('content', model);
 		this.controllerFor('user.stories.table').set('selected', model);
 		var projectId = model.get('project').get('id');
-		var systems = App.System.find({project:projectId});
 		this.controllerFor('user.stories.table').set('content', App.UserStory.find({project:projectId}));
-		this.controllerFor('systems.table').set('content', systems);
-		this.controllerFor('filter.system').set('content',systems);
+		this.controllerFor('systems.table').set('content', App.System.find({project:projectId}));
     	this.controllerFor('system.changes.modal').set('content', App.SystemChange.find({project:projectId}));
-//		this.controllerFor('system.changes').set('content', model.get('systemChanges'));
-//		this.controllerFor('system.changes').set('content', model.get('systemChanges'));
 	},
 	model : function(params) {
 		return App.UserStory.find(params.user_story_id);
@@ -37,7 +33,7 @@ App.SystemchangeRoute = Ember.Route.extend({
 	    },
 	    addSystemChange : function(userStory) {
 	    	this.controllerFor('system.changes.modal').create(userStory);
-	    	this.send('openModal', 'system.change.modal');
+	    	this.send('openModal', 'system.changes.modal');
 	    },
 	    doda : function(item) {
 	    	console.log('SystemChanges: ' + item.get('systemChanges'));
@@ -68,8 +64,8 @@ App.UserStoryTableController = Ember.ObjectController.extend({
 App.SystemsTableController = Ember.ArrayController.extend({
 	needs : ['userStoryTable'],
 	filteredContent : (function() {
-		var content = this.get('content'), userstory = this.get('controllers')
-				.get('userStoryTable').get('content');
+		var content = this.get('content'),
+			userstory = this.get('controllers').get('userStoryTable').get('content');
 		if (!content) {
 			return content;
 		}
@@ -83,7 +79,7 @@ App.SystemsTableController = Ember.ArrayController.extend({
 					if (!system) {
 						return;
 					} else {
-						if ( Ember.isEqual(system, item)) {
+						if (Ember.isEqual(system, item)) {
 							isAssigned = false;
 						}
 					}
@@ -95,46 +91,94 @@ App.SystemsTableController = Ember.ArrayController.extend({
 });
 
 App.SystemChangesController = Ember.ArrayController.extend({
-	itemController : 'system.change'	
+	itemController : 'systemChange',
+	enabledSystemChange : null
 });
 
 App.SystemChangeController = Ember.ObjectController.extend({
-	
+	isDisabled : (function() {
+		if (Ember.isNone(this.get('parentController').get('enabledSystemChange'))) {
+			return true;
+		} else {
+			return !Ember.isEqual(this.get('content'), this.get('parentController').get('enabledSystemChange');)
+		}
+	}).property('parentController.enabledSystemChange', 'content')
 });
 
 App.SystemsController = Ember.ArrayController.extend({
-	needs : ['system.changes']
+	needs : ['systemChanges'],
+	sortProperties: ['name'],
+    sortAscending: true
 });
 
 App.SystemChangesModalController = Ember.ArrayController.extend({
+	itemController : 'systemChangeModal',
+	needs : ['systemsTable'],
+	save : function() {
+		var sysch = this.get('selectedUserStory').get('systemChanges').pushObject(this.get('selectedSystemChange'));
+		sysch.one('didUpdate', this, function() {
+			this.send('close');
+		});
+		sysch.get('store').commit();
+//		this.get('model.transaction').commit();
+	},	
+	close : function() {
+		var model = this.get('model'), transaction;
+		this.set('selectedSystemChange', null);
+		if (model) {
+			 transaction = model.get('transaction');
+			 if (transaction)
+				transaction.rollback();
+			 if (model.get('errors'))
+					model.set('errors', null);
+		}
+
+		this.send("closeModal");
+	},	
+	shouldDisableSubmit : function() {
+		return Ember.isNone(this.get('selectedSystemChange'));
+	}.property('selectedSystemChange'),
 	selectedFilter : null,
 	create : function(userstory) {
-		
+		this.set('selectedUserStory',userstory);
 	},
 	selectedSystemChange : null,
-	beforeSelected : null,
+	selectedUserStory : null,
+//	filteredContent : (function() {
+//		if (!Ember.isNone(this.get('selectedFilter'))) {
+//			var content = this.get('arrangedContent'), 
+//				systemFilter = this.get('selectedFilter');
+//			if (!content) {
+//				return;
+//			}
+//			content = content.filter(function(item) {
+//				if (Ember.isEqual(item, systemFilter)) {
+//					return true;
+//				} else {
+//					return false;
+//				}
+//			});
+//			return Ember.ArrayProxy.create({
+//				content : Ember.A(content),
+//				lookupItemController : this.lookupItemController
+//			});
+//		} else {
+//			return this.get('arrangedContent');
+//		}
+//	}).property('content.@each.system', 'selectedFilter')
 	doCall : (function() {
 		console.log(this.get('selectedSystemChange'));
 	}).observes('selectedSystemChange')
 });
 
 App.SystemChangeModalController = App.ModalController.extend({
-	needs : ['filterSystem', 'systemChangesModal'],
-	doda : function(id) {
-		console.log('this' + this.get('controllers').get('systemChangesModal').get('content') + ';id: ' + id);
-	},
-	selectSystemChange : function(systemChange) {		
-		this.get('controllers').get('systemChangesModal').set('selectedSystemChange', systemChange);
-	},
 	isSelected : (function() {
-		var selected = this.get('controllers').get('systemChangesModal').get('selectedSystemChange');
-		var boolean = Ember.isEqual(this.get('controllers').get('systemChangesModal').get('beforeSelected'), selected);
-		console.log(boolean + ', content: ' + this.get('controllers').get('systemChangesModal').get('beforeSelected') + ', selected' + selected);
-		return boolean;
-	}).property('controllers.systemChangesModal.selectedSystemChange'),
-	beforeObserver : (function() {
-		this.get('controllers').get('systemChangesModal').set('beforeSelected', this.get('controllers').get('systemChangesModal').get('selectedSystemChange'));
-	}).observesBefore('controllers.systemChangesModal.selectedSystemChange')
+		var selected = this.get('parentController').get('selectedSystemChange');
+		return !Ember.isEqual(this.get('content'), selected);
+	}).property('parentController.selectedSystemChange', 'content'),
+	selectSystemChange : function(systemChange) {
+		this.get('parentController').set('selectedSystemChange', systemChange);
+	}
 });
 
 App.SelectFilterSystem = Ember.Select.extend({
@@ -144,11 +188,6 @@ App.SelectFilterSystem = Ember.Select.extend({
 	prompt : ''
 });
 
-App.FilterSystemController = Ember.ArrayController.extend({
-	sortProperties: ['name'],
-    sortAscending: true
-});
-
-App.SystemChangeModalView = App.ModalView.extend({
+App.SystemChangesModalView = App.ModalView.extend({
 	templateName : 'add-system-change-modal'
 });

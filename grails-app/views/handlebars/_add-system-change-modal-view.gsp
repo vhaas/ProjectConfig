@@ -9,14 +9,11 @@
         			<button class="btn pull-left"{{action "doda"}}>Create new System Change</button>
       			</div>
       			<div class="pull-right">
-      				<label>
-      					Filter System
-
 					{{view App.SelectFilterSystem
-						contentBinding="controller.controllers.systemFilter.arrangedContent"
-						selectionBinding="controller.controllers.systemChangesModal.selectedFilter"
+						contentBinding="controller.controllers.systemsTable.content"
+						selectionBinding="controller.selectedFilter"
+						prompt="Filter Systems"
 					}}
-					</label>
       			</div>
       			<table class="table table-bordered table-hover">
 					<thead>
@@ -28,8 +25,8 @@
 		      			</tr>
 		   			</thead>
 		   			<tbody>
-						{{#each item in controller.controllers.systemChangesModal.content}}
-							<tr {{bindAttr class="isSelected::info"}} {{action "selectSystemChange" item}}>
+						{{#each item in controller}}
+							<tr {{bindAttr class="isSelected::info"}} {{action "selectSystemChange" item target="controller"}}>
 								<td>
 									{{item.adaptionAspect}}
 								</td>

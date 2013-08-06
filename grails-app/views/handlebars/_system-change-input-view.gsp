@@ -1,6 +1,7 @@
 <g:render template="/handlebars/userstory-table-view"></g:render>
 <g:render template="/handlebars/system-table-view"></g:render>
 <g:render template="/handlebars/add-system-change-modal-view"></g:render>
+<g:render template="/handlebars/systemchange-list-view"></g:render>
 
 <script type="text/x-handlebars" data-template-name="system-change-input">
 		<div class="container-fluid" data-spy="scroll" data-target=".nav-tabs">

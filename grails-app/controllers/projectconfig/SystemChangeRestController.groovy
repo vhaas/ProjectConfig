@@ -40,6 +40,16 @@ class SystemChangeRestController {
 				all = all.getSystemChanges()
 			}
 		}
+		else if (params.project) {
+			all = Project.findById(params.project)
+			if (!all) {
+				render renderNotFound
+				return
+			}
+			else {
+				all = all.getSystemChanges()
+			}
+		}
 		else {
 			all = SystemChange.list()
 		}
@@ -83,14 +93,14 @@ class SystemChangeRestController {
 					return
 				}
 			}
-			def paramFirstEffortEstimate = FirstEffortEstimate.get(props.first_effort_estimate_id)
+			def paramFirstEffortEstimate = FirstEffortEstimate.get(p.first_effort_estimate_id)
 			if (paramFirstEffortEstimate) {
 				systemChangeInstance.firstEffortEstimate = paramFirstEffortEstimate
 			}
 			else {
 				systemChangeInstance.firstEffortEstimate = null
 			}
-			def paramAdaptionType = AdaptionType.get(props.adaption_type_id)
+			def paramAdaptionType = AdaptionType.get(p.adaption_type_id)
 			if (paramAdaptionType) {
 				systemChangeInstance.adaptionType = paramAdaptionType
 			}

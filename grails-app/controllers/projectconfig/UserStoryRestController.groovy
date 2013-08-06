@@ -112,7 +112,7 @@ class UserStoryRestController {
 			def systemChangeIds = paramMap.get('user_story').get('system_change_ids')
 			if (systemChangeIds) {
 				List<SystemChange> systemChanges = new ArrayList<SystemChange>()
-				mileStoneIds.each {
+				systemChangeIds.each {
 					def systemChange = SystemChange.get(it)
 					systemChange.userStories.add(userStoryInstance)
 					systemChanges.add(systemChange)
@@ -132,7 +132,7 @@ class UserStoryRestController {
 			userStoryInstance.properties = p.user_story
 			if (!userStoryInstance.hasErrors() && userStoryInstance.save(flush: true)) {
 				response.status = 200 // OK
-				render RestControllerAssistant.renderSingle(UserStory, userStory)
+				render RestControllerAssistant.renderSingle(UserStory, userStoryInstance)
 			}
 			else {
 				render render409.curry(userStoryInstance)
