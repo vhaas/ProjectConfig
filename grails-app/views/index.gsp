@@ -6,6 +6,7 @@
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css"></link>
 <link rel="stylesheet/less" type="text/css" href="css/app.less"></link>
 <link rel="stylesheet" type="text/css" href="css/modal.css"></link>
+<link rel="stylesheet" type="text/css" href="css/bootstrap-custom.css"></link>
 <!--link rel="stylesheet" type="text/css" href="css/bootstrap-glyphicons.css"></link-->
 
 <title>Project Configurer</title>
