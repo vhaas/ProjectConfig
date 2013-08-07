@@ -6,6 +6,7 @@ App.SystemchangeRoute = Ember.Route.extend({
 		this.controllerFor('user.stories.table').set('content', App.UserStory.find({project:projectId}));
 		this.controllerFor('systems.table').set('content', App.System.find({project:projectId}));
     	this.controllerFor('system.changes.modal').set('content', App.SystemChange.find({project:projectId}));
+    	this.controllerFor('system.changes.list').set('content', model.get('systemChanges'));
 	},
 	model : function(params) {
 		return App.UserStory.find(params.user_story_id);
@@ -24,6 +25,11 @@ App.SystemchangeRoute = Ember.Route.extend({
 			into : 'system-change-input',
 			outlet : 'system-table',
 			controller : 'systems.table'
+		}),
+		this.render('systemchange-list', {
+			into : 'system-change-input',
+			outlet : 'system-changes',
+			controller : 'system.changes.list'
 		})
 	},
 	events : {
@@ -37,7 +43,11 @@ App.SystemchangeRoute = Ember.Route.extend({
 	    },
 	    doda : function(item) {
 	    	console.log('SystemChanges: ' + item.get('systemChanges'));
-	    }
+	    },
+	    leaveFormDirty : function(model) {
+			this.controllerFor('leave.dirty.modal').leaveDirty(model, 'epic');
+			this.send('openModal', 'leave.dirty.modal');
+		}
 	}
 });
 
@@ -51,7 +61,7 @@ App.UserstoryTableView = Ember.View.extend({
 
 App.UserStoriesTableController = Ember.ArrayController.extend({
 	itemController : 'user.story.table',
-	needs : ['system.changes'],
+	needs : ['system.changes.list'],
 	sortProperties: ['name'],
     sortAscending: true,
 	selected : null
@@ -90,19 +100,51 @@ App.SystemsTableController = Ember.ArrayController.extend({
 	}).property('content.@each.isLoaded', 'controllers.userStoryTable.content.isLoaded')	
 });
 
-App.SystemChangesController = Ember.ArrayController.extend({
-	itemController : 'systemChange',
+App.SystemChangesListController = Ember.ArrayController.extend({
+	itemController : 'systemChangeItem',
 	enabledSystemChange : null
 });
 
-App.SystemChangeController = Ember.ObjectController.extend({
+App.SystemChangeItemController = Ember.ObjectController.extend({
 	isDisabled : (function() {
 		if (Ember.isNone(this.get('parentController').get('enabledSystemChange'))) {
 			return true;
 		} else {
-			return !Ember.isEqual(this.get('content'), this.get('parentController').get('enabledSystemChange');)
+			return !Ember.isEqual(this.get('content'), this.get('parentController').get('enabledSystemChange'));
 		}
-	}).property('parentController.enabledSystemChange', 'content')
+	}).property('parentController.enabledSystemChange', 'content'),
+	editMode : false,
+	toggleEditMode : (function() {
+		if (this.get('editMode') === true) {
+			this.get('parentController').set('enabledSystemChange', this.get('content'));
+		} else {
+			this.get('parentController').set('enabledSystemChange', null);
+		}
+	}).observes('editMode'),
+	leaveDirty : (function() {
+		if (!Ember.isNone(this.get('content'))) {
+			if (this.get('content').get('isDirty')) {
+				if (!Ember.isEmpty(this.get('content').get('id'))) {
+					this.send('leaveFormDirty', this.get('content'));
+				}
+			}
+		}
+	}).observes('isDisabled'),
+	save : function() {
+		this.get('model.transaction').commit();
+		if (Ember.isNone(this.get('content').get('id'))) {
+			this.get('model').one('didCreate', this, function() {
+				this.setDisabled();
+			});
+		} else {
+			this.get('model').one('didUpdate', this, function() {
+				this.setDisabled();
+			});
+		}
+	},
+	hasSystem : (function() {
+		return Ember.isNone(this.get('model').get('system'));
+	}).property('content.system')
 });
 
 App.SystemsController = Ember.ArrayController.extend({
@@ -184,10 +226,21 @@ App.SystemChangeModalController = App.ModalController.extend({
 App.SelectFilterSystem = Ember.Select.extend({
 	multiple : false,
 	optionLabelPath : 'content.name',
-	optionValuePath : 'content.id',
-	prompt : ''
+	optionValuePath : 'content.id'
 });
 
 App.SystemChangesModalView = App.ModalView.extend({
 	templateName : 'add-system-change-modal'
+});
+
+App.SystemSelect = Ember.Select.extend({
+	multiple : false,
+	optionLabelPath : 'content.name',
+	optionValuePath : 'content.id'
+});
+
+App.AdaptionTypeSelect = Ember.Select.extend({
+	multiple : false,
+	optionLabelPath : 'content.name',
+	optionValuePath : 'content.id'
 });

@@ -153,7 +153,7 @@ App.UserstoriesController = Ember.ArrayController.extend({
 
 App.UserstoryController = Ember.ObjectController.extend({
 	needs : ['roles'],
-	willGetDeleted : false,	
+	willGetDeleted : false,
 	isDisabled : (function() {
 		if (Ember.isNone(this.get('parentController').get('enabledUserstory'))) {
 			console.log('is true');

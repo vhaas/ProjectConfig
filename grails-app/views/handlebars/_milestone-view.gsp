@@ -17,16 +17,16 @@
 							</h5>
 							<div class="well well-small">{{milestone.description}}</div>
 							<table class="table">
-							{{#each story in milestone.userStories}}
-								<tr>
-									<td>
-										{{story.name}}
-									</td>
-									<td>
-										<button type="button" class="close" {{action "removeUserstory" story}}>&times;</button>
-									</td>
-								</tr>
-							{{/each}}
+								{{#each story in milestone.userStories}}
+									<tr>
+										<td>
+											{{story.name}}
+										</td>
+										<td>
+											<button type="button" class="close" {{action "removeUserstory" story}}>&times;</button>
+										</td>
+									</tr>
+								{{/each}}
 							</table>
 							{{#view App.BootstrapControl inputId="milestone.userStories" label="Unassigned User Stories"}}
 								{{view App.Select

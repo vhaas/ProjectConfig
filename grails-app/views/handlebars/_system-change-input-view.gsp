@@ -27,9 +27,7 @@
 				</div>
 			</div>
 			<div class="span9">
-				<div>
-					{{outlet system-changes}}
-				</div>
+				{{outlet system-changes}}
 			<div>
 		</div>
 </script>
