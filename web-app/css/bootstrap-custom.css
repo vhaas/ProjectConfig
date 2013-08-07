@@ -12,6 +12,7 @@
 }
 
 .table2 tr .border {
+	border-top: 1px solid #dddddd;
 	border-bottom: 1px solid #dddddd;
 }
 

@@ -29,7 +29,17 @@ class FirstEffortEstimateRestController {
 			else {
 				all = all.getFirstEffortEstimates()
 			}
-		}		
+		}
+		else if (params.effort_role) {
+			all = EffortRole.findById(params.effort_role)
+			if (!all) {
+				render renderNotFound
+				return
+			}
+			else {
+				all = all.getFirstEffortEstimates()
+			}
+		}
 		else {
 			all = FirstEffortEstimate.list()
 		}
@@ -76,7 +86,7 @@ class FirstEffortEstimateRestController {
 				}
 			}
 			def props = p.first_effort_estimate
-			def paramSystemChange = SystemChange.get(props.system_change_id)
+			def SystemChange = SystemChange.get(props.system_change_id)
 			if (paramSystemChange) {
 				firstEffortEstimateInstance.systemChange = paramSystemChange
 			}

@@ -5,6 +5,7 @@ App.SystemchangeRoute = Ember.Route.extend({
 		var projectId = model.get('project').get('id');
 		this.controllerFor('user.stories.table').set('content', App.UserStory.find({project:projectId}));
 		this.controllerFor('systems.table').set('content', App.System.find({project:projectId}));
+		this.controllerFor('adaption.type.list').set('content', App.AdaptionType.find());
     	this.controllerFor('system.changes.modal').set('content', App.SystemChange.find({project:projectId}));
     	this.controllerFor('system.changes.list').set('content', model.get('systemChanges'));
 	},
@@ -72,7 +73,7 @@ App.UserStoryTableController = Ember.ObjectController.extend({
 });
 
 App.SystemsTableController = Ember.ArrayController.extend({
-	needs : ['userStoryTable'],
+	needs : ['userStoryTable', 'adaptionTypeList', 'systemsTable'],
 	filteredContent : (function() {
 		var content = this.get('content'),
 			userstory = this.get('controllers').get('userStoryTable').get('content');
@@ -243,4 +244,8 @@ App.AdaptionTypeSelect = Ember.Select.extend({
 	multiple : false,
 	optionLabelPath : 'content.name',
 	optionValuePath : 'content.id'
+});
+
+App.AdaptionTypeListController = Ember.ArrayController.extend({
+	
 });

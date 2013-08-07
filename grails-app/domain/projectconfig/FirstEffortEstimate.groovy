@@ -9,13 +9,13 @@ class FirstEffortEstimate {
 	String medEffort
 	String maxEffort
 	String risk
+	
 	SystemChange systemChange
-
-	static hasMany = [		
-	]
+	EffortRole effortRole
 
 	static constraints = { 
 		systemChange nullable: true
+		effortRole nullable: true
 	}
 
 	public transformToMap() {
@@ -27,7 +27,8 @@ class FirstEffortEstimate {
 			max_effort: maxEffort,
 			risk: risk,
 			project_id: project ? project.id : '',
-			system_change_id: systemChange ? systemChange.id : ''
+			system_change_id: systemChange ? systemChange.id : '',
+			effort_role_id: effortRole ? effortRole.id : ''
 		]
 	}	
 	

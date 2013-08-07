@@ -5,18 +5,17 @@ class SystemChange {
 	Project project
 	
 	String adaptionAspect
-
-	FirstEffortEstimate firstEffortEstimate
+	
 	System system
 	AdaptionType adaptionType
 
 	static belongsTo = UserStory
 	static hasMany = [
-		userStories: UserStory
+		userStories: UserStory,
+		firstEffortEstimates: FirstEffortEstimate
 	]
 
-	static constraints = {
-		firstEffortEstimate nullable: true
+	static constraints = {		
 		system nullable: true
 		adaptionType nullable: true
 	}
@@ -28,7 +27,7 @@ class SystemChange {
 			project_id: project ? project.id : '',
 			system_id: system ? system.id : '',
 			adaption_type_id: adaptionType ? adaptionType.id : '',
-			first_effort_estimate_id: firstEffortEstimate ? firstEffortEstimate.id : '',			
+			first_effort_estimate_ids: firstEffortEstimates.collect{it.id},
 			user_story_ids: userStories.collect{it.id}
 		]
 	}

@@ -95,6 +95,15 @@ class UrlMappings {
 			action = [GET: "showAllFirstEffortEstimates", POST: "save"]
 		}
 		///////////////////////////////////////////////////////////////////////////////////////////
+		//###EffortRole
+		"/rest/effort_roles/$id"(controller: "EffortRoleRest", parseRequest: true) {
+			action = [GET: "showEffortRoleById", PUT: "update", DELETE: "delete", POST: "save"]
+		}
+
+		"/rest/effort_roles"(controller: "EffortRoleRest", parseRequest: true) {
+			action = [GET: "showAllEffortRole", POST: "save"]
+		}
+		///////////////////////////////////////////////////////////////////////////////////////////
 		//###Helper
 		"/createTestData"(controller: "TestData", parseRequest: true) {
 			action = [GET: "testBuildAllDomains"]

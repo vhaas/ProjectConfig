@@ -50,6 +50,16 @@ class SystemChangeRestController {
 				all = all.getSystemChanges()
 			}
 		}
+		else if (params.first_effort_estimate) {
+			all = FirstEffortEstimate.findById(params.first_effort_estimate)
+			if (!all) {
+				render renderNotFound
+				return
+			}
+			else {
+				all = all.getSystemChanges()
+			}
+		}
 		else {
 			all = SystemChange.list()
 		}
@@ -66,7 +76,6 @@ class SystemChangeRestController {
 		systemChangeInstance.properties = params.system_change
 		systemChangeInstance.project = Project.get(props.project_id)
 		systemChangeInstance.system = System.get(props.system_id)
-		systemChangeInstance.firstEffortEstimate = FirstEffortEstimate.get(props.first_effort_estimate_id)
 		systemChangeInstance.adaptionType = AdaptionType.get(props.adaption_type_id)
 		def firstEffortEstimate = FirstEffortEstimate.get(props.first_effort_estimate_id)
 		systemChangeInstance.firstEffortEstimate = firstEffortEstimate
@@ -93,12 +102,14 @@ class SystemChangeRestController {
 					return
 				}
 			}
-			def paramFirstEffortEstimate = FirstEffortEstimate.get(p.first_effort_estimate_id)
-			if (paramFirstEffortEstimate) {
-				systemChangeInstance.firstEffortEstimate = paramFirstEffortEstimate
-			}
-			else {
-				systemChangeInstance.firstEffortEstimate = null
+			def paramFirstEffortEstimateids = FirstEffortEstimate.get(p.first_effort_estimate_ids)
+			if (paramFirstEffortEstimateids) {
+				paramFirstEffortEstimateids.each {
+					def fee = FirstEffortEstimate.get(it)
+					if (fee) {
+						systemChangeInstance.addToFirstEffortEstimates(fee)
+					}
+				}				
 			}
 			def paramAdaptionType = AdaptionType.get(p.adaption_type_id)
 			if (paramAdaptionType) {
@@ -106,7 +117,7 @@ class SystemChangeRestController {
 			}
 			else {
 				systemChangeInstance.adaptionType = null
-			}
+			}			
 			def paramUserStory = request.JSON as Map
 			def userStoryIds = paramUserStory.get('system_change').get('user_story_ids')
 			if (userStoryIds) {

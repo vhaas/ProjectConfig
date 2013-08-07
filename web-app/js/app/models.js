@@ -24,7 +24,6 @@ App.UserStory = DS.Model.extend({
 	description : DS.attr("string"),
 	goal : DS.attr("string"),
 	benefit : DS.attr("string"),
-//	roadMap : DS.belongsTo("App.RoadMap"),
 	epic : DS.belongsTo("App.Epic"),
 	role : DS.belongsTo("App.Role"),
 	project : DS.belongsTo("App.Project"),
@@ -75,7 +74,7 @@ App.SystemChange = DS.Model.extend({
 	project : DS.belongsTo("App.Project"),
 	system : DS.belongsTo("App.System"),
 	adaptionType : DS.belongsTo("App.AdaptionType"),
-	firstEffortEstimate : DS.belongsTo("App.FirstEffortEstimate"),
+	firstEffortEstimates : DS.hasMany("App.FirstEffortEstimate"),
 	userStories : DS.hasMany("App.UserStory")
 });
 
@@ -86,7 +85,8 @@ App.FirstEffortEstimate = DS.Model.extend({
 	maxEffort : DS.attr("string"),
 	risk : DS.attr("string"),
 	project : DS.belongsTo("App.Project"),
-	systemChanges : DS.belongsTo("App.SystemChange")
+	systemChanges : DS.belongsTo("App.SystemChange"),
+	effortRole : DS.belongsTo("App.EffortRole")
 });
 
 App.AdaptionType = DS.Model.extend({
@@ -94,4 +94,11 @@ App.AdaptionType = DS.Model.extend({
 	description : DS.attr("string"),
 	systemChanges : DS.hasMany("App.SystemChange"),
 	project : DS.belongsTo("App.Project")
+});
+
+App.EffortRole = DS.Model.extend({
+	name : DS.attr("string"),
+	description : DS.attr("string"),
+	dailyRate : DS.attr("string"),
+	firstEffortEstimates : DS.hasMany("App.FirstEffortEstimate")	
 });
